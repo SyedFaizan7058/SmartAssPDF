@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartAssPDF Blog — Free PDF Guides, Tutorials & Tips</title>
+  <meta name="description" content="Explore actionable tutorials and guides on converting, compressing, merging, splitting, and securing PDF files with SmartAssPDF.">
+  <link rel="canonical" href="https://smartasspdf.com/blog/index.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="SmartAssPDF Blog — Free PDF Guides, Tutorials & Tips">
+  <meta property="og:description" content="Explore actionable tutorials and guides on converting, compressing, merging, splitting, and securing PDF files.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://smartasspdf.com/blog/index.html">
+  <meta property="og:image" content="https://smartasspdf.com/assets/images/og-banner.png">
+  <meta property="og:site_name" content="SmartAssPDF">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SmartAssPDF Blog — Free PDF Guides, Tutorials & Tips">
+  <meta name="twitter:description" content="Explore actionable tutorials and guides on converting, compressing, merging, splitting, and securing PDF files.">
+  <meta name="twitter:image" content="https://smartasspdf.com/assets/images/og-banner.png">
+
+  <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+
+  <!-- Immediate Theme Initializer to Prevent FOUC -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('smartasspdf_theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', savedTheme || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../assets/css/app.css">
+
+  <!-- Breadcrumb Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://smartasspdf.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://smartasspdf.com/blog/index.html" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Global Header — Identical Dropdown Navbar across all pages -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="SmartAssPDF home">
+        <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="26" height="26" alt="SmartAssPDF Logo"></span>
+        <span class="brand-name">SmartAss<em>PDF</em></span>
+      </a>
+
+      <!-- Desktop Navigation with Dropdowns -->
+      <nav aria-label="Main navigation">
+        <ul class="nav-desktop">
+          <li class="nav-item">
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+              <span>Convert</span>
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="../tools/pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> <span>PDF to Word</span></a>
+              <a class="nav-dropdown-item" href="../tools/pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> <span>PDF to Excel</span></a>
+              <a class="nav-dropdown-item" href="../tools/pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> <span>PDF to JPG</span></a>
+              <a class="nav-dropdown-item" href="../tools/pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> <span>PDF to PowerPoint</span></a>
+              <a class="nav-dropdown-item" href="../tools/word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> <span>Word to PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> <span>Excel to PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/image-to-webp.html"><i class="bi bi-file-earmark-image"></i> <span>Image to WebP</span></a>
+              <a class="nav-dropdown-item" href="../tools/image-to-pdf.html"><i class="bi bi-images"></i> <span>Image to PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/html-to-pdf.html"><i class="bi bi-filetype-html"></i> <span>HTML to PDF</span></a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+              <span>Organize</span>
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="../tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+              <span>Optimize & Security</span>
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="../tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../faq.html" data-nav="faq">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../about.html" data-nav="about">About</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" id="searchTriggerBtn" aria-label="Search tools">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <span>Search tools</span>
+          <kbd class="search-kbd">⌘K</kbd>
+        </button>
+
+        <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle dark/light theme">
+          <i class="bi bi-sun-fill" aria-hidden="true"></i>
+        </button>
+
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop & Drawer -->
+  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+    <div class="mobile-drawer-header">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="24" height="24" alt=""></span>
+        <span class="brand-name">SmartAss<em>PDF</em></span>
+      </a>
+      <button type="button" class="file-action-btn" id="drawerCloseBtn" aria-label="Close menu">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <div class="mobile-drawer-nav">
+      <div>
+        <div class="mobile-nav-section-title">Convert Tools</div>
+        <ul class="mobile-nav-list">
+          <li><a href="../tools/pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> PDF to Word</a></li>
+          <li><a href="../tools/pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> PDF to Excel</a></li>
+          <li><a href="../tools/pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> PDF to JPG</a></li>
+          <li><a href="../tools/pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> PDF to PowerPoint</a></li>
+          <li><a href="../tools/word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> Word to PDF</a></li>
+          <li><a href="../tools/excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> Excel to PDF</a></li>
+          <li><a href="../tools/image-to-webp.html"><i class="bi bi-file-earmark-image"></i> Image to WebP</a></li>
+          <li><a href="../tools/image-to-pdf.html"><i class="bi bi-images"></i> Image to PDF</a></li>
+          <li><a href="../tools/html-to-pdf.html"><i class="bi bi-filetype-html"></i> HTML to PDF</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="mobile-nav-section-title">Organize & Optimize</div>
+        <ul class="mobile-nav-list">
+          <li><a href="../tools/merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
+          <li><a href="../tools/split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
+          <li><a href="../tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a></li>
+          <li><a href="../tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a></li>
+          <li><a href="../tools/add-page-numbers.html"><i class="bi bi-123"></i> Add Page Numbers</a></li>
+          <li><a href="../tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> Protect PDF</a></li>
+          <li><a href="../tools/unlock-pdf.html"><i class="bi bi-unlock"></i> Unlock PDF</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="mobile-nav-section-title">Resources</div>
+        <ul class="mobile-nav-list">
+          <li><a href="../faq.html"><i class="bi bi-question-circle"></i> FAQ</a></li>
+          <li><a href="../about.html"><i class="bi bi-info-circle"></i> About</a></li>
+          <li><a href="../privacy.html"><i class="bi bi-shield-check"></i> Privacy Policy</a></li>
+          <li><a href="../terms.html"><i class="bi bi-file-text"></i> Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Quick Search Modal (Cmd+K) -->
+  <div class="search-modal-backdrop" id="searchModalBackdrop" role="dialog" aria-modal="true" aria-label="Search tools">
+    <div class="search-modal">
+      <div class="search-input-wrap">
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <input type="search" class="search-input" id="searchModalInput" placeholder="Search by tool name or format (e.g. Word, Split, JPG)..." autocomplete="off" spellcheck="false">
+        <button type="button" class="file-action-btn" id="searchModalClose" aria-label="Close search">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-modal-footer">
+        <span><kbd class="search-kbd">↑</kbd> <kbd class="search-kbd">↓</kbd> to navigate</span>
+        <span><kbd class="search-kbd">↵</kbd> to select</span>
+        <span><kbd class="search-kbd">ESC</kbd> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="section-pad">
+    <div class="container">
+      <!-- Breadcrumbs -->
+      <div class="tool-breadcrumbs">
+        <a href="../index.html">Home</a>
+        <i class="bi bi-chevron-right"></i>
+        <span>Blog</span>
+      </div>
+
+      <!-- Blog Hero -->
+      <div class="blog-hero">
+        <span class="eyebrow"><i class="bi bi-journal-richtext"></i> KNOWLEDGE & TUTORIALS</span>
+        <h1 style="font-size:clamp(2.2rem, 4vw, 3.2rem); font-weight:800; letter-spacing:-0.03em; margin: 12px 0 16px;">
+          Master Your Document Workflows
+        </h1>
+        <p style="color:var(--text-secondary); font-size:1.1rem; line-height:1.7;">
+          Practical, step-by-step guides on converting, compressing, organizing, and securing PDF documents with open standards.
+        </p>
+      </div>
+
+      <!-- Featured Guide Card -->
+      <a href="how-to-convert-pdf-to-word.html" class="featured-article-card reveal-on-scroll" aria-label="Read Featured Guide: How to Convert PDF to Word">
+        <div>
+          <span class="blog-badge" style="background:var(--primary-subtle); color:var(--primary);">Featured Guide</span>
+          <h2 style="font-size:clamp(1.5rem, 2.5vw, 2rem); font-weight:800; margin:10px 0 12px; line-height:1.25;">
+            How to Convert PDF to Word: Step-by-Step Guide
+          </h2>
+          <p style="color:var(--text-secondary); font-size:1rem; line-height:1.7; margin-bottom:20px;">
+            Turn static PDFs into clean, editable Microsoft Word (.docx) documents without subscription barriers or desktop installations. Learn formatting tips and export best practices.
+          </p>
+          <div class="blog-meta" style="border:none; padding:0;">
+            <span><i class="bi bi-clock me-1"></i> 4 min read</span>
+            <span><i class="bi bi-calendar-event me-1"></i> August 20, 2026</span>
+            <span style="color:var(--primary); font-weight:750; margin-left:auto;">Read Article <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+        <div class="featured-article-visual">
+          <i class="bi bi-file-earmark-word"></i>
+          <span class="eyebrow" style="color:var(--primary);">PDF → DOCX</span>
+        </div>
+      </a>
+
+      <!-- AdSense Slot (Top / Leaderboard) -->
+      <div class="ad-slot-container">
+        <div class="ad-slot ad-slot-leaderboard">
+          <span class="ad-badge">ADVERTISEMENT</span>
+          <span class="ad-slot-placeholder-text">Responsive Ad Placement</span>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs & Live Search -->
+      <div class="filter-tabs-wrapper">
+        <div class="filter-tabs" role="tablist">
+          <button class="filter-pill is-active" data-blog-category="all">All Guides</button>
+          <button class="filter-pill" data-blog-category="conversion">Conversion</button>
+          <button class="filter-pill" data-blog-category="optimization">Optimization</button>
+          <button class="filter-pill" data-blog-category="organization">Organization</button>
+          <button class="filter-pill" data-blog-category="security">Security</button>
+          <button class="filter-pill" data-blog-category="knowledge">Knowledge</button>
+        </div>
+        <div class="category-search-input">
+          <i class="bi bi-search"></i>
+          <input type="text" id="blogSearchInput" placeholder="Filter articles..." aria-label="Filter articles by title or keyword">
+        </div>
+      </div>
+
+      <!-- Article Grid -->
+      <div class="blog-grid" id="blogArticlesGrid">
+        <article class="blog-card reveal-on-scroll">
+          <a href="how-to-convert-pdf-to-word.html" class="blog-card-body" aria-label="Read How to Convert PDF to Word (DOCX) Online Free">
+            <div class="blog-card-top">
+              <span class="blog-badge">Conversion</span>
+              <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 4 min read</span>
+            </div>
+            <h3>How to Convert PDF to Word (DOCX) Online Free</h3>
+            <p>Learn how to convert PDF files into editable Microsoft Word (.docx) documents with accurate text extraction, zero registration, and complete privacy.</p>
+            <div class="blog-card-footer">
+              <span class="blog-date"><i class="bi bi-calendar-event me-1"></i> Aug 15, 2026</span>
+              <span class="blog-cta-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card reveal-on-scroll">
+          <a href="how-to-compress-pdf-without-losing-quality.html" class="blog-card-body" aria-label="Read How to Compress a PDF Without Losing Quality">
+            <div class="blog-card-top">
+              <span class="blog-badge">Optimization</span>
+              <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 5 min read</span>
+            </div>
+            <h3>How to Compress a PDF Without Losing Quality</h3>
+            <p>Reduce large document file sizes by optimizing embedded JPEG resources and stream dictionaries without rendering text unreadable.</p>
+            <div class="blog-card-footer">
+              <span class="blog-date"><i class="bi bi-calendar-event me-1"></i> Aug 14, 2026</span>
+              <span class="blog-cta-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card reveal-on-scroll">
+          <a href="how-to-merge-pdf-files.html" class="blog-card-body" aria-label="Read How to Merge Multiple PDF Files into One Document">
+            <div class="blog-card-top">
+              <span class="blog-badge">Organization</span>
+              <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 3 min read</span>
+            </div>
+            <h3>How to Merge Multiple PDF Files into One Document</h3>
+            <p>Combine disparate PDF files, reorder pages, and produce a single clean binder document with zero watermark limitations.</p>
+            <div class="blog-card-footer">
+              <span class="blog-date"><i class="bi bi-calendar-event me-1"></i> Aug 12, 2026</span>
+              <span class="blog-cta-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card reveal-on-scroll">
+          <a href="how-to-split-pdf-pages.html" class="blog-card-body" aria-label="Read How to Split PDF Pages and Extract Specific Ranges">
+            <div class="blog-card-top">
+              <span class="blog-badge">Organization</span>
+              <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 4 min read</span>
+            </div>
+            <h3>How to Split PDF Pages and Extract Specific Ranges</h3>
+            <p>Learn how to isolate specific chapters, single invoices, or custom ranges from oversized documents with precise range notation.</p>
+            <div class="blog-card-footer">
+              <span class="blog-date"><i class="bi bi-calendar-event me-1"></i> Aug 11, 2026</span>
+              <span class="blog-cta-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card reveal-on-scroll">
+          <a href="pdf-vs-word.html" class="blog-card-body" aria-label="Read PDF vs Word: When to Use Which Document Format">
+            <div class="blog-card-top">
+              <span class="blog-badge">Knowledge</span>
+              <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 6 min read</span>
+            </div>
+            <h3>PDF vs Word: When to Use Which Document Format</h3>
+            <p>Understand the core trade-offs between fixed-layout PDFs and reflowable Microsoft Word files to pick the right format every time.</p>
+            <div class="blog-card-footer">
+              <span class="blog-date"><i class="bi bi-calendar-event me-1"></i> Aug 10, 2026</span>
+              <span class="blog-cta-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card reveal-on-scroll">
+          <a href="how-to-protect-pdf-with-password.html" class="blog-card-body" aria-label="Read How to Password Protect a PDF with 256-Bit AES Encryption">
+            <div class="blog-card-top">
+              <span class="blog-badge">Security</span>
+              <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 4 min read</span>
+            </div>
+            <h3>How to Password Protect a PDF with 256-Bit AES Encryption</h3>
+            <p>Add industry-standard encryption to confidential documents to prevent unauthorized viewing, printing, and content scraping.</p>
+            <div class="blog-card-footer">
+              <span class="blog-date"><i class="bi bi-calendar-event me-1"></i> Aug 08, 2026</span>
+              <span class="blog-cta-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card reveal-on-scroll">
+          <a href="how-to-convert-jpg-to-pdf.html" class="blog-card-body" aria-label="Read How to Convert JPG and PNG Images to PDF Online">
+            <div class="blog-card-top">
+              <span class="blog-badge">Conversion</span>
+              <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 3 min read</span>
+            </div>
+            <h3>How to Convert JPG and PNG Images to PDF Online</h3>
+            <p>Turn single or multi-image receipts, invoices, and photo scans into standardized, printable PDF pages with automatic centering.</p>
+            <div class="blog-card-footer">
+              <span class="blog-date"><i class="bi bi-calendar-event me-1"></i> Aug 06, 2026</span>
+              <span class="blog-cta-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card reveal-on-scroll">
+          <a href="what-is-pdfa.html" class="blog-card-body" aria-label="Read What Is PDF/A? Complete Guide to PDF Archiving">
+            <div class="blog-card-top">
+              <span class="blog-badge">Knowledge</span>
+              <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 5 min read</span>
+            </div>
+            <h3>What Is PDF/A? Complete Guide to PDF Archiving</h3>
+            <p>Discover why standard PDFs can degrade over decades and how the ISO PDF/A specification ensures long-term preservation.</p>
+            <div class="blog-card-footer">
+              <span class="blog-date"><i class="bi bi-calendar-event me-1"></i> Aug 04, 2026</span>
+              <span class="blog-cta-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </article>
+      </div>
+
+      <!-- AdSense Slot (Bottom) -->
+      <div class="ad-slot-container" style="margin-top:56px;">
+        <div class="ad-slot ad-slot-banner">
+          <span class="ad-badge">ADVERTISEMENT</span>
+          <span class="ad-slot-placeholder-text">Responsive Ad Banner Placement</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="brand">
+            <div class="brand-mark"><img src="../assets/images/logo-mark.png" alt="SmartAssPDF" width="20" height="20"></div>
+            <span class="brand-name">SmartAss<em>PDF</em></span>
+          </a>
+          <p>Private, open-source document conversion and PDF processing suite.</p>
+          <div class="footer-social-links">
+            <a href="https://www.facebook.com/profile.php?id=61580387357259" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://x.com/smartasspdf_com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Twitter X"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.linkedin.com/company/108761055/admin/dashboard/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.instagram.com/smartasspdf_official/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Convert</h4>
+          <ul class="footer-col-nav">
+            <li><a href="../tools/pdf-to-word.html">PDF to Word</a></li>
+            <li><a href="../tools/pdf-to-excel.html">PDF to Excel</a></li>
+            <li><a href="../tools/pdf-to-jpg.html">PDF to JPG</a></li>
+            <li><a href="../tools/word-to-pdf.html">Word to PDF</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Organize</h4>
+          <ul class="footer-col-nav">
+            <li><a href="../tools/merge-pdf.html">Merge PDF</a></li>
+            <li><a href="../tools/split-pdf.html">Split PDF</a></li>
+            <li><a href="../tools/compress-pdf.html">Compress PDF</a></li>
+            <li><a href="../tools/protect-pdf.html">Protect PDF</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-col-nav">
+            <li><a href="index.html">Blog & Guides</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../cookie-policy.html">Cookie Policy</a></li>
+            <li><a href="../terms.html">Terms of Service</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 SmartAssPDF. All rights reserved. Open-source document utilities.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/tools-config.js"></script>
+  <script src="../assets/js/blog-data.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/ai-agent.js"></script>
+  <script src="../assets/js/blog.js"></script>
+</body>
+</html>

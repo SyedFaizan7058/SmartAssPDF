@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie & Storage Policy — SmartAssPDF</title>
+  <meta name="description" content="Understand how SmartAssPDF uses browser local storage for themes and third-party advertising cookies for website monetization.">
+  <link rel="canonical" href="https://smartasspdf.com/cookie-policy.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Cookie & Storage Policy — SmartAssPDF">
+  <meta property="og:description" content="Understand how SmartAssPDF uses browser local storage and advertising cookies.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://smartasspdf.com/cookie-policy.html">
+  <meta property="og:image" content="https://smartasspdf.com/assets/images/og-banner.png">
+  <meta property="og:site_name" content="SmartAssPDF">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cookie & Storage Policy — SmartAssPDF">
+  <meta name="twitter:description" content="Understand how SmartAssPDF uses browser local storage and advertising cookies.">
+  <meta name="twitter:image" content="https://smartasspdf.com/assets/images/og-banner.png">
+
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Immediate Theme Initializer to Prevent FOUC -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('smartasspdf_theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', savedTheme || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
+
+  <link rel="stylesheet" href="assets/css/app.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://smartasspdf.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Cookie Policy", "item": "https://smartasspdf.com/cookie-policy.html" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Global Header — Identical Dropdown Navbar across all pages -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="SmartAssPDF home">
+        <span class="brand-mark"><img src="assets/images/logo-mark.png" width="26" height="26" alt="SmartAssPDF Logo"></span>
+        <span class="brand-name">SmartAss<em>PDF</em></span>
+      </a>
+
+      <!-- Desktop Navigation with Dropdowns -->
+      <nav aria-label="Main navigation">
+        <ul class="nav-desktop">
+          <li class="nav-item">
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+              <span>Convert</span>
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="tools/pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> <span>PDF to Word</span></a>
+              <a class="nav-dropdown-item" href="tools/pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> <span>PDF to Excel</span></a>
+              <a class="nav-dropdown-item" href="tools/pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> <span>PDF to JPG</span></a>
+              <a class="nav-dropdown-item" href="tools/pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> <span>PDF to PowerPoint</span></a>
+              <a class="nav-dropdown-item" href="tools/word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> <span>Word to PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> <span>Excel to PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/image-to-webp.html"><i class="bi bi-file-earmark-image"></i> <span>Image to WebP</span></a>
+              <a class="nav-dropdown-item" href="tools/image-to-pdf.html"><i class="bi bi-images"></i> <span>Image to PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/html-to-pdf.html"><i class="bi bi-filetype-html"></i> <span>HTML to PDF</span></a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+              <span>Organize</span>
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+              <span>Optimize & Security</span>
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
+            </div>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" id="searchTriggerBtn" aria-label="Search tools">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <span>Search tools</span>
+          <kbd class="search-kbd">⌘K</kbd>
+        </button>
+        <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle dark/light theme">
+          <i class="bi bi-sun-fill" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop & Drawer -->
+  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+    <div class="mobile-drawer-header">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><img src="assets/images/logo-mark.png" width="24" height="24" alt=""></span>
+        <span class="brand-name">SmartAss<em>PDF</em></span>
+      </a>
+      <button type="button" class="file-action-btn" id="drawerCloseBtn" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="mobile-drawer-nav">
+      <div>
+        <div class="mobile-nav-section-title">Convert Tools</div>
+        <ul class="mobile-nav-list">
+          <li><a href="tools/pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> PDF to Word</a></li>
+          <li><a href="tools/pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> PDF to Excel</a></li>
+          <li><a href="tools/pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> PDF to JPG</a></li>
+          <li><a href="tools/pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> PDF to PowerPoint</a></li>
+          <li><a href="tools/word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> Word to PDF</a></li>
+          <li><a href="tools/excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> Excel to PDF</a></li>
+          <li><a href="tools/image-to-webp.html"><i class="bi bi-file-earmark-image"></i> Image to WebP</a></li>
+          <li><a href="tools/image-to-pdf.html"><i class="bi bi-images"></i> Image to PDF</a></li>
+          <li><a href="tools/html-to-pdf.html"><i class="bi bi-filetype-html"></i> HTML to PDF</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mobile-nav-section-title">Organize & Optimize</div>
+        <ul class="mobile-nav-list">
+          <li><a href="tools/merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
+          <li><a href="tools/split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
+          <li><a href="tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a></li>
+          <li><a href="tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a></li>
+          <li><a href="tools/add-page-numbers.html"><i class="bi bi-123"></i> Add Page Numbers</a></li>
+          <li><a href="tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> Protect PDF</a></li>
+          <li><a href="tools/unlock-pdf.html"><i class="bi bi-unlock"></i> Unlock PDF</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mobile-nav-section-title">Resources</div>
+        <ul class="mobile-nav-list">
+          <li><a href="faq.html"><i class="bi bi-question-circle"></i> FAQ</a></li>
+          <li><a href="about.html"><i class="bi bi-info-circle"></i> About</a></li>
+          <li><a href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
+          <li><a href="privacy.html"><i class="bi bi-shield-check"></i> Privacy Policy</a></li>
+          <li><a href="cookie-policy.html" class="is-active"><i class="bi bi-shield-lock"></i> Cookie Policy</a></li>
+          <li><a href="terms.html"><i class="bi bi-file-text"></i> Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Quick Search Modal (Cmd+K) -->
+  <div class="search-modal-backdrop" id="searchModalBackdrop" role="dialog" aria-modal="true" aria-label="Search tools">
+    <div class="search-modal">
+      <div class="search-input-wrap">
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <input type="search" class="search-input" id="searchModalInput" placeholder="Search by tool name or format..." autocomplete="off">
+        <button type="button" class="file-action-btn" id="searchModalClose" aria-label="Close search"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-modal-footer">
+        <span><kbd class="search-kbd">↑</kbd> <kbd class="search-kbd">↓</kbd> to navigate</span>
+        <span><kbd class="search-kbd">↵</kbd> to select</span>
+        <span><kbd class="search-kbd">ESC</kbd> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="section-pad">
+    <div class="container container-narrow">
+      <div class="tool-breadcrumbs">
+        <a href="index.html">Home</a>
+        <i class="bi bi-chevron-right"></i>
+        <span>Cookie Policy</span>
+      </div>
+
+      <div class="section-heading">
+        <span class="eyebrow"><i class="bi bi-shield-check"></i> TRANSPARENCY & COMPLIANCE</span>
+        <h1>Cookie & Local Storage Policy</h1>
+        <p>Last updated: August 20, 2026</p>
+      </div>
+
+      <article class="content-article card-folded" style="margin-bottom:32px;">
+        <h2>1. Overview</h2>
+        <p>SmartAssPDF is committed to protecting your privacy while delivering fast, frictionless document utilities. This policy explains how we utilize browser cookies, local storage mechanisms, and third-party advertising services.</p>
+
+        <h2>2. What Are Cookies and Local Storage?</h2>
+        <p>Cookies are small text files stored on your device when you visit a website. Local Storage is a browser feature that allows websites to store key-value data persistently without sending it to the server on every request.</p>
+
+        <h2>3. How SmartAssPDF Uses Browser Storage</h2>
+        <p>We prioritize minimal data collection. Specifically:</p>
+        <ul class="facts-list" style="margin:16px 0 24px;">
+          <li><i class="bi bi-check-circle-fill"></i> <span><strong>Theme Preference (Local Storage):</strong> We store your choice of Dark or Light mode under <code>smartasspdf_theme</code>. This ensures zero layout flicker (FOUC) and is stored exclusively in your browser.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i> <span><strong>Essential Operations:</strong> We do not require account creation, session cookies, or user tracking to perform document conversions.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i> <span><strong>Temporary Job Directories:</strong> Uploaded files are assigned isolated UUIDs on our processing server and automatically deleted within 30 minutes. No document content is stored in cookies.</span></li>
+        </ul>
+
+        <h2>4. Third-Party Advertising and Analytics</h2>
+        <p>To keep all 16 PDF tools 100% free without charging subscription fees, SmartAssPDF may partner with advertising networks such as Google AdSense. Third-party vendors, including Google, use cookies to serve ads based on prior visits to this website or other websites.</p>
+        <p>Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visit to SmartAssPDF and/or other sites on the Internet. Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener" style="color:var(--primary); font-weight:700;">Google Ads Settings</a>.</p>
+
+        <h2>5. Managing and Disabling Cookies</h2>
+        <p>You can choose to disable or selectively turn off our cookies or third-party cookies in your browser settings. However, this may affect how you are able to interact with various websites.</p>
+
+        <h2>6. Contact Regarding Privacy</h2>
+        <p>If you have any questions about this Cookie Policy or our privacy practices, please contact us via our <a href="contact.html" style="color:var(--primary); font-weight:700;">Contact Page</a> or review our <a href="privacy.html" style="color:var(--primary); font-weight:700;">Privacy Policy</a>.</p>
+      </article>
+
+      <!-- AdSense Placeholder -->
+      <div class="ad-slot-container">
+        <div class="ad-slot ad-slot-banner">
+          <span class="ad-badge">ADVERTISEMENT</span>
+          <span class="ad-slot-placeholder-text">Responsive Ad Banner Placement</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <div class="brand-mark"><img src="assets/images/logo-mark.png" alt="SmartAssPDF" width="20" height="20"></div>
+            <span class="brand-name">SmartAss<em>PDF</em></span>
+          </a>
+          <p>Private, open-source document conversion and PDF processing suite.</p>
+          <div class="footer-social-links">
+            <a href="https://www.facebook.com/profile.php?id=61580387357259" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://x.com/smartasspdf_com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Twitter X"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.linkedin.com/company/108761055/admin/dashboard/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.instagram.com/smartasspdf_official/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Convert</h4>
+          <ul class="footer-col-nav">
+            <li><a href="tools/pdf-to-word.html">PDF to Word</a></li>
+            <li><a href="tools/pdf-to-excel.html">PDF to Excel</a></li>
+            <li><a href="tools/pdf-to-jpg.html">PDF to JPG</a></li>
+            <li><a href="tools/word-to-pdf.html">Word to PDF</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Organize</h4>
+          <ul class="footer-col-nav">
+            <li><a href="tools/merge-pdf.html">Merge PDF</a></li>
+            <li><a href="tools/split-pdf.html">Split PDF</a></li>
+            <li><a href="tools/compress-pdf.html">Compress PDF</a></li>
+            <li><a href="tools/protect-pdf.html">Protect PDF</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-col-nav">
+            <li><a href="blog/index.html">Blog & Guides</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="cookie-policy.html">Cookie Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 SmartAssPDF. All rights reserved. Open-source document utilities.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/tools-config.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/ai-agent.js"></script>
+</body>
+</html>

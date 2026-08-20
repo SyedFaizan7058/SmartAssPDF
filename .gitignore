@@ -1,0 +1,35 @@
+# Build outputs
+target/
+**/target/
+*.class
+
+# Temporary job folders & runtime data
+temp-jobs/
+**/temp-jobs/
+scratch/
+*.log
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+
+# Compressed archives
+*.zip
+*.tar.gz
+
+# IDE & Editor files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment & credentials
+.env
+.env.local

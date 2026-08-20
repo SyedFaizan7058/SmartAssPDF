@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/v1/jobs/
+Disallow: /tools/tool.html
+
+Sitemap: https://smartasspdf.com/sitemap.xml

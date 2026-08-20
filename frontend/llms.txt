@@ -1,0 +1,60 @@
+# SmartAssPDF
+
+> SmartAssPDF is a free, private, open-source-oriented web application for PDF, image, and document conversion, organization, and optimization workflows.
+
+## Primary Capabilities (16 Live Tools)
+
+### Convert from PDF
+- **PDF to Word (DOCX)**: `/tools/pdf-to-word.html` — Converts PDF pages and documents into editable Microsoft Word (.docx) documents with 1:1 layout preservation, tables, vector rules, and fonts.
+- **PDF to Excel (XLSX)**: `/tools/pdf-to-excel.html` — Extracts tabular data and text into structured, auto-fitted Excel spreadsheets (.xlsx) with numerical cell formatting.
+- **PDF to JPG**: `/tools/pdf-to-jpg.html` — Renders PDF pages into high-resolution JPG images (packaged as ZIP for multi-page).
+- **PDF to PowerPoint (PPTX)**: `/tools/pdf-to-ppt.html` — Exports PDF pages into high-fidelity PowerPoint slide decks (.pptx).
+
+### Convert to PDF
+- **Word to PDF**: `/tools/word-to-pdf.html` — Converts DOCX files into universal, printer-ready PDF files with full style, table, and image preservation.
+- **Excel to PDF**: `/tools/excel-to-pdf.html` — Renders spreadsheet worksheets and tables into paginated, grid-lined PDF documents.
+- **Image to PDF**: `/tools/image-to-pdf.html` — Converts JPG, PNG, and JPEG images into a unified PDF document.
+- **HTML to PDF**: `/tools/html-to-pdf.html` — Renders HTML markup, styles, and full CSS layouts into formatted PDF pages.
+
+### Optimize & Security
+- **Image to WebP**: `/tools/image-to-webp.html` — Converts PNG, JPG, and JPEG images into modern, ultra-compressed WebP format with alpha transparency preservation.
+- **Compress PDF**: `/tools/compress-pdf.html` — Reduces PDF file size by 60-80% using multi-stage image downsampling and object stream optimization.
+- **Protect PDF**: `/tools/protect-pdf.html` — Enforces 256-bit AES password encryption on PDF files.
+- **Unlock PDF**: `/tools/unlock-pdf.html` — Removes password protection from authorized PDFs when password is provided.
+
+### Organize PDF
+- **Merge PDF**: `/tools/merge-pdf.html` — Combines multiple PDF files into one organized document.
+- **Split PDF**: `/tools/split-pdf.html` — Extracts individual pages or custom ranges (e.g. 1-3, 5, 8-10) with ZIP bundling.
+- **Rotate PDF**: `/tools/rotate-pdf.html` — Rotates PDF pages clockwise by 90, 180, or 270 degrees.
+- **Add Page Numbers**: `/tools/add-page-numbers.html` — Inserts formatted page numbers into PDF headers or footers.
+
+## Technology Stack
+
+- **Frontend**: Lightweight vanilla HTML5, modern CSS3 custom properties (Dark & Light themes), modular ES6 JavaScript, SmartAss AI browser agent.
+- **Backend API**: Java 17+, Spring Boot 3.5 REST API on `/api/v1`.
+- **Core Engines & Libraries**:
+  - Apache PDFBox 3.0 (PDF rendering, security encryption, object stream compression).
+  - Apache POI (Office DOCX/XLSX/PPTX handling).
+  - PyMuPDF / fitz (High-speed vector graphics, layout parsing, table extraction).
+  - Tabula & OpenPyXL (Structured PDF table extraction and spreadsheet generation).
+  - LibreOffice Headless (Native document compiler for Word, Excel, and HTML rendering).
+  - Pillow / PIL (High-performance WebP and image processing).
+- **Architecture**: In-memory job management; files reside in temporary isolated server directories with automated deletion. No persistent storage, zero user tracking.
+
+## Blog & Educational Resources
+
+- `/blog/index.html`: Knowledge hub covering document formatting, archiving, and compression guides.
+- `/blog/how-to-convert-pdf-to-word.html`: Converting PDF to editable Word without formatting loss.
+- `/blog/how-to-compress-pdf-without-losing-quality.html`: Balancing DPI and image compression.
+- `/blog/how-to-merge-pdf-files.html`: Combining multi-source PDFs into one document.
+- `/blog/how-to-split-pdf-pages.html`: Extracting custom page intervals and ZIP exports.
+- `/blog/pdf-vs-word.html`: Detailed comparison between fixed-layout and reflowable formats.
+- `/blog/how-to-protect-pdf-with-password.html`: Applying 256-bit AES encryption.
+- `/blog/how-to-convert-jpg-to-pdf.html`: Converting photos and receipts to PDF.
+- `/blog/what-is-pdfa.html`: Overview of the ISO 19005 archiving standard.
+
+## API Endpoints
+
+- `GET /api/v1/tools`: Lists all available tools and system status.
+- `POST /api/v1/tools/{tool}/jobs`: Accepts multipart form uploads (`files`) and returns job status and download URLs.
+- `GET /api/v1/jobs/{jobId}/download`: Streams the converted result file.

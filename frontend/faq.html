@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frequently Asked Questions — SmartAssPDF Help Center</title>
+  <meta name="description"
+    content="Find clear answers about supported formats, conversion quality, temporary file retention, limits, and troubleshooting for SmartAssPDF.">
+  <link rel="canonical" href="https://smartasspdf.com/faq.html">
+  <meta property="og:title" content="Frequently Asked Questions — SmartAssPDF Help Center">
+  <meta property="og:description" content="Clear, direct answers for all SmartAssPDF document processing tools.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://smartasspdf.com/faq.html">
+  <meta property="og:image" content="https://smartasspdf.com/assets/images/og-banner.png">
+  <meta property="og:site_name" content="SmartAssPDF">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Frequently Asked Questions — SmartAssPDF Help Center">
+  <meta name="twitter:description" content="Clear, direct answers for all SmartAssPDF document processing tools.">
+  <meta name="twitter:image" content="https://smartasspdf.com/assets/images/og-banner.png">
+
+  <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Immediate Theme Initializer to Prevent FOUC -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('smartasspdf_theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', savedTheme || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
+
+  <link href="assets/css/app.css" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://smartasspdf.com/" },
+          { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://smartasspdf.com/faq.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is SmartAssPDF completely free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. SmartAssPDF is built with open-source technologies and is free to use without requiring an account or subscription."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the maximum file size limit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The default backend allows files up to 50 MB each, and multi-file workflows like Merge PDF support up to 20 files per request."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How are files stored and deleted?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Files are stored in isolated temporary directories on the server and permanently deleted after 30 minutes by a scheduled cleanup service."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I preview files before downloading?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, PDF and image files have interactive browser previews both before processing and after result generation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can Unlock PDF decrypt unknown passwords?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The Unlock PDF tool requires you to provide the valid document password to generate an unlocked copy."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Global Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="SmartAssPDF home">
+        <span class="brand-mark"><img src="assets/images/logo-mark.png" width="26" height="26" alt="SmartAssPDF Logo"></span>
+        <span class="brand-name">SmartAss<em>PDF</em></span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav aria-label="Main navigation">
+        <ul class="nav-desktop">
+          <li class="nav-item">
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+              <span>Convert</span>
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="tools/pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> <span>PDF to Word</span></a>
+              <a class="nav-dropdown-item" href="tools/pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> <span>PDF to Excel</span></a>
+              <a class="nav-dropdown-item" href="tools/pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> <span>PDF to JPG</span></a>
+              <a class="nav-dropdown-item" href="tools/pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> <span>PDF to PowerPoint</span></a>
+              <a class="nav-dropdown-item" href="tools/word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> <span>Word to PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> <span>Excel to PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/image-to-webp.html"><i class="bi bi-file-earmark-image"></i> <span>Image to WebP</span></a>
+              <a class="nav-dropdown-item" href="tools/html-to-pdf.html"><i class="bi bi-filetype-html"></i> <span>HTML to PDF</span></a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+              <span>Organize</span>
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+              <span>Optimize & Security</span>
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link is-active" href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" id="searchTriggerBtn" aria-label="Search tools">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <span>Search tools</span>
+          <kbd class="search-kbd">⌘K</kbd>
+        </button>
+        <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle dark/light theme">
+          <i class="bi bi-sun-fill" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+    <div class="mobile-drawer-header">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><img src="assets/images/logo-mark.png" width="24" height="24" alt=""></span>
+        <span class="brand-name">SmartAss<em>PDF</em></span>
+      </a>
+      <button type="button" class="file-action-btn" id="drawerCloseBtn" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="mobile-drawer-nav">
+      <div>
+        <div class="mobile-nav-section-title">Convert Tools</div>
+        <ul class="mobile-nav-list">
+          <li><a href="tools/pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> PDF to Word</a></li>
+          <li><a href="tools/pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> PDF to Excel</a></li>
+          <li><a href="tools/pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> PDF to JPG</a></li>
+          <li><a href="tools/word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> Word to PDF</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mobile-nav-section-title">Organize & Security</div>
+        <ul class="mobile-nav-list">
+          <li><a href="tools/merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
+          <li><a href="tools/split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
+          <li><a href="tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a></li>
+          <li><a href="tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> Protect PDF</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mobile-nav-section-title">Resources</div>
+        <ul class="mobile-nav-list">
+          <li><a href="faq.html" class="is-active"><i class="bi bi-question-circle"></i> FAQ</a></li>
+          <li><a href="about.html"><i class="bi bi-info-circle"></i> About</a></li>
+          <li><a href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
+          <li><a href="privacy.html"><i class="bi bi-shield-check"></i> Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Quick Search Modal -->
+  <div class="search-modal-backdrop" id="searchModalBackdrop" role="dialog" aria-modal="true" aria-label="Search tools">
+    <div class="search-modal">
+      <div class="search-input-wrap">
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <input type="search" class="search-input" id="searchModalInput" placeholder="Search by tool name or format..." autocomplete="off">
+        <button type="button" class="file-action-btn" id="searchModalClose" aria-label="Close search"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-modal-footer">
+        <span><kbd class="search-kbd">↑</kbd> <kbd class="search-kbd">↓</kbd> to navigate</span>
+        <span><kbd class="search-kbd">↵</kbd> to select</span>
+        <span><kbd class="search-kbd">ESC</kbd> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="section-pad">
+    <div class="container container-narrow">
+      <nav class="tool-breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="bi bi-chevron-right" style="font-size:0.7rem;"></i>
+        <span>Frequently Asked Questions</span>
+      </nav>
+
+      <div class="section-heading">
+        <span class="eyebrow"><i class="bi bi-question-circle-fill"></i> HELP & ANSWERS</span>
+        <h1 style="font-size:clamp(2.2rem, 4vw, 3.2rem); font-weight:800; letter-spacing:-0.03em; margin: 12px 0;">Frequently Asked Questions</h1>
+        <p>Find direct answers to common questions about file formats, conversion accuracy, privacy, limits, and technical specifications.</p>
+      </div>
+
+      <!-- Category 1: General & Access -->
+      <div style="margin-bottom: 36px;">
+        <h2 style="font-size:1.35rem; font-weight:750; margin-bottom:16px; color:var(--text-primary);"><i class="bi bi-stars" style="color:var(--primary); margin-right:8px;"></i> General & Access</h2>
+        <div class="faq-accordion">
+          <details class="faq-item" open>
+            <summary><span>What is SmartAssPDF?</span><i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i></summary>
+            <div class="faq-answer">SmartAssPDF is a lightweight, privacy-focused online document processing platform offering 16 essential PDF conversion, manipulation, and security utilities.</div>
+          </details>
+          <details class="faq-item">
+            <summary><span>Is there any cost or subscription?</span><i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i></summary>
+            <div class="faq-answer">No. All 16 tools are 100% free and do not require paid subscriptions or credit cards.</div>
+          </details>
+          <details class="faq-item">
+            <summary><span>Do I need to create an account?</span><i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i></summary>
+            <div class="faq-answer">No account or login is required. You can convert and manage documents immediately.</div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Category 2: Formats & Validation -->
+      <div style="margin-bottom: 36px;">
+        <h2 style="font-size:1.35rem; font-weight:750; margin-bottom:16px; color:var(--text-primary);"><i class="bi bi-file-earmark-check" style="color:var(--accent); margin-right:8px;"></i> Formats & Validation</h2>
+        <div class="faq-accordion">
+          <details class="faq-item">
+            <summary><span>What formats are supported?</span><i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i></summary>
+            <div class="faq-answer">SmartAssPDF supports PDF, Microsoft Word (.docx), Excel (.xlsx), PowerPoint (.pptx), Images (.jpg, .jpeg, .png), and Web (.html).</div>
+          </details>
+          <details class="faq-item">
+            <summary><span>What is the maximum file size?</span><i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i></summary>
+            <div class="faq-answer">The maximum individual file size is 50 MB. Multi-file tools support up to 20 files per request.</div>
+          </details>
+          <details class="faq-item">
+            <summary><span>What happens if I pick an invalid file type?</span><i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i></summary>
+            <div class="faq-answer">SmartAssPDF validates file extensions and MIME types immediately in the browser, showing a clear error message without uploading invalid files to the server.</div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Category 3: Privacy & Security -->
+      <div style="margin-bottom: 36px;">
+        <h2 style="font-size:1.35rem; font-weight:750; margin-bottom:16px; color:var(--text-primary);"><i class="bi bi-shield-lock" style="color:var(--success); margin-right:8px;"></i> Privacy & Security</h2>
+        <div class="faq-accordion">
+          <details class="faq-item">
+            <summary><span>Are my documents stored permanently?</span><i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i></summary>
+            <div class="faq-answer">No. Documents are processed in isolated temporary folders and deleted automatically after 30 minutes by our scheduled cleanup service.</div>
+          </details>
+          <details class="faq-item">
+            <summary><span>Are passwords stored in a database?</span><i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i></summary>
+            <div class="faq-answer">No database exists in the architecture. Passwords are used only in transient memory during encryption/decryption requests.</div>
+          </details>
+        </div>
+      </div>
+
+      <!-- AdSense Placeholder -->
+      <div class="ad-slot-container">
+        <div class="ad-slot ad-slot-banner">
+          <span class="ad-badge">ADVERTISEMENT</span>
+          <span class="ad-slot-placeholder-text">Responsive Ad Placement</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand-mark"><img src="assets/images/logo-mark.png" width="24" height="24" alt=""></span>
+            <span class="brand-name">SmartAss<em>PDF</em></span>
+          </a>
+          <p>Free, fast, and practical document workflows built around open-source technology.</p>
+          <div class="footer-social-links">
+            <a href="https://www.facebook.com/profile.php?id=61580387357259" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://x.com/smartasspdf_com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Twitter X"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.linkedin.com/company/108761055/admin/dashboard/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.instagram.com/smartasspdf_official/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Convert</h4>
+          <ul class="footer-col-nav">
+            <li><a href="tools/pdf-to-word.html">PDF to Word</a></li>
+            <li><a href="tools/pdf-to-excel.html">PDF to Excel</a></li>
+            <li><a href="tools/pdf-to-jpg.html">PDF to JPG</a></li>
+            <li><a href="tools/word-to-pdf.html">Word to PDF</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Organize & Protect</h4>
+          <ul class="footer-col-nav">
+            <li><a href="tools/merge-pdf.html">Merge PDF</a></li>
+            <li><a href="tools/split-pdf.html">Split PDF</a></li>
+            <li><a href="tools/compress-pdf.html">Compress PDF</a></li>
+            <li><a href="tools/protect-pdf.html">Protect PDF</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company & Legal</h4>
+          <ul class="footer-col-nav">
+            <li><a href="blog/index.html">Blog & Guides</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="cookie-policy.html">Cookie Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <small>© 2026 SmartAssPDF. Open-source powered document utilities.</small>
+        <span>Free Tools • No Account Required • Temporary Storage</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/tools-config.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/ai-agent.js"></script>
+</body>
+
+</html>
