@@ -3734,3 +3734,24 @@ button, input, select, textarea {
   }
 }
 
+/* Hide Netlify Drawer / Feedback / Powered-by Badge */
+iframe#netlify-drawer,
+#netlify-identity-widget,
+[data-netlify-deploy-preview-badge],
+div[data-netlify-preview],
+.netlify-drawer-container,
+[class*="netlify-drawer"],
+[id*="netlify-drawer"],
+[class*="netlify-badge"],
+[id*="netlify-badge"],
+iframe[src*="netlify"],
+div:has(> iframe[src*="netlify"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+
