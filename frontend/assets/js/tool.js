@@ -7,7 +7,9 @@
 (function () {
   'use strict';
 
-  const API_ORIGIN = (window.SMARTASSPDF_API_ORIGIN || document.querySelector('meta[name="api-origin"]')?.content || "http://localhost:8080").replace(/\/$/, "");
+  const isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+  const defaultOrigin = isLocal ? "http://localhost:8080" : "https://smartasspdf-backend-35ya.onrender.com";
+  const API_ORIGIN = (window.SMARTASSPDF_API_ORIGIN || document.querySelector('meta[name="api-origin"]')?.content || defaultOrigin).replace(/\/$/, "");
   const API_BASE_URL = `${API_ORIGIN}/api/v1`;
 
   const toolId = document.body.dataset.tool || new URLSearchParams(location.search).get("tool") || "merge-pdf";
