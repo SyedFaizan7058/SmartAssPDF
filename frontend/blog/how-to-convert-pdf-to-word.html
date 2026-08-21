@@ -83,6 +83,7 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
   <!-- Global Header — Identical Dropdown Navbar across all pages -->
@@ -122,6 +123,8 @@
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="../tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
               <a class="nav-dropdown-item" href="../tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/remove-pages.html"><i class="bi bi-trash3"></i> <span>Remove Pages</span></a>
+              <a class="nav-dropdown-item" href="../tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span></a>
               <a class="nav-dropdown-item" href="../tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
               <a class="nav-dropdown-item" href="../tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
             </div>
@@ -134,6 +137,7 @@
             </button>
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="../tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/add-watermark.html"><i class="bi bi-shield-shaded"></i> <span>Add Watermark</span></a>
               <a class="nav-dropdown-item" href="../tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
               <a class="nav-dropdown-item" href="../tools/unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
             </div>
@@ -244,7 +248,7 @@
   <main class="section-pad">
     <div class="container">
       <!-- Breadcrumbs -->
-      <div class="tool-breadcrumbs">
+      <div class="tool-breadcrumbs" data-aos="fade-down">
         <a href="../index.html">Home</a>
         <i class="bi bi-chevron-right"></i>
         <a href="index.html">Blog</a>
@@ -356,7 +360,7 @@
             <!-- FAQs -->
             
         <h2>Frequently Asked Questions</h2>
-        <div class="faq-accordion">
+        <div class="faq-accordion" data-aos="fade-up">
           
             <details class="faq-item">
               <summary>
@@ -393,7 +397,7 @@
           </div>
 
           <!-- Cross-Linking: Related Tools -->
-          <div class="cross-links-section">
+          <div class="cross-links-section" data-aos="fade-up">
             <h3 class="cross-links-title"><i class="bi bi-tools text-primary"></i> Related Document Tools</h3>
             <div class="related-tools-grid">
               <a href="../tools/word-to-pdf.html" class="related-tool-item"><i class="bi bi-file-earmark-pdf"></i> Word to PDF</a><a href="../tools/pdf-to-excel.html" class="related-tool-item"><i class="bi bi-file-earmark-excel"></i> PDF to Excel</a><a href="../tools/compress-pdf.html" class="related-tool-item"><i class="bi bi-arrows-collapse"></i> Compress PDF</a><a href="../tools/protect-pdf.html" class="related-tool-item"><i class="bi bi-shield-lock"></i> Protect PDF</a>
@@ -401,7 +405,7 @@
           </div>
 
           <!-- Cross-Linking: Related Articles -->
-          <div class="cross-links-section">
+          <div class="cross-links-section" data-aos="fade-up">
             <h3 class="cross-links-title"><i class="bi bi-journal-richtext text-primary"></i> Related Guides</h3>
             <div class="related-articles-grid">
               <a href="pdf-vs-word.html" class="related-article-card">
@@ -488,10 +492,10 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="../assets/js/tools-config.js"></script>
   <script src="../assets/js/blog-data.js"></script>
   <script src="../assets/js/app.js"></script>
-  <script src="../assets/js/ai-agent.js"></script>
   <script src="../assets/js/blog.js"></script>
 </body>
 </html>

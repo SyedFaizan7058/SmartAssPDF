@@ -323,8 +323,8 @@
         return;
       }
 
-      grid.innerHTML = matched.map(t => `
-        <a class="tool-card card-folded reveal-on-scroll" href="${prefix}tools/${t.id}.html">
+      grid.innerHTML = matched.map((t, idx) => `
+        <a class="tool-card card-folded" data-aos="fade-up" data-aos-delay="${(idx % 4) * 50}" href="${prefix}tools/${t.id}.html">
           <div class="tool-card-top">
             <div class="tool-card-icon" style="color: ${t.accentColor}; background: ${t.accentColor}18;">
               ${t.iconSvg}
@@ -340,9 +340,9 @@
         </a>
       `).join('');
 
-      // Observe newly created cards
-      if (window._revealObserver) {
-        grid.querySelectorAll('.reveal-on-scroll').forEach(el => window._revealObserver.observe(el));
+      // Refresh AOS on dynamic render
+      if (typeof AOS !== 'undefined') {
+        setTimeout(() => AOS.refreshHard(), 50);
       }
     }
 
@@ -366,36 +366,36 @@
   }
 
   /* ==========================================================================
-     6. Smooth Scrolling & Scroll-Driven Animations
+     6. AOS (Animate On Scroll) Smooth Scrolling Animations
      ========================================================================== */
   function initScrollAnimations() {
-    if (!('IntersectionObserver' in window)) {
-      document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
-      return;
+    let retries = 0;
+    const maxRetries = 20;
+
+    function tryInitAOS() {
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 600,
+          easing: 'ease-out-cubic',
+          once: true,
+          offset: 40,
+          delay: 0,
+          debounceDelay: 50,
+          throttleDelay: 99
+        });
+        AOS.refresh();
+      } else if (retries < maxRetries) {
+        retries++;
+        setTimeout(tryInitAOS, 50);
+      }
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.01,
-      rootMargin: '0px 0px 80px 0px'
-    });
+    tryInitAOS();
 
-    window._revealObserver = observer;
-
-    // Target major cards, articles, blog cards, sections, and info boxes
-    const animTargets = document.querySelectorAll(
-      '.reveal-on-scroll, .blog-card, .featured-article-card, .card, .tool-card, .section-heading, .dropzone, .preview-panel-card, .faq-item, .content-article, .facts-sidebar, .hero-content, .hero-preview-card'
-    );
-
-    animTargets.forEach(el => {
-      el.classList.add('reveal-on-scroll');
-      observer.observe(el);
+    window.addEventListener('load', () => {
+      if (typeof AOS !== 'undefined') {
+        AOS.refreshHard();
+      }
     });
   }
 
@@ -439,14 +439,6 @@
   window.SmartAssAnalytics = { track: trackEvent };
   window.initScrollAnimations = initScrollAnimations;
 
-  function loadAiAgent() {
-    if (document.getElementById('smartassAiContainer') || document.querySelector('script[src*="ai-agent.js"]')) return;
-    const script = document.createElement('script');
-    script.src = `${getPrefix()}assets/js/ai-agent.js`;
-    script.defer = true;
-    document.body.appendChild(script);
-  }
-
   // Initialize on DOM ready
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
@@ -455,6 +447,5 @@
     initScrollAnimations();
     initToolGrid();
     markActiveNav();
-    loadAiAgent();
-  });
+});
 })();

@@ -55,7 +55,10 @@
     rotatePdf: `<svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"/><path d="M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-1.19"/></svg>`,
     addPageNumbers: `<svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>`,
     protectPdf: `<svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
-    unlockPdf: `<svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>`
+    unlockPdf: `<svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>`,
+    addWatermark: `<svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`,
+    removePages: `<svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>`,
+    extractPages: `<svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="12 18 12 12 15 15"/><polyline points="9 15 12 12"/></svg>`
   };
 
   const TOOLS = {
@@ -362,6 +365,63 @@
       maxFiles: 1,
       optionsType: 'unlock-pdf',
       relatedTools: ['protect-pdf', 'compress-pdf', 'split-pdf', 'merge-pdf']
+    },
+    'add-watermark': {
+      id: 'add-watermark',
+      name: 'Add Watermark',
+      title: 'Add Watermark to PDF',
+      category: 'optimize-security',
+      badge: 'Stamp / Watermark',
+      inputFormat: 'PDF',
+      outputFormat: 'PDF',
+      iconSvg: ICONS.addWatermark,
+      accentColor: '#8b5cf6',
+      description: 'Apply custom text watermarks across every page of your PDF.',
+      longDescription: 'Add customizable text watermarks (e.g. CONFIDENTIAL, DRAFT, DO NOT COPY) with adjustable opacity, angle, and colors to secure your documents.',
+      accept: '.pdf,application/pdf',
+      extensions: ['.pdf'],
+      multiple: false,
+      maxFiles: 1,
+      optionsType: 'add-watermark',
+      relatedTools: ['protect-pdf', 'compress-pdf', 'add-page-numbers', 'pdf-to-word']
+    },
+    'remove-pages': {
+      id: 'remove-pages',
+      name: 'Remove Pages',
+      title: 'Remove Pages from PDF',
+      category: 'organize-pdf',
+      badge: 'Delete Pages',
+      inputFormat: 'PDF',
+      outputFormat: 'PDF',
+      iconSvg: ICONS.removePages,
+      accentColor: '#f43f5e',
+      description: 'Delete unwanted or blank pages from your PDF file.',
+      longDescription: 'Specify page numbers or ranges (e.g. 1, 3, 5-7) to permanently delete them from your PDF and save a clean document.',
+      accept: '.pdf,application/pdf',
+      extensions: ['.pdf'],
+      multiple: false,
+      maxFiles: 1,
+      optionsType: 'remove-pages',
+      relatedTools: ['extract-pages', 'split-pdf', 'merge-pdf', 'rotate-pdf']
+    },
+    'extract-pages': {
+      id: 'extract-pages',
+      name: 'Extract Pages',
+      title: 'Extract Pages from PDF',
+      category: 'organize-pdf',
+      badge: 'Save Selection',
+      inputFormat: 'PDF',
+      outputFormat: 'PDF',
+      iconSvg: ICONS.extractPages,
+      accentColor: '#0ea5e9',
+      description: 'Extract specific pages or sections into a new PDF document.',
+      longDescription: 'Select specific pages or page ranges (e.g. 1-3, 5, 8-10) to export them directly into a standalone PDF file.',
+      accept: '.pdf,application/pdf',
+      extensions: ['.pdf'],
+      multiple: false,
+      maxFiles: 1,
+      optionsType: 'extract-pages',
+      relatedTools: ['remove-pages', 'split-pdf', 'merge-pdf', 'rotate-pdf']
     }
   };
 

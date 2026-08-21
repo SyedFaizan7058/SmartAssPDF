@@ -34,6 +34,7 @@
     })();
   </script>
 
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link href="assets/css/app.css" rel="stylesheet">
 
   <script type="application/ld+json">
@@ -86,6 +87,8 @@
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
               <a class="nav-dropdown-item" href="tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/remove-pages.html"><i class="bi bi-trash3"></i> <span>Remove Pages</span></a>
+              <a class="nav-dropdown-item" href="tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span></a>
               <a class="nav-dropdown-item" href="tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
               <a class="nav-dropdown-item" href="tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
             </div>
@@ -98,6 +101,7 @@
             </button>
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/add-watermark.html"><i class="bi bi-shield-shaded"></i> <span>Add Watermark</span></a>
               <a class="nav-dropdown-item" href="tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
               <a class="nav-dropdown-item" href="tools/unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
             </div>
@@ -195,13 +199,13 @@
 
   <main class="section-pad">
     <div class="container">
-      <nav class="tool-breadcrumbs" aria-label="Breadcrumb">
+      <nav class="tool-breadcrumbs" aria-label="Breadcrumb" data-aos="fade-down">
         <a href="index.html">Home</a>
         <i class="bi bi-chevron-right" style="font-size:0.7rem;"></i>
         <span>Contact & Support</span>
       </nav>
 
-      <div class="section-heading text-center" style="margin-bottom: 48px;">
+      <div class="section-heading text-center" style="margin-bottom: 48px;" data-aos="fade-down">
         <span class="eyebrow"><i class="bi bi-envelope-paper-fill"></i> GET IN TOUCH</span>
         <h1 style="font-size:clamp(2.2rem, 4vw, 3.2rem); font-weight:800; letter-spacing:-0.03em; margin: 12px 0;">We're Here to Help</h1>
         <p style="color:var(--text-secondary); font-size:1.1rem; max-width:600px; margin:0 auto;">Have a question about document conversion, spotted a bug, or want to suggest a new feature? Send us a message below.</p>
@@ -210,7 +214,7 @@
       <!-- 2-Column Layout: Form on Left, Contact Info on Right -->
       <div class="contact-layout-grid">
         <!-- Contact Form Card -->
-        <div class="contact-card card-folded">
+        <div class="contact-card card-folded" data-aos="fade-right">
           <h2 style="font-size:1.35rem; font-weight:750; margin-bottom:8px;">Send a Message</h2>
           <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:24px;">Fill out the form below and we will respond directly to your email address.</p>
 
@@ -268,7 +272,7 @@
         </div>
 
         <!-- Contact Details & Guidelines Sidebar -->
-        <div style="display:flex; flex-direction:column; gap:24px;">
+        <div style="display:flex; flex-direction:column; gap:24px;" data-aos="fade-left" data-aos-delay="100">
           <div class="contact-info-card card-folded">
             <h3 style="font-size:1.15rem; font-weight:750; margin-bottom:12px;">Support Information</h3>
             <p style="color:var(--text-secondary); font-size:0.88rem; line-height:1.6;">Our team monitors inquiries during regular working hours and investigates tool-related issues promptly.</p>
@@ -390,9 +394,9 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="assets/js/tools-config.js"></script>
   <script src="assets/js/app.js"></script>
-  <script src="assets/js/ai-agent.js"></script>
 
   <!-- Professional Contact Form Validation & Rate Limiting Engine -->
   <script>

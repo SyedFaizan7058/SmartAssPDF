@@ -34,6 +34,7 @@
     })();
   </script>
 
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link href="assets/css/app.css" rel="stylesheet">
 
   <script type="application/ld+json">
@@ -84,6 +85,8 @@
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
               <a class="nav-dropdown-item" href="tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/remove-pages.html"><i class="bi bi-trash3"></i> <span>Remove Pages</span></a>
+              <a class="nav-dropdown-item" href="tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span></a>
               <a class="nav-dropdown-item" href="tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
               <a class="nav-dropdown-item" href="tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
             </div>
@@ -95,6 +98,7 @@
             </button>
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/add-watermark.html"><i class="bi bi-shield-shaded"></i> <span>Add Watermark</span></a>
               <a class="nav-dropdown-item" href="tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
               <a class="nav-dropdown-item" href="tools/unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
             </div>
@@ -187,7 +191,7 @@
         <span>About</span>
       </nav>
 
-      <div class="section-heading">
+      <div class="section-heading" data-aos="fade-down">
         <span class="eyebrow"><i class="bi bi-info-circle-fill"></i> ABOUT SMARTASSPDF</span>
         <h1 style="font-size:clamp(2.2rem, 4vw, 3.2rem); font-weight:800; letter-spacing:-0.03em; margin: 12px 0;">Document Tools with Less Friction.</h1>
         <p>SmartAssPDF brings everyday PDF and document workflows into one responsive, private workspace. Built for professionals and everyday users who want fast results without subscription walls.</p>
@@ -197,18 +201,18 @@
         <h2 style="font-size:1.4rem; font-weight:750; margin-bottom:12px;">Core Architecture Principles</h2>
         <p style="color:var(--text-secondary); margin-bottom: 20px;">Every component of SmartAssPDF is engineered around transparency, speed, and privacy:</p>
         
-        <div class="principles-grid">
-          <div class="card" style="background:var(--bg-subtle);">
+        <div class="principles-grid" data-aos="fade-up">
+          <div class="card" data-aos="fade-up"> style="background:var(--bg-subtle);">
             <div style="font-size:1.4rem; color:var(--primary); margin-bottom:8px;"><i class="bi bi-code-slash"></i></div>
             <strong style="display:block; margin-bottom:4px;">100% Open-Source Engine</strong>
             <small style="color:var(--text-secondary);">Powered by Apache PDFBox, Apache POI, and Spring Boot without expensive third-party conversion APIs.</small>
           </div>
-          <div class="card" style="background:var(--bg-subtle);">
+          <div class="card" data-aos="fade-up"> style="background:var(--bg-subtle);">
             <div style="font-size:1.4rem; color:var(--accent); margin-bottom:8px;"><i class="bi bi-shield-check"></i></div>
             <strong style="display:block; margin-bottom:4px;">Temporary Job Storage</strong>
             <small style="color:var(--text-secondary);">Jobs are created in memory and files reside in temporary server folders with scheduled 30-minute auto-deletion.</small>
           </div>
-          <div class="card" style="background:var(--bg-subtle);">
+          <div class="card" data-aos="fade-up"> style="background:var(--bg-subtle);">
             <div style="font-size:1.4rem; color:var(--success); margin-bottom:8px;"><i class="bi bi-person-x"></i></div>
             <strong style="display:block; margin-bottom:4px;">No Account Wall</strong>
             <small style="color:var(--text-secondary);">All 16 tools are available on-demand with no required account, registration, or credit card.</small>
@@ -304,9 +308,9 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="assets/js/tools-config.js"></script>
   <script src="assets/js/app.js"></script>
-  <script src="assets/js/ai-agent.js"></script>
 </body>
 
 </html>

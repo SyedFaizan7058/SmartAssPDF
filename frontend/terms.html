@@ -34,6 +34,7 @@
     })();
   </script>
 
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link href="assets/css/app.css" rel="stylesheet">
 
   <script type="application/ld+json">
@@ -86,6 +87,8 @@
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
               <a class="nav-dropdown-item" href="tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/remove-pages.html"><i class="bi bi-trash3"></i> <span>Remove Pages</span></a>
+              <a class="nav-dropdown-item" href="tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span></a>
               <a class="nav-dropdown-item" href="tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
               <a class="nav-dropdown-item" href="tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
             </div>
@@ -98,6 +101,7 @@
             </button>
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/add-watermark.html"><i class="bi bi-shield-shaded"></i> <span>Add Watermark</span></a>
               <a class="nav-dropdown-item" href="tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
               <a class="nav-dropdown-item" href="tools/unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
             </div>
@@ -200,7 +204,7 @@
         <span>Terms of Service</span>
       </nav>
 
-      <div class="section-heading">
+      <div class="section-heading" data-aos="fade-down">
         <span class="eyebrow"><i class="bi bi-file-text"></i> LEGAL & POLICY</span>
         <h1 style="font-size:clamp(2.2rem, 4vw, 3.2rem); font-weight:800; letter-spacing:-0.03em; margin: 12px 0;">Terms of Service</h1>
         <p>Operational policies, user conduct rules, and service guidelines for SmartAssPDF.</p>
@@ -296,9 +300,9 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="assets/js/tools-config.js"></script>
   <script src="assets/js/app.js"></script>
-  <script src="assets/js/ai-agent.js"></script>
 </body>
 
 </html>

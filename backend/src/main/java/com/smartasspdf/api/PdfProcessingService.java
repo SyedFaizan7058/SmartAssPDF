@@ -481,6 +481,175 @@ public class PdfProcessingService {
     return out;
   }
 
+  public Path addWatermark(Path input, Path outDir, String text, Float opacity, Integer rotation, Integer fontSize, String color) throws IOException {
+    assertPdf(input);
+    String base = extractBaseName(input, "document");
+    Path out = outDir.resolve(base + "-watermarked.pdf");
+
+    String watermarkText = (text == null || text.isBlank()) ? "CONFIDENTIAL" : text.trim();
+    float op = opacity == null ? 0.3f : Math.max(0.05f, Math.min(1.0f, opacity));
+    int rot = rotation == null ? 45 : rotation;
+    int size = fontSize == null ? 40 : Math.max(10, Math.min(120, fontSize));
+    String col = (color == null || color.isBlank()) ? "gray" : color.trim();
+
+    if (runBridgeConverterWatermark(input, out, watermarkText, op, rot, size, col)) {
+      return out;
+    }
+
+    try (PDDocument doc = Loader.loadPDF(input.toFile())) {
+      PDType1Font font = new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
+      for (PDPage page : doc.getPages()) {
+        try (PDPageContentStream cs = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true, true)) {
+          cs.setNonStrokingColor(0.6f, 0.6f, 0.6f);
+          cs.beginText();
+          cs.setFont(font, size);
+          float x = page.getMediaBox().getWidth() / 4;
+          float y = page.getMediaBox().getHeight() / 2;
+          cs.setTextMatrix(org.apache.pdfbox.util.Matrix.getRotateInstance(Math.toRadians(rot), x, y));
+          cs.showText(safePdfText(watermarkText));
+          cs.endText();
+        }
+      }
+      doc.save(out.toFile());
+    }
+    return out;
+  }
+
+  public Path removePages(Path input, Path outDir, String pages) throws IOException {
+    assertPdf(input);
+    if (pages == null || pages.isBlank()) throw new IllegalArgumentException("Specify page numbers to remove (e.g. 1,3,5-7).");
+    String base = extractBaseName(input, "document");
+    Path out = outDir.resolve(base + "-pages-removed.pdf");
+
+    if (runBridgeConverterPages("remove-pages", input, out, pages)) {
+      return out;
+    }
+
+    try (PDDocument src = Loader.loadPDF(input.toFile()); PDDocument result = new PDDocument()) {
+      int total = src.getNumberOfPages();
+      List<int[]> ranges = parseRanges(pages, total);
+      Set<Integer> deleteSet = new HashSet<>();
+      for (int[] r : ranges) {
+        for (int p = r[0]; p <= r[1]; p++) deleteSet.add(p);
+      }
+      if (deleteSet.size() >= total) {
+        throw new IllegalArgumentException("Cannot remove all pages from PDF. At least one page must remain.");
+      }
+      for (int p = 1; p <= total; p++) {
+        if (!deleteSet.contains(p)) {
+          result.importPage(src.getPage(p - 1));
+        }
+      }
+      result.save(out.toFile());
+    }
+    return out;
+  }
+
+  public Path extractPages(Path input, Path outDir, String pages) throws IOException {
+    assertPdf(input);
+    if (pages == null || pages.isBlank()) throw new IllegalArgumentException("Specify page numbers to extract (e.g. 1-3,5).");
+    String base = extractBaseName(input, "document");
+    Path out = outDir.resolve(base + "-extracted.pdf");
+
+    if (runBridgeConverterPages("extract-pages", input, out, pages)) {
+      return out;
+    }
+
+    try (PDDocument src = Loader.loadPDF(input.toFile()); PDDocument result = new PDDocument()) {
+      int total = src.getNumberOfPages();
+      List<int[]> ranges = parseRanges(pages, total);
+      for (int[] r : ranges) {
+        addRange(src, result, r);
+      }
+      result.save(out.toFile());
+    }
+    return out;
+  }
+
+  private boolean runBridgeConverterWatermark(Path input, Path output, String text, float opacity, int rotation, int fontSize, String color) {
+    List<String> pythonExecutables = List.of(
+        "C:\\Users\\syedf\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "python",
+        "python3",
+        "py"
+    );
+
+    Path scriptPath = Path.of("scripts", "converter.py");
+    if (!Files.exists(scriptPath)) {
+      scriptPath = Path.of("backend", "scripts", "converter.py");
+    }
+    if (!Files.exists(scriptPath)) {
+      scriptPath = Path.of("..", "backend", "scripts", "converter.py");
+    }
+    if (!Files.exists(scriptPath)) {
+      return false;
+    }
+
+    for (String py : pythonExecutables) {
+      try {
+        ProcessBuilder pb = new ProcessBuilder(
+            py,
+            scriptPath.toAbsolutePath().toString(),
+            "add-watermark",
+            input.toAbsolutePath().toString(),
+            output.toAbsolutePath().toString(),
+            "--text", text,
+            "--opacity", String.valueOf(opacity),
+            "--rotation", String.valueOf(rotation),
+            "--fontsize", String.valueOf(fontSize),
+            "--color", color
+        );
+        pb.redirectErrorStream(true);
+        Process p = pb.start();
+        boolean finished = p.waitFor(30, TimeUnit.SECONDS);
+        if (finished && p.exitValue() == 0 && Files.exists(output) && Files.size(output) > 0) {
+          return true;
+        }
+      } catch (Exception ignored) {}
+    }
+    return false;
+  }
+
+  private boolean runBridgeConverterPages(String mode, Path input, Path output, String pages) {
+    List<String> pythonExecutables = List.of(
+        "C:\\Users\\syedf\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "python",
+        "python3",
+        "py"
+    );
+
+    Path scriptPath = Path.of("scripts", "converter.py");
+    if (!Files.exists(scriptPath)) {
+      scriptPath = Path.of("backend", "scripts", "converter.py");
+    }
+    if (!Files.exists(scriptPath)) {
+      scriptPath = Path.of("..", "backend", "scripts", "converter.py");
+    }
+    if (!Files.exists(scriptPath)) {
+      return false;
+    }
+
+    for (String py : pythonExecutables) {
+      try {
+        ProcessBuilder pb = new ProcessBuilder(
+            py,
+            scriptPath.toAbsolutePath().toString(),
+            mode,
+            input.toAbsolutePath().toString(),
+            output.toAbsolutePath().toString(),
+            "--pages", pages
+        );
+        pb.redirectErrorStream(true);
+        Process p = pb.start();
+        boolean finished = p.waitFor(30, TimeUnit.SECONDS);
+        if (finished && p.exitValue() == 0 && Files.exists(output) && Files.size(output) > 0) {
+          return true;
+        }
+      } catch (Exception ignored) {}
+    }
+    return false;
+  }
+
   private boolean runBridgeConverterWebp(Path input, Path output, float quality) {
     List<String> pythonExecutables = List.of(
         "C:\\Users\\syedf\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",

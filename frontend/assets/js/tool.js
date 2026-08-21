@@ -7,7 +7,13 @@
 (function () {
   'use strict';
 
-  const isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+  const isLocal = location.hostname === "localhost" || 
+                  location.hostname === "127.0.0.1" || 
+                  location.hostname === "" || 
+                  location.protocol === "file:" ||
+                  location.hostname.startsWith("192.168.") ||
+                  location.hostname.startsWith("10.") ||
+                  location.port !== "";
   const defaultOrigin = isLocal ? "http://localhost:8080" : "https://smartasspdf-backend-35ya.onrender.com";
   const API_ORIGIN = (window.SMARTASSPDF_API_ORIGIN || document.querySelector('meta[name="api-origin"]')?.content || defaultOrigin).replace(/\/$/, "");
   const API_BASE_URL = `${API_ORIGIN}/api/v1`;
@@ -386,13 +392,77 @@
           <input type="hidden" id="dpiInput" value="150">
         </div>
       `;
-      const chips = toolOptions.querySelectorAll("[data-dpi]");
-      const input = document.getElementById("dpiInput");
-      chips.forEach(chip => {
+      const dpiChips = toolOptions.querySelectorAll("[data-dpi]");
+      const dpiInput = document.getElementById("dpiInput");
+      dpiChips.forEach(chip => {
         chip.addEventListener("click", () => {
-          chips.forEach(c => c.classList.remove("is-active"));
+          dpiChips.forEach(c => c.classList.remove("is-active"));
           chip.classList.add("is-active");
-          if (input) input.value = chip.dataset.dpi;
+          if (dpiInput) dpiInput.value = chip.dataset.dpi;
+        });
+      });
+    } else if (toolId === "remove-pages") {
+      toolOptions.innerHTML = `
+        <div class="tool-options-card">
+          <div class="options-heading">Pages to Remove</div>
+          <label class="form-label" for="pagesInput">Page numbers or ranges to permanently delete</label>
+          <input id="pagesInput" class="form-control" placeholder="e.g. 1, 3, 5-7" required>
+          <div class="form-hint">Enter the page numbers you wish to remove from the document.</div>
+        </div>
+      `;
+    } else if (toolId === "extract-pages") {
+      toolOptions.innerHTML = `
+        <div class="tool-options-card">
+          <div class="options-heading">Pages to Extract</div>
+          <label class="form-label" for="pagesInput">Page numbers or ranges to save into new PDF</label>
+          <input id="pagesInput" class="form-control" placeholder="e.g. 1-3, 5, 8-10" required>
+          <div class="form-hint">Enter the page numbers you wish to isolate and export.</div>
+        </div>
+      `;
+    } else if (toolId === "add-watermark") {
+      toolOptions.innerHTML = `
+        <div class="tool-options-card">
+          <div class="options-heading">Watermark Settings</div>
+          <label class="form-label" for="watermarkTextInput">Watermark Text</label>
+          <input id="watermarkTextInput" class="form-control" placeholder="e.g. CONFIDENTIAL, DRAFT, DO NOT COPY" value="CONFIDENTIAL">
+          
+          <label class="form-label" style="margin-top:14px;">Watermark Angle</label>
+          <div class="options-grid">
+            <button type="button" class="option-chip-btn is-active" data-rotation="45">45° Diagonal</button>
+            <button type="button" class="option-chip-btn" data-rotation="0">0° Horizontal</button>
+            <button type="button" class="option-chip-btn" data-rotation="90">90° Vertical</button>
+          </div>
+          <input type="hidden" id="rotationInput" value="45">
+
+          <label class="form-label" style="margin-top:14px;">Color & Tone</label>
+          <div class="options-grid">
+            <button type="button" class="option-chip-btn is-active" data-color="gray">Subtle Gray</button>
+            <button type="button" class="option-chip-btn" data-color="red">Urgent Red</button>
+            <button type="button" class="option-chip-btn" data-color="blue">Corporate Blue</button>
+            <button type="button" class="option-chip-btn" data-color="black">Solid Black</button>
+          </div>
+          <input type="hidden" id="colorInput" value="gray">
+          <input type="hidden" id="opacityInput" value="0.3">
+          <input type="hidden" id="fontSizeInput" value="40">
+        </div>
+      `;
+      const rotChips = toolOptions.querySelectorAll("[data-rotation]");
+      const rotInput = document.getElementById("rotationInput");
+      rotChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          rotChips.forEach(c => c.classList.remove("is-active"));
+          chip.classList.add("is-active");
+          if (rotInput) rotInput.value = chip.dataset.rotation;
+        });
+      });
+
+      const colChips = toolOptions.querySelectorAll("[data-color]");
+      const colInput = document.getElementById("colorInput");
+      colChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          colChips.forEach(c => c.classList.remove("is-active"));
+          chip.classList.add("is-active");
+          if (colInput) colInput.value = chip.dataset.color;
         });
       });
     } else {
@@ -633,6 +703,12 @@
     }
 
     const pagesInput = document.getElementById("pagesInput");
+    if ((toolId === "remove-pages" || toolId === "extract-pages") && !pagesInput?.value.trim()) {
+      showStatusError("Please specify the page numbers or ranges (e.g. 1, 3, 5-7).");
+      pagesInput?.focus();
+      return;
+    }
+
     if (pagesInput?.value.trim() && !/^\d+(?:-\d+)?(?:\s*,\s*\d+(?:-\d+)?)*$/.test(pagesInput.value.trim())) {
       showStatusError("Please use valid page numbers or ranges (e.g. 1-3, 5, 8-10).");
       pagesInput.focus();
@@ -652,6 +728,21 @@
 
     const positionInput = document.getElementById("positionInput");
     if (positionInput) fd.append("position", positionInput.value);
+
+    const watermarkTextInput = document.getElementById("watermarkTextInput");
+    if (watermarkTextInput?.value) fd.append("text", watermarkTextInput.value);
+
+    const opacityInput = document.getElementById("opacityInput");
+    if (opacityInput) fd.append("opacity", opacityInput.value);
+
+    const rotationInput = document.getElementById("rotationInput");
+    if (rotationInput) fd.append("rotation", rotationInput.value);
+
+    const fontSizeInput = document.getElementById("fontSizeInput");
+    if (fontSizeInput) fd.append("fontSize", fontSizeInput.value);
+
+    const colorInput = document.getElementById("colorInput");
+    if (colorInput) fd.append("color", colorInput.value);
 
     if (passwordInput?.value) fd.append("password", passwordInput.value);
 

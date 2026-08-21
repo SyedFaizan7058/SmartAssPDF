@@ -8,13 +8,15 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+@CrossOrigin(originPatterns = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1")
 public class ToolController {
   private static final Set<String> TOOLS = Set.of(
       "pdf-to-word","pdf-to-excel","pdf-to-jpg","pdf-to-ppt","word-to-pdf","excel-to-pdf",
       "image-to-webp","image-to-pdf","html-to-pdf","merge-pdf","split-pdf","compress-pdf",
-      "rotate-pdf","add-page-numbers","protect-pdf","unlock-pdf");
+      "rotate-pdf","add-page-numbers","protect-pdf","unlock-pdf",
+      "add-watermark","remove-pages","extract-pages");
 
   private static final Set<String> LIVE_TOOLS = TOOLS;
 
@@ -37,7 +39,12 @@ public class ToolController {
       @RequestParam(value="angle", required=false) Integer angle,
       @RequestParam(value="position", required=false) String position,
       @RequestParam(value="password", required=false) String password,
-      @RequestParam(value="dpi", required=false) Integer dpi) {
+      @RequestParam(value="dpi", required=false) Integer dpi,
+      @RequestParam(value="text", required=false) String text,
+      @RequestParam(value="opacity", required=false) Float opacity,
+      @RequestParam(value="rotation", required=false) Integer rotation,
+      @RequestParam(value="fontSize", required=false) Integer fontSize,
+      @RequestParam(value="color", required=false) String color) {
 
     if(!TOOLS.contains(tool)) return error(HttpStatus.NOT_FOUND,"TOOL_NOT_FOUND","Unknown tool: " + tool);
     if(files==null || files.isEmpty()) return error(HttpStatus.BAD_REQUEST,"NO_FILE","Please upload at least one file.");
@@ -76,6 +83,9 @@ public class ToolController {
         case "word-to-pdf" -> { requireCount(saved,1,"Word to PDF accepts exactly one file."); result=pdf.wordToPdf(saved.get(0),job.dir()); }
         case "excel-to-pdf" -> { requireCount(saved,1,"Excel to PDF accepts exactly one file."); result=pdf.excelToPdf(saved.get(0),job.dir()); }
         case "html-to-pdf" -> { requireCount(saved,1,"HTML to PDF accepts exactly one file."); result=pdf.htmlToPdf(saved.get(0),job.dir()); }
+        case "add-watermark" -> { requireCount(saved,1,"Add Watermark accepts exactly one file."); result=pdf.addWatermark(saved.get(0),job.dir(),text,opacity,rotation,fontSize,color); }
+        case "remove-pages" -> { requireCount(saved,1,"Remove Pages accepts exactly one file."); result=pdf.removePages(saved.get(0),job.dir(),pages); }
+        case "extract-pages" -> { requireCount(saved,1,"Extract Pages accepts exactly one file."); result=pdf.extractPages(saved.get(0),job.dir(),pages); }
         default -> throw new IllegalStateException("Unhandled tool: "+tool);
       }
       String filename=result.getFileName().toString();

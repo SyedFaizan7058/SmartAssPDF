@@ -34,6 +34,7 @@
     })();
   </script>
 
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link href="assets/css/app.css" rel="stylesheet">
 
   <script type="application/ld+json">
@@ -133,6 +134,8 @@
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
               <a class="nav-dropdown-item" href="tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/remove-pages.html"><i class="bi bi-trash3"></i> <span>Remove Pages</span></a>
+              <a class="nav-dropdown-item" href="tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span></a>
               <a class="nav-dropdown-item" href="tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
               <a class="nav-dropdown-item" href="tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
             </div>
@@ -144,6 +147,7 @@
             </button>
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/add-watermark.html"><i class="bi bi-shield-shaded"></i> <span>Add Watermark</span></a>
               <a class="nav-dropdown-item" href="tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
               <a class="nav-dropdown-item" href="tools/unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
             </div>
@@ -236,7 +240,7 @@
         <span>Frequently Asked Questions</span>
       </nav>
 
-      <div class="section-heading">
+      <div class="section-heading" data-aos="fade-down">
         <span class="eyebrow"><i class="bi bi-question-circle-fill"></i> HELP & ANSWERS</span>
         <h1 style="font-size:clamp(2.2rem, 4vw, 3.2rem); font-weight:800; letter-spacing:-0.03em; margin: 12px 0;">Frequently Asked Questions</h1>
         <p>Find direct answers to common questions about file formats, conversion accuracy, privacy, limits, and technical specifications.</p>
@@ -245,7 +249,7 @@
       <!-- Category 1: General & Access -->
       <div style="margin-bottom: 36px;">
         <h2 style="font-size:1.35rem; font-weight:750; margin-bottom:16px; color:var(--text-primary);"><i class="bi bi-stars" style="color:var(--primary); margin-right:8px;"></i> General & Access</h2>
-        <div class="faq-accordion">
+        <div class="faq-accordion" data-aos="fade-up">
           <details class="faq-item" open>
             <summary><span>What is SmartAssPDF?</span><i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i></summary>
             <div class="faq-answer">SmartAssPDF is a lightweight, privacy-focused online document processing platform offering 16 essential PDF conversion, manipulation, and security utilities.</div>
@@ -264,7 +268,7 @@
       <!-- Category 2: Formats & Validation -->
       <div style="margin-bottom: 36px;">
         <h2 style="font-size:1.35rem; font-weight:750; margin-bottom:16px; color:var(--text-primary);"><i class="bi bi-file-earmark-check" style="color:var(--accent); margin-right:8px;"></i> Formats & Validation</h2>
-        <div class="faq-accordion">
+        <div class="faq-accordion" data-aos="fade-up">
           <details class="faq-item">
             <summary><span>What formats are supported?</span><i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i></summary>
             <div class="faq-answer">SmartAssPDF supports PDF, Microsoft Word (.docx), Excel (.xlsx), PowerPoint (.pptx), Images (.jpg, .jpeg, .png), and Web (.html).</div>
@@ -283,7 +287,7 @@
       <!-- Category 3: Privacy & Security -->
       <div style="margin-bottom: 36px;">
         <h2 style="font-size:1.35rem; font-weight:750; margin-bottom:16px; color:var(--text-primary);"><i class="bi bi-shield-lock" style="color:var(--success); margin-right:8px;"></i> Privacy & Security</h2>
-        <div class="faq-accordion">
+        <div class="faq-accordion" data-aos="fade-up">
           <details class="faq-item">
             <summary><span>Are my documents stored permanently?</span><i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i></summary>
             <div class="faq-answer">No. Documents are processed in isolated temporary folders and deleted automatically after 30 minutes by our scheduled cleanup service.</div>
@@ -360,9 +364,9 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="assets/js/tools-config.js"></script>
   <script src="assets/js/app.js"></script>
-  <script src="assets/js/ai-agent.js"></script>
 </body>
 
 </html>

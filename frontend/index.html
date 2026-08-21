@@ -36,6 +36,7 @@
     })();
   </script>
 
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link href="assets/css/app.css" rel="stylesheet">
 
   <script type="application/ld+json">
@@ -177,6 +178,12 @@
               <a class="nav-dropdown-item" href="tools/split-pdf.html">
                 <i class="bi bi-layout-split"></i> <span>Split PDF</span>
               </a>
+              <a class="nav-dropdown-item" href="tools/remove-pages.html">
+                <i class="bi bi-trash3"></i> <span>Remove Pages</span>
+              </a>
+              <a class="nav-dropdown-item" href="tools/extract-pages.html">
+                <i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span>
+              </a>
               <a class="nav-dropdown-item" href="tools/rotate-pdf.html">
                 <i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span>
               </a>
@@ -194,6 +201,9 @@
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="tools/compress-pdf.html">
                 <i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span>
+              </a>
+              <a class="nav-dropdown-item" href="tools/add-watermark.html">
+                <i class="bi bi-shield-shaded"></i> <span>Add Watermark</span>
               </a>
               <a class="nav-dropdown-item" href="tools/protect-pdf.html">
                 <i class="bi bi-shield-lock"></i> <span>Protect PDF</span>
@@ -265,7 +275,10 @@
         <ul class="mobile-nav-list">
           <li><a href="tools/merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
           <li><a href="tools/split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
+          <li><a href="tools/remove-pages.html"><i class="bi bi-trash3"></i> Remove Pages</a></li>
+          <li><a href="tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> Extract Pages</a></li>
           <li><a href="tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a></li>
+          <li><a href="tools/add-watermark.html"><i class="bi bi-shield-shaded"></i> Add Watermark</a></li>
           <li><a href="tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a></li>
           <li><a href="tools/add-page-numbers.html"><i class="bi bi-123"></i> Add Page Numbers</a></li>
           <li><a href="tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> Protect PDF</a></li>
@@ -309,7 +322,7 @@
     <section class="hero-section">
       <div class="container">
         <div class="hero-grid">
-          <div class="hero-content">
+          <div class="hero-content" data-aos="fade-right">
             <span class="eyebrow"><i class="bi bi-lightning-charge-fill"></i> FAST • PRIVATE • DOCUMENT-FIRST</span>
             <h1>PDF Work, <span class="gradient-text">Without the Headache.</span></h1>
             <p class="hero-lead">
@@ -332,7 +345,7 @@
             </div>
           </div>
 
-          <div class="hero-visual">
+          <div class="hero-visual" data-aos="fade-left" data-aos-delay="150">
             <div class="hero-preview-card card-folded">
               <div class="hero-card-header">
                 <div class="window-dots">
@@ -355,7 +368,7 @@
               <div class="hero-mockup-tools">
                 <div class="hero-tool-pill"><i class="bi bi-file-earmark-word" style="color:var(--primary);"></i> PDF to Word</div>
                 <div class="hero-tool-pill"><i class="bi bi-file-earmark-zip" style="color:var(--success);"></i> Compress PDF</div>
-                <div class="hero-tool-pill"><i class="bi bi-plus-square" style="color:var(--accent);"></i> Merge PDF</div>
+                <div class="hero-tool-pill"><i class="bi bi-shield-shaded" style="color:var(--accent);"></i> Watermark</div>
                 <div class="hero-tool-pill"><i class="bi bi-shield-lock" style="color:var(--warning);"></i> Protect PDF</div>
               </div>
             </div>
@@ -365,9 +378,9 @@
     </section>
 
     <!-- Tool Discovery Hub & Grid -->
-    <section class="section-pad" id="tools">
+    <section class="section-pad" id="tools" data-aos="fade-up">
       <div class="container">
-        <div class="section-heading text-center">
+        <div class="section-heading text-center" data-aos="fade-down">
           <span class="eyebrow">YOUR COMPLETE PDF TOOLBOX</span>
           <h2>Popular Document Tools</h2>
           <p>Select any tool below to start processing your documents immediately.</p>
@@ -375,7 +388,7 @@
 
         <div class="filter-tabs-wrapper">
           <div class="filter-tabs" role="tablist">
-            <button type="button" class="filter-pill is-active" data-category="all" role="tab" aria-selected="true">All 16 Tools</button>
+            <button type="button" class="filter-pill is-active" data-category="all" role="tab" aria-selected="true">All 19 Tools</button>
             <button type="button" class="filter-pill" data-category="convert-from-pdf" role="tab" aria-selected="false">Convert from PDF</button>
             <button type="button" class="filter-pill" data-category="convert-to-pdf" role="tab" aria-selected="false">Convert to PDF</button>
             <button type="button" class="filter-pill" data-category="organize-pdf" role="tab" aria-selected="false">Organize</button>
@@ -403,30 +416,30 @@
     </section>
 
     <!-- How It Works Section -->
-    <section class="section-pad" id="how-it-works" style="background: var(--bg-subtle);">
+    <section class="section-pad" id="how-it-works" style="background: var(--bg-subtle);" data-aos="fade-up">
       <div class="container">
-        <div class="section-heading text-center">
+        <div class="section-heading text-center" data-aos="fade-down">
           <span class="eyebrow">SIMPLE & TRANSPARENT</span>
           <h2>Three Steps. One Clean Workflow.</h2>
           <p>No registration hurdles, no waiting lists, and no complex settings.</p>
         </div>
 
         <div class="workflow-steps-grid">
-          <div class="card card-folded">
+          <div class="card card-folded" data-aos="fade-up" data-aos-delay="100">
             <span class="eyebrow" style="color:var(--primary);">STEP 01</span>
             <h3 style="margin: 12px 0 8px; font-size:1.25rem;">Select Your Tool</h3>
             <p style="color:var(--text-secondary); font-size:0.92rem;">
               Choose the exact document conversion, merging, splitting, or compression utility you need.
             </p>
           </div>
-          <div class="card card-folded">
+          <div class="card card-folded" data-aos="fade-up" data-aos-delay="200">
             <span class="eyebrow" style="color:var(--accent);">STEP 02</span>
             <h3 style="margin: 12px 0 8px; font-size:1.25rem;">Drop & Configure</h3>
             <p style="color:var(--text-secondary); font-size:0.92rem;">
               Drop your files, review the interactive live preview, and set any optional tool parameters.
             </p>
           </div>
-          <div class="card card-folded">
+          <div class="card card-folded" data-aos="fade-up" data-aos-delay="300">
             <span class="eyebrow" style="color:var(--success);">STEP 03</span>
             <h3 style="margin: 12px 0 8px; font-size:1.25rem;">Download & Done</h3>
             <p style="color:var(--text-secondary); font-size:0.92rem;">
@@ -434,11 +447,8 @@
             </p>
           </div>
         </div>
-      </div>
-    </section>
-
     <!-- Privacy & Security Section -->
-    <section class="section-pad">
+    <section class="section-pad" data-aos="fade-up">
       <div class="container">
         <div class="card card-folded privacy-banner-card">
           <div class="privacy-banner-grid">
@@ -476,16 +486,16 @@
     </section>
 
     <!-- Latest Document Guides & Blog Section -->
-    <section class="section-pad" style="background: var(--bg-subtle);">
+    <section class="section-pad" style="background: var(--bg-subtle);" data-aos="fade-up">
       <div class="container">
-        <div class="section-heading text-center">
+        <div class="section-heading text-center" data-aos="fade-down">
           <span class="eyebrow"><i class="bi bi-journal-richtext"></i> KNOWLEDGE BASE</span>
           <h2>Latest Guides & Tutorials</h2>
           <p>Learn tips and strategies for document conversion, compression, and security.</p>
         </div>
 
         <div class="blog-grid">
-          <article class="blog-card reveal-on-scroll">
+          <article class="blog-card" data-aos="fade-up" data-aos-delay="50">
             <a href="blog/how-to-convert-pdf-to-word.html" class="blog-card-body" aria-label="Read How to Convert PDF to Word: Step-by-Step Guide">
               <div class="blog-card-top">
                 <span class="blog-badge">Conversion</span>
@@ -500,7 +510,7 @@
             </a>
           </article>
 
-          <article class="blog-card reveal-on-scroll">
+          <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
             <a href="blog/how-to-compress-pdf-without-losing-quality.html" class="blog-card-body" aria-label="Read How to Compress a PDF Without Losing Quality">
               <div class="blog-card-top">
                 <span class="blog-badge">Optimization</span>
@@ -515,7 +525,7 @@
             </a>
           </article>
 
-          <article class="blog-card reveal-on-scroll">
+          <article class="blog-card" data-aos="fade-up" data-aos-delay="150">
             <a href="blog/how-to-merge-pdf-files.html" class="blog-card-body" aria-label="Read How to Merge Multiple PDF Files into One Document">
               <div class="blog-card-top">
                 <span class="blog-badge">Organization</span>
@@ -530,7 +540,7 @@
             </a>
           </article>
 
-          <article class="blog-card reveal-on-scroll">
+          <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
             <a href="blog/how-to-split-pdf-pages.html" class="blog-card-body" aria-label="Read How to Split PDF Pages and Extract Specific Ranges">
               <div class="blog-card-top">
                 <span class="blog-badge">Organization</span>
@@ -545,7 +555,7 @@
             </a>
           </article>
 
-          <article class="blog-card reveal-on-scroll">
+          <article class="blog-card" data-aos="fade-up" data-aos-delay="250">
             <a href="blog/how-to-protect-pdf-with-password.html" class="blog-card-body" aria-label="Read How to Password Protect a PDF with 256-Bit AES Encryption">
               <div class="blog-card-top">
                 <span class="blog-badge">Security</span>
@@ -560,7 +570,7 @@
             </a>
           </article>
 
-          <article class="blog-card reveal-on-scroll">
+          <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
             <a href="blog/what-is-pdfa.html" class="blog-card-body" aria-label="Read What Is PDF/A? Complete Guide to PDF Archiving">
               <div class="blog-card-top">
                 <span class="blog-badge">Knowledge</span>
@@ -583,22 +593,22 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="section-pad" id="faq">
+    <section class="section-pad" id="faq" data-aos="fade-up">
       <div class="container container-narrow">
-        <div class="section-heading text-center">
+        <div class="section-heading text-center" data-aos="fade-down">
           <span class="eyebrow">FREQUENTLY ASKED QUESTIONS</span>
           <h2>Got Questions? We've Got Answers.</h2>
           <p>Everything you need to know about SmartAssPDF workflows and privacy.</p>
         </div>
 
-        <div class="faq-accordion">
+        <div class="faq-accordion" data-aos="fade-up">
           <details class="faq-item" open>
             <summary>
               <span>Is SmartAssPDF completely free to use?</span>
               <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
             </summary>
             <div class="faq-answer">
-              Yes. SmartAssPDF is powered by open-source technologies (Java, Spring Boot, PDFBox, Apache POI) and does not require paid subscriptions or credits for any of its 16 core tools.
+              Yes. SmartAssPDF is powered by open-source technologies (Java, Spring Boot, PDFBox, Apache POI, PyMuPDF) and does not require paid subscriptions or credits for any of its 19 core tools.
             </div>
           </details>
 
@@ -680,8 +690,10 @@
           <ul class="footer-col-nav">
             <li><a href="tools/merge-pdf.html">Merge PDF</a></li>
             <li><a href="tools/split-pdf.html">Split PDF</a></li>
+            <li><a href="tools/remove-pages.html">Remove Pages</a></li>
+            <li><a href="tools/extract-pages.html">Extract Pages</a></li>
             <li><a href="tools/compress-pdf.html">Compress PDF</a></li>
-            <li><a href="tools/rotate-pdf.html">Rotate PDF</a></li>
+            <li><a href="tools/add-watermark.html">Add Watermark</a></li>
             <li><a href="tools/protect-pdf.html">Protect PDF</a></li>
           </ul>
         </div>
@@ -707,9 +719,9 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="assets/js/tools-config.js"></script>
   <script src="assets/js/app.js"></script>
-  <script src="assets/js/ai-agent.js"></script>
 </body>
 
 </html>

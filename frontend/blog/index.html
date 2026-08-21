@@ -47,6 +47,7 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
   <!-- Global Header — Identical Dropdown Navbar across all pages -->
@@ -86,6 +87,8 @@
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="../tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
               <a class="nav-dropdown-item" href="../tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/remove-pages.html"><i class="bi bi-trash3"></i> <span>Remove Pages</span></a>
+              <a class="nav-dropdown-item" href="../tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span></a>
               <a class="nav-dropdown-item" href="../tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
               <a class="nav-dropdown-item" href="../tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
             </div>
@@ -98,6 +101,7 @@
             </button>
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="../tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+              <a class="nav-dropdown-item" href="../tools/add-watermark.html"><i class="bi bi-shield-shaded"></i> <span>Add Watermark</span></a>
               <a class="nav-dropdown-item" href="../tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
               <a class="nav-dropdown-item" href="../tools/unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
             </div>
@@ -208,7 +212,7 @@
   <main class="section-pad">
     <div class="container">
       <!-- Breadcrumbs -->
-      <div class="tool-breadcrumbs">
+      <div class="tool-breadcrumbs" data-aos="fade-down">
         <a href="../index.html">Home</a>
         <i class="bi bi-chevron-right"></i>
         <span>Blog</span>
@@ -226,7 +230,7 @@
       </div>
 
       <!-- Featured Guide Card -->
-      <a href="how-to-convert-pdf-to-word.html" class="featured-article-card reveal-on-scroll" aria-label="Read Featured Guide: How to Convert PDF to Word">
+      <a href="how-to-convert-pdf-to-word.html" class="featured-article-card " aria-label="Read Featured Guide: How to Convert PDF to Word">
         <div>
           <span class="blog-badge" style="background:var(--primary-subtle); color:var(--primary);">Featured Guide</span>
           <h2 style="font-size:clamp(1.5rem, 2.5vw, 2rem); font-weight:800; margin:10px 0 12px; line-height:1.25;">
@@ -273,7 +277,7 @@
 
       <!-- Article Grid -->
       <div class="blog-grid" id="blogArticlesGrid">
-        <article class="blog-card reveal-on-scroll">
+        <article class="blog-card ">
           <a href="how-to-convert-pdf-to-word.html" class="blog-card-body" aria-label="Read How to Convert PDF to Word (DOCX) Online Free">
             <div class="blog-card-top">
               <span class="blog-badge">Conversion</span>
@@ -288,7 +292,7 @@
           </a>
         </article>
 
-        <article class="blog-card reveal-on-scroll">
+        <article class="blog-card ">
           <a href="how-to-compress-pdf-without-losing-quality.html" class="blog-card-body" aria-label="Read How to Compress a PDF Without Losing Quality">
             <div class="blog-card-top">
               <span class="blog-badge">Optimization</span>
@@ -303,7 +307,7 @@
           </a>
         </article>
 
-        <article class="blog-card reveal-on-scroll">
+        <article class="blog-card ">
           <a href="how-to-merge-pdf-files.html" class="blog-card-body" aria-label="Read How to Merge Multiple PDF Files into One Document">
             <div class="blog-card-top">
               <span class="blog-badge">Organization</span>
@@ -318,7 +322,7 @@
           </a>
         </article>
 
-        <article class="blog-card reveal-on-scroll">
+        <article class="blog-card ">
           <a href="how-to-split-pdf-pages.html" class="blog-card-body" aria-label="Read How to Split PDF Pages and Extract Specific Ranges">
             <div class="blog-card-top">
               <span class="blog-badge">Organization</span>
@@ -333,7 +337,7 @@
           </a>
         </article>
 
-        <article class="blog-card reveal-on-scroll">
+        <article class="blog-card ">
           <a href="pdf-vs-word.html" class="blog-card-body" aria-label="Read PDF vs Word: When to Use Which Document Format">
             <div class="blog-card-top">
               <span class="blog-badge">Knowledge</span>
@@ -348,7 +352,7 @@
           </a>
         </article>
 
-        <article class="blog-card reveal-on-scroll">
+        <article class="blog-card ">
           <a href="how-to-protect-pdf-with-password.html" class="blog-card-body" aria-label="Read How to Password Protect a PDF with 256-Bit AES Encryption">
             <div class="blog-card-top">
               <span class="blog-badge">Security</span>
@@ -363,7 +367,7 @@
           </a>
         </article>
 
-        <article class="blog-card reveal-on-scroll">
+        <article class="blog-card ">
           <a href="how-to-convert-jpg-to-pdf.html" class="blog-card-body" aria-label="Read How to Convert JPG and PNG Images to PDF Online">
             <div class="blog-card-top">
               <span class="blog-badge">Conversion</span>
@@ -378,7 +382,7 @@
           </a>
         </article>
 
-        <article class="blog-card reveal-on-scroll">
+        <article class="blog-card ">
           <a href="what-is-pdfa.html" class="blog-card-body" aria-label="Read What Is PDF/A? Complete Guide to PDF Archiving">
             <div class="blog-card-top">
               <span class="blog-badge">Knowledge</span>
@@ -457,10 +461,10 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="../assets/js/tools-config.js"></script>
   <script src="../assets/js/blog-data.js"></script>
   <script src="../assets/js/app.js"></script>
-  <script src="../assets/js/ai-agent.js"></script>
   <script src="../assets/js/blog.js"></script>
 </body>
 </html>

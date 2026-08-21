@@ -1,25 +1,25 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-theme="dark">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PDF to Word Converter Online Free | SmartAssPDF</title>
-  <meta name="description" content="Convert read-only PDF documents into clean, editable Microsoft Word (.docx) files. Free online tool with client-side verification and temporary processing.">
-  <link rel="canonical" href="https://smartasspdf.com/tools/pdf-to-word.html">
+  <title>Add Watermark to PDF Online Free — Stamp Text & Custom Angles | SmartAssPDF</title>
+  <meta name="description" content="Add customizable text watermarks to your PDF pages online for free. Set custom text, angles, opacity, and colors with instant browser preview.">
+  <link rel="canonical" href="https://smartasspdf.com/tools/add-watermark.html">
 
   <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="PDF to Word Converter Online Free | SmartAssPDF">
-  <meta property="og:description" content="Convert read-only PDF documents into clean, editable Microsoft Word (.docx) files.">
+  <meta property="og:title" content="Add Watermark to PDF Online Free | SmartAssPDF">
+  <meta property="og:description" content="Add customizable text watermarks to your PDF pages online for free with adjustable angles and colors.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://smartasspdf.com/tools/pdf-to-word.html">
+  <meta property="og:url" content="https://smartasspdf.com/tools/add-watermark.html">
   <meta property="og:image" content="https://smartasspdf.com/assets/images/og-banner.png">
   <meta property="og:site_name" content="SmartAssPDF">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PDF to Word Converter Online Free | SmartAssPDF">
-  <meta name="twitter:description" content="Convert read-only PDF documents into clean, editable Microsoft Word (.docx) files.">
+  <meta name="twitter:title" content="Add Watermark to PDF Online Free | SmartAssPDF">
+  <meta name="twitter:description" content="Add customizable text watermarks to your PDF pages online for free.">
   <meta name="twitter:image" content="https://smartasspdf.com/assets/images/og-banner.png">
 
   <link rel="icon" href="../assets/images/favicon.ico" sizes="any">
@@ -44,11 +44,11 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "PDF to Word — SmartAssPDF",
-        "url": "https://smartasspdf.com/tools/pdf-to-word.html",
+        "name": "Add Watermark to PDF — SmartAssPDF",
+        "url": "https://smartasspdf.com/tools/add-watermark.html",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Web",
-        "description": "Convert read-only PDF documents into clean, editable Microsoft Word (.docx) files.",
+        "description": "Add customizable text watermarks to your PDF pages with adjustable angles, opacity, and color styling.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -60,20 +60,37 @@
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://smartasspdf.com/" },
           { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://smartasspdf.com/#tools" },
-          { "@type": "ListItem", "position": 3, "name": "PDF to Word", "item": "https://smartasspdf.com/tools/pdf-to-word.html" }
+          { "@type": "ListItem", "position": 3, "name": "Add Watermark", "item": "https://smartasspdf.com/tools/add-watermark.html" }
         ]
       },
       {
         "@type": "FAQPage",
-        "mainEntity": [{"@type": "Question", "name": "Will my converted Word document be fully editable?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You can edit text, revise paragraphs, change font sizes, and re-save the document in Microsoft Word, Google Docs, or LibreOffice."}},{"@type": "Question", "name": "Does this tool perform OCR on scanned image PDFs?", "acceptedAnswer": {"@type": "Answer", "text": "SmartAssPDF uses text-stream extraction from digital PDFs. Scanned bitmap image pages may require OCR software if no font glyphs are embedded."}},{"@type": "Question", "name": "Are my files secure?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Files are processed in temporary memory and scheduled for automatic hard deletion after 30 minutes."}}]
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can I choose diagonal and horizontal watermark angles?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can select a 45° diagonal angle, 0° horizontal angle, or 90° vertical angle."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will the watermark be applied to all pages?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, your chosen watermark is stamped consistently across every page in the document."
+            }
+          }
+        ]
       }
     ]
   }
   </script>
 </head>
 
-<body data-tool="pdf-to-word">
-  <!-- Global Header — Identical Dropdown Navbar across all pages -->
+<body data-tool="add-watermark">
+  <!-- Global Header -->
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
       <a class="brand" href="../index.html" aria-label="SmartAssPDF home">
@@ -85,7 +102,7 @@
       <nav aria-label="Main navigation">
         <ul class="nav-desktop">
           <li class="nav-item">
-            <button type="button" class="nav-link is-active" aria-expanded="false" aria-haspopup="true">
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
               <span>Convert</span>
               <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
             </button>
@@ -109,17 +126,20 @@
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
               <a class="nav-dropdown-item" href="split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+              <a class="nav-dropdown-item" href="remove-pages.html"><i class="bi bi-trash3"></i> <span>Remove Pages</span></a>
+              <a class="nav-dropdown-item" href="extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span></a>
               <a class="nav-dropdown-item" href="rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
               <a class="nav-dropdown-item" href="add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
             </div>
           </li>
           <li class="nav-item">
-            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+            <button type="button" class="nav-link is-active" aria-expanded="false" aria-haspopup="true">
               <span>Optimize & Security</span>
               <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
             </button>
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+              <a class="nav-dropdown-item" href="add-watermark.html"><i class="bi bi-shield-shaded"></i> <span>Add Watermark</span></a>
               <a class="nav-dropdown-item" href="protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
               <a class="nav-dropdown-item" href="unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
             </div>
@@ -139,17 +159,14 @@
         <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle dark/light theme">
           <i class="bi bi-sun-fill" aria-hidden="true"></i>
         </button>
-        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open navigation menu"
-          aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Drawer Backdrop & Drawer -->
+  <!-- Mobile Drawer -->
   <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop" aria-hidden="true"></div>
   <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
     <div class="mobile-drawer-header">
@@ -157,11 +174,8 @@
         <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="24" height="24" alt=""></span>
         <span class="brand-name">SmartAss<em>PDF</em></span>
       </a>
-      <button type="button" class="file-action-btn" id="drawerCloseBtn" aria-label="Close menu">
-        <i class="bi bi-x-lg"></i>
-      </button>
+      <button type="button" class="file-action-btn" id="drawerCloseBtn" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
     </div>
-
     <div class="mobile-drawer-nav">
       <div>
         <div class="mobile-nav-section-title">Convert Tools</div>
@@ -173,31 +187,22 @@
           <li><a href="word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> Word to PDF</a></li>
           <li><a href="excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> Excel to PDF</a></li>
           <li><a href="image-to-webp.html"><i class="bi bi-file-earmark-image"></i> Image to WebP</a></li>
-          <li><a href="image-to-pdf.html"><i class="bi bi-images"></i> Image to PDF</a></li>
           <li><a href="html-to-pdf.html"><i class="bi bi-filetype-html"></i> HTML to PDF</a></li>
         </ul>
       </div>
-
       <div>
         <div class="mobile-nav-section-title">Organize & Optimize</div>
         <ul class="mobile-nav-list">
           <li><a href="merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
           <li><a href="split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
+          <li><a href="remove-pages.html"><i class="bi bi-trash3"></i> Remove Pages</a></li>
+          <li><a href="extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> Extract Pages</a></li>
           <li><a href="compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a></li>
+          <li><a href="add-watermark.html"><i class="bi bi-shield-shaded"></i> Add Watermark</a></li>
           <li><a href="rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a></li>
           <li><a href="add-page-numbers.html"><i class="bi bi-123"></i> Add Page Numbers</a></li>
           <li><a href="protect-pdf.html"><i class="bi bi-shield-lock"></i> Protect PDF</a></li>
           <li><a href="unlock-pdf.html"><i class="bi bi-unlock"></i> Unlock PDF</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="mobile-nav-section-title">Resources</div>
-        <ul class="mobile-nav-list">
-          <li><a href="../faq.html"><i class="bi bi-question-circle"></i> FAQ</a></li>
-          <li><a href="../about.html"><i class="bi bi-info-circle"></i> About</a></li>
-          <li><a href="../privacy.html"><i class="bi bi-shield-check"></i> Privacy Policy</a></li>
-          <li><a href="../terms.html"><i class="bi bi-file-text"></i> Terms of Service</a></li>
         </ul>
       </div>
     </div>
@@ -208,10 +213,8 @@
     <div class="search-modal">
       <div class="search-input-wrap">
         <i class="bi bi-search" aria-hidden="true"></i>
-        <input type="search" class="search-input" id="searchModalInput" placeholder="Search by tool name or format (e.g. Word, Split, JPG)..." autocomplete="off" spellcheck="false">
-        <button type="button" class="file-action-btn" id="searchModalClose" aria-label="Close search">
-          <i class="bi bi-x-lg"></i>
-        </button>
+        <input type="search" class="search-input" id="searchModalInput" placeholder="Search by tool name or format..." autocomplete="off" spellcheck="false">
+        <button type="button" class="file-action-btn" id="searchModalClose" aria-label="Close search"><i class="bi bi-x-lg"></i></button>
       </div>
       <div class="search-results" id="searchResults"></div>
       <div class="search-modal-footer">
@@ -231,16 +234,16 @@
         <i class="bi bi-chevron-right"></i>
         <a href="../index.html#tools">Tools</a>
         <i class="bi bi-chevron-right"></i>
-        <span>PDF to Word</span>
+        <span>Add Watermark</span>
       </div>
 
       <!-- Tool Header -->
       <div class="tool-header-hero" data-aos="fade-down">
         <span class="eyebrow"><i class="bi bi-lightning-charge-fill"></i> FREE ONLINE TOOL</span>
-        <h1>PDF to Word Converter</h1>
-        <p>Convert read-only PDF documents into clean, editable Microsoft Word (.docx) files.</p>
+        <h1>Add Watermark to PDF</h1>
+        <p>Apply custom text watermarks across every page of your PDF documents with customizable angles, opacity, and styles.</p>
         <div class="tool-format-pill">
-          <span>PDF → DOCX</span>
+          <span>Stamp / Watermark</span>
         </div>
       </div>
 
@@ -251,11 +254,11 @@
           <!-- Dropzone -->
           <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Upload files">
             <div class="drop-icon-box">
-              <i class="bi bi-cloud-arrow-up"></i>
+              <i class="bi bi-shield-shaded" style="color:#8b5cf6;"></i>
             </div>
             <h2>Drop your PDF file here</h2>
-            <p class="dropzone-hint">or choose a file from your device. SmartAssPDF checks format compatibility instantly.</p>
-            <input id="fileInput" type="file" class="d-none" aria-label="Select files" style="display:none;">
+            <p class="dropzone-hint">or choose a file from your device. SmartAssPDF verifies document format instantly.</p>
+            <input id="fileInput" type="file" class="d-none" aria-label="Select files" style="display:none;" accept=".pdf,application/pdf">
             <button id="browseBtn" class="btn btn-primary" type="button">
               <i class="bi bi-folder2-open"></i>
               <span>Choose PDF file</span>
@@ -275,7 +278,7 @@
 
           <!-- Process Action Button -->
           <button id="processBtn" class="btn btn-primary btn-lg btn-block" type="button" disabled>
-            <span>Process PDF to Word</span>
+            <span>Process Add Watermark</span>
             <i class="bi bi-arrow-right"></i>
           </button>
 
@@ -292,12 +295,16 @@
             </span>
           </div>
           <div class="preview-viewport" id="previewViewport">
-            <!-- Dynamic Preview Content -->
+            <div class="preview-empty-state">
+              <i class="bi bi-file-earmark-arrow-up"></i>
+              <strong>No document loaded</strong>
+              <p>Drop a PDF document on the left to see the live document preview.</p>
+            </div>
           </div>
         </aside>
       </div>
 
-      <!-- AdSense Slot (Above How-To / Content) -->
+      <!-- AdSense Slot -->
       <div class="ad-slot-container" style="margin-top: 48px;">
         <div class="ad-slot ad-slot-leaderboard">
           <span class="ad-badge">ADVERTISEMENT</span>
@@ -309,18 +316,20 @@
       <div class="content-info-grid" data-aos="fade-up">
         <article class="content-article card-folded" data-aos="fade-up">
           <span class="eyebrow">ABOUT THIS TOOL</span>
-          <h2>Why use SmartAssPDF for PDF to Word?</h2>
-          <p>Extract text paragraphs, headings, and formatting from PDF documents into standard Microsoft Word documents with zero subscriptions or registration.</p>
+          <h2>Why add watermarks to your PDF documents?</h2>
+          <p>Watermarking protects confidential materials, establishes draft status, and deters unauthorized copying by adding clear text across your document pages.</p>
 
           <!-- AEO Direct Answer Box -->
           <div class="aeo-box">
             <div class="aeo-header">
-              <div class="aeo-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+              <div class="aeo-icon"><i class="bi bi-shield-shaded" style="color:#8b5cf6;"></i></div>
               <div class="aeo-title">Quick Definition & Overview</div>
             </div>
-            <div class="aeo-definition">PDF to Word conversion extracts text characters, paragraphs, and document structure from fixed-layout PDF files and formats them into an editable Microsoft Word (.docx) document.</div>
+            <div class="aeo-definition">A PDF watermark is a semi-transparent text stamp placed diagonally or horizontally across document pages to signal confidentiality, copyright, or draft status.</div>
             <ul class="aeo-highlights">
-              <li><i class="bi bi-check-circle-fill"></i> <span>Converts PDF directly into native Microsoft Word .docx format</span></li><li><i class="bi bi-check-circle-fill"></i> <span>Preserves text paragraphs, line breaks, and page flow</span></li><li><i class="bi bi-check-circle-fill"></i> <span>100% free with no account creation or file retention</span></li>
+              <li><i class="bi bi-check-circle-fill text-success"></i> <span>Customizable text: CONFIDENTIAL, DRAFT, DO NOT COPY, or custom names</span></li>
+              <li><i class="bi bi-check-circle-fill text-success"></i> <span>Multi-angle support: 45° diagonal, 0° horizontal, or 90° vertical</span></li>
+              <li><i class="bi bi-check-circle-fill text-success"></i> <span>100% free with automated 30-minute server cleanup</span></li>
             </ul>
           </div>
 
@@ -331,11 +340,11 @@
             </div>
             <div class="tool-specs-summary-item">
               <small>Output</small>
-              <strong>DOCX</strong>
+              <strong>Watermarked PDF</strong>
             </div>
             <div class="tool-specs-summary-item">
-              <small>Security</small>
-              <strong>Auto-Deleted</strong>
+              <small>Placement</small>
+              <strong>All Pages</strong>
             </div>
             <div class="tool-specs-summary-item">
               <small>Cost</small>
@@ -343,74 +352,53 @@
             </div>
           </div>
 
-          <h3>How to use PDF to Word</h3>
+          <h3>How to Add a Watermark to PDF</h3>
           <ol class="content-steps-list">
-            <li><div class="step-content"><strong>Upload PDF Document</strong><span>Drag & drop your PDF into the upload workspace or click 'Choose PDF file'.</span></div></li>
-<li><div class="step-content"><strong>Inspect Preview</strong><span>Verify document compatibility in the live interactive preview panel.</span></div></li>
-<li><div class="step-content"><strong>Process Conversion</strong><span>Click 'Process PDF to Word' to initiate server-side text extraction.</span></div></li>
-<li><div class="step-content"><strong>Download Word File</strong><span>Download your editable DOCX file immediately with matching filename.</span></div></li>
+            <li><div class="step-content"><strong>Upload PDF Document</strong><span>Drag & drop your PDF into the upload workspace or browse from your device.</span></div></li>
+            <li><div class="step-content"><strong>Configure Watermark Text & Angle</strong><span>Type your watermark text, pick diagonal or horizontal angle, and choose a tone.</span></div></li>
+            <li><div class="step-content"><strong>Process & Stamp</strong><span>Click 'Process Add Watermark' to apply the watermark across all pages.</span></div></li>
+            <li><div class="step-content"><strong>Download Watermarked PDF</strong><span>Download your newly protected document immediately.</span></div></li>
           </ol>
-
-          <!-- In-Content AdSlot (Above FAQ) -->
-          <div class="ad-slot-container" style="margin: 28px 0;">
-            <div class="ad-slot ad-slot-inline">
-              <span class="ad-badge">ADVERTISEMENT</span>
-              <span class="ad-slot-placeholder-text">Responsive Ad Placement</span>
-            </div>
-          </div>
 
           <h3>Frequently Asked Questions</h3>
           <div class="faq-accordion" data-aos="fade-up">
+            <details class="faq-item" open>
+              <summary>
+                <span>Can I customize the watermark text?</span>
+                <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
+              </summary>
+              <div class="faq-answer">
+                Yes. You can use standard presets (like CONFIDENTIAL, DRAFT, COPY) or type any custom company name or phrase you need.
+              </div>
+            </details>
             <details class="faq-item">
-            <summary>
-              <span>Will my converted Word document be fully editable?</span>
-              <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
-            </summary>
-            <div class="faq-answer">
-              Yes. You can edit text, revise paragraphs, change font sizes, and re-save the document in Microsoft Word, Google Docs, or LibreOffice.
-            </div>
-          </details>
-<details class="faq-item">
-            <summary>
-              <span>Does this tool perform OCR on scanned image PDFs?</span>
-              <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
-            </summary>
-            <div class="faq-answer">
-              SmartAssPDF uses text-stream extraction from digital PDFs. Scanned bitmap image pages may require OCR software if no font glyphs are embedded.
-            </div>
-          </details>
-<details class="faq-item">
-            <summary>
-              <span>Are my files secure?</span>
-              <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
-            </summary>
-            <div class="faq-answer">
-              Yes. Files are processed in temporary memory and scheduled for automatic hard deletion after 30 minutes.
-            </div>
-          </details>
+              <summary>
+                <span>Does watermarking degrade document quality?</span>
+                <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
+              </summary>
+              <div class="faq-answer">
+                No. Watermarks are rendered as crisp vector text streams without compressing or degrading the underlying PDF pages.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>
+                <span>Are my uploaded files kept private?</span>
+                <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
+              </summary>
+              <div class="faq-answer">
+                Yes. Files are stored only temporarily in memory during conversion and automatically deleted after 30 minutes.
+              </div>
+            </details>
           </div>
 
           <!-- Cross-Linking: Related Tools -->
           <div class="cross-links-section" data-aos="fade-up">
             <h3 class="cross-links-title"><i class="bi bi-tools text-primary"></i> Related PDF Tools</h3>
             <div class="related-tools-grid">
-              <a href="word-to-pdf.html" class="related-tool-item"><i class="bi bi-file-earmark-pdf"></i> Word to PDF</a><a href="pdf-to-excel.html" class="related-tool-item"><i class="bi bi-file-earmark-excel"></i> PDF to Excel</a><a href="compress-pdf.html" class="related-tool-item"><i class="bi bi-arrows-collapse"></i> Compress PDF</a><a href="protect-pdf.html" class="related-tool-item"><i class="bi bi-shield-lock"></i> Protect PDF</a>
-            </div>
-          </div>
-
-          <!-- Cross-Linking: Related Guides -->
-          <div class="cross-links-section" data-aos="fade-up">
-            <h3 class="cross-links-title"><i class="bi bi-journal-richtext text-primary"></i> Related Guides & Tutorials</h3>
-            <div class="related-articles-grid">
-              <a href="../blog/how-to-convert-pdf-to-word.html" class="related-article-card">
-          <h4>How to Convert PDF to Word: Step-by-Step Guide</h4>
-          <p>Step-by-step conversion instructions.</p>
-          <span class="read-link">View Details <i class="bi bi-arrow-right"></i></span>
-        </a><a href="../blog/pdf-vs-word.html" class="related-article-card">
-          <h4>PDF vs Word: When to Use Which Document Format</h4>
-          <p>Comparison guide on fixed vs flowable formats.</p>
-          <span class="read-link">View Details <i class="bi bi-arrow-right"></i></span>
-        </a>
+              <a href="protect-pdf.html" class="related-tool-item"><i class="bi bi-shield-lock"></i> Protect PDF</a>
+              <a href="add-page-numbers.html" class="related-tool-item"><i class="bi bi-123"></i> Add Page Numbers</a>
+              <a href="compress-pdf.html" class="related-tool-item"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a>
+              <a href="pdf-to-word.html" class="related-tool-item"><i class="bi bi-file-earmark-word"></i> PDF to Word</a>
             </div>
           </div>
         </article>
@@ -420,11 +408,11 @@
           <span class="eyebrow">SPECIFICATIONS</span>
           <h3>Before You Start</h3>
           <ul class="facts-list">
-            <li><i class="bi bi-check-circle-fill"></i> <span>Maximum file size: 50 MB per document.</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>No registration or account required.</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>Powered by open-source Spring Boot & PDFBox.</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>Instant client-side validation.</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>Automatic server cleanup after 30 minutes.</span></li>
+            <li><i class="bi bi-check-circle-fill text-success"></i> <span>Maximum file size: 50 MB per document.</span></li>
+            <li><i class="bi bi-check-circle-fill text-success"></i> <span>No registration or account required.</span></li>
+            <li><i class="bi bi-check-circle-fill text-success"></i> <span>High-accuracy matrix rotation algorithms.</span></li>
+            <li><i class="bi bi-check-circle-fill text-success"></i> <span>Instant client-side validation.</span></li>
+            <li><i class="bi bi-check-circle-fill text-success"></i> <span>Automatic server cleanup after 30 minutes.</span></li>
           </ul>
 
           <div style="margin-top:28px; padding-top:20px; border-top:1px solid var(--border-subtle);">
@@ -472,8 +460,10 @@
           <ul class="footer-col-nav">
             <li><a href="merge-pdf.html">Merge PDF</a></li>
             <li><a href="split-pdf.html">Split PDF</a></li>
+            <li><a href="remove-pages.html">Remove Pages</a></li>
+            <li><a href="extract-pages.html">Extract Pages</a></li>
             <li><a href="compress-pdf.html">Compress PDF</a></li>
-            <li><a href="rotate-pdf.html">Rotate PDF</a></li>
+            <li><a href="add-watermark.html">Add Watermark</a></li>
             <li><a href="protect-pdf.html">Protect PDF</a></li>
           </ul>
         </div>
@@ -484,9 +474,7 @@
             <li><a href="../blog/index.html">Blog & Guides</a></li>
             <li><a href="../about.html">About</a></li>
             <li><a href="../faq.html">FAQ</a></li>
-            <li><a href="../contact.html">Contact</a></li>
             <li><a href="../privacy.html">Privacy Policy</a></li>
-            <li><a href="../cookie-policy.html">Cookie Policy</a></li>
             <li><a href="../terms.html">Terms of Service</a></li>
           </ul>
         </div>

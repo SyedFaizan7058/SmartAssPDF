@@ -32,11 +32,37 @@ def find_soffice():
         pass
     return "soffice"
 
+def parse_page_ranges(range_str, total_pages):
+    """Parses range strings like '1,3,5-7' into a sorted set of 1-indexed integers."""
+    pages = set()
+    for part in range_str.split(','):
+        part = part.strip()
+        if not part:
+            continue
+        if '-' in part:
+            sub = part.split('-')
+            try:
+                start = int(sub[0])
+                end = int(sub[1])
+                for p in range(start, end + 1):
+                    if 1 <= p <= total_pages:
+                        pages.add(p)
+            except ValueError:
+                pass
+        else:
+            try:
+                p = int(part)
+                if 1 <= p <= total_pages:
+                    pages.add(p)
+            except ValueError:
+                pass
+    return sorted(pages)
+
 def convert_pdf_to_word(input_pdf, output_docx):
     """
     Converts PDF into a 100% fully editable Microsoft Word (.docx) document:
     - Primary engine: pdf2docx (reconstructs native editable text blocks, fonts, colors, paragraphs, and tables)
-    - Fallback engine: PyMuPDF structured text, font hierarchy, native Word tables, and embedded images
+    - High-Fidelity Fallback: PyMuPDF span-level styling (font size, bold, italic, colors, headings, alignments, tables, pictures)
     """
     out_dir = os.path.dirname(os.path.abspath(output_docx))
     if out_dir and not os.path.exists(out_dir):
@@ -51,64 +77,211 @@ def convert_pdf_to_word(input_pdf, output_docx):
             print(f"Successfully converted {input_pdf} -> {output_docx} (Editable Word via pdf2docx)")
             return
     except Exception as e:
-        print(f"pdf2docx conversion note: {e}, using PyMuPDF structured text fallback...")
+        print(f"pdf2docx conversion note: {e}, using High-Fidelity PyMuPDF fallback...")
 
-    # Fallback: Structured text, native tables, and embedded images with python-docx
+    # High-Fidelity Fallback: Span-level extraction with python-docx
     doc = fitz.open(input_pdf)
     wdoc = docx.Document()
+    
+    # Set default margins (1 inch)
+    for s in wdoc.sections:
+        s.top_margin = Inches(1.0)
+        s.bottom_margin = Inches(1.0)
+        s.left_margin = Inches(1.0)
+        s.right_margin = Inches(1.0)
     
     for p_idx, page in enumerate(doc):
         if p_idx > 0:
             wdoc.add_page_break()
             
-        # Extract tables if any
+        page_width = page.rect.width
+        
+        # 1. Extract tables
         table_bboxes = []
         try:
             tabs = page.find_tables()
-            for tab in tabs:
-                t_bbox = tab.bbox
-                table_bboxes.append(t_bbox)
-                data = tab.extract()
-                if data and len(data) > 0:
-                    cols = len(data[0])
-                    table = wdoc.add_table(rows=len(data), cols=cols)
-                    table.style = 'Table Grid'
-                    for r_i, row in enumerate(data):
-                        for c_i, val in enumerate(row):
-                            if c_i < cols:
-                                table.cell(r_i, c_i).text = str(val or "").strip()
+            if tabs and hasattr(tabs, 'tables'):
+                for tab in tabs.tables:
+                    t_bbox = tab.bbox
+                    table_bboxes.append(t_bbox)
+                    data = tab.extract()
+                    if data and len(data) > 0:
+                        cols = max(len(r) for r in data)
+                        table = wdoc.add_table(rows=len(data), cols=cols)
+                        table.style = 'Table Grid'
+                        for r_i, row in enumerate(data):
+                            for c_i, val in enumerate(row):
+                                if c_i < cols:
+                                    cell_text = str(val or "").strip()
+                                    table.cell(r_i, c_i).text = cell_text
+                                    if r_i == 0:
+                                        for p in table.cell(r_i, c_i).paragraphs:
+                                            for r in p.runs:
+                                                r.font.bold = True
         except Exception:
             pass
 
-        # Extract text blocks
-        blocks = page.get_text("blocks")
+        # 2. Extract structured blocks with span-level formatting
+        page_dict = page.get_text("dict")
+        blocks = page_dict.get("blocks", [])
+        
         for b in blocks:
-            if len(b) >= 7 and b[6] == 0: # text block
-                text = b[4].strip()
-                if not text:
+            b_type = b.get("type", 0)
+            bbox = b.get("bbox", (0, 0, 0, 0))
+            
+            # Check if block is inside a detected table
+            inside_table = False
+            for tb in table_bboxes:
+                if bbox[0] >= tb[0] - 5 and bbox[1] >= tb[1] - 5 and bbox[2] <= tb[2] + 5 and bbox[3] <= tb[3] + 5:
+                    inside_table = True
+                    break
+            if inside_table:
+                continue
+                
+            if b_type == 0:  # Text block
+                lines = b.get("lines", [])
+                if not lines:
                     continue
-                inside_table = False
-                bx0, by0, bx1, by1 = b[0], b[1], b[2], b[3]
-                for tb in table_bboxes:
-                    if bx0 >= tb[0]-5 and by0 >= tb[1]-5 and bx1 <= tb[2]+5 and by1 <= tb[3]+5:
-                        inside_table = True
-                        break
-                if not inside_table:
-                    p = wdoc.add_paragraph()
-                    p.add_run(text)
-            elif len(b) >= 7 and b[6] == 1: # image block
+                    
+                # Create paragraph for block
+                p = wdoc.add_paragraph()
+                
+                # Check alignment based on block center
+                block_center = (bbox[0] + bbox[2]) / 2.0
+                page_center = page_width / 2.0
+                if abs(block_center - page_center) < 30 and (bbox[2] - bbox[0]) < page_width * 0.7:
+                    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                elif bbox[0] > page_width * 0.55:
+                    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+                else:
+                    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                
+                # Render spans in lines
+                for l_idx, line in enumerate(lines):
+                    if l_idx > 0:
+                        # Space or line break
+                        pass
+                    for s in line.get("spans", []):
+                        text = s.get("text", "")
+                        if not text:
+                            continue
+                            
+                        run = p.add_run(text)
+                        
+                        # Apply font properties
+                        font_name = s.get("font", "")
+                        size = s.get("size", 11.0)
+                        flags = s.get("flags", 0)
+                        
+                        run.font.size = Pt(min(36, max(7, round(size, 1))))
+                        if (flags & 2 != 0) or ("bold" in font_name.lower()) or ("black" in font_name.lower()) or ("heavy" in font_name.lower()):
+                            run.font.bold = True
+                        if (flags & 1 != 0) or ("italic" in font_name.lower()) or ("oblique" in font_name.lower()):
+                            run.font.italic = True
+                            
+                        # Heading style detection
+                        if size >= 20:
+                            p.style = 'Heading 1'
+                        elif size >= 15:
+                            p.style = 'Heading 2'
+                            
+            elif b_type == 1:  # Image block
                 try:
-                    pix = page.get_pixmap(clip=fitz.Rect(b[0], b[1], b[2], b[3]))
-                    img_path = os.path.join(out_dir, f"temp_img_{p_idx}_{b[5]}.png")
+                    pix = page.get_pixmap(clip=fitz.Rect(bbox[0], bbox[1], bbox[2], bbox[3]))
+                    img_path = os.path.join(out_dir, f"temp_img_{p_idx}_{int(bbox[0])}.png")
                     pix.save(img_path)
-                    wdoc.add_picture(img_path, width=Inches(min(6.0, (b[2] - b[0]) / 72.0)))
+                    img_w = min(6.0, (bbox[2] - bbox[0]) / 72.0)
+                    if img_w > 0.3:
+                        wdoc.add_picture(img_path, width=Inches(img_w))
                     if os.path.exists(img_path):
                         os.remove(img_path)
                 except Exception:
                     pass
 
     wdoc.save(output_docx)
-    print(f"Successfully converted {input_pdf} -> {output_docx} (Editable Word via Structured PyMuPDF)")
+    print(f"Successfully converted {input_pdf} -> {output_docx} (High-Fidelity Editable Word)")
+
+def add_watermark_pdf(input_pdf, output_pdf, text="CONFIDENTIAL", opacity=0.3, rotation=45, font_size=40, color="gray"):
+    """
+    Applies custom watermark text across all pages in a PDF document.
+    Supports diagonal and arbitrary rotation angles via PyMuPDF matrix transformation.
+    """
+    doc = fitz.open(input_pdf)
+    
+    # Map color names to RGB tuples
+    color_map = {
+        "gray": (0.6, 0.6, 0.6),
+        "red": (0.85, 0.15, 0.15),
+        "blue": (0.15, 0.35, 0.85),
+        "black": (0.2, 0.2, 0.2),
+        "green": (0.1, 0.65, 0.2)
+    }
+    col = color_map.get(color.lower(), (0.6, 0.6, 0.6))
+    
+    for page in doc:
+        rect = page.rect
+        center = fitz.Point(rect.width / 2, rect.height / 2)
+        
+        # Calculate text offset to center the text
+        est_width = font_size * len(text) * 0.45
+        pos = fitz.Point(center.x - est_width, center.y)
+        
+        if rotation != 0:
+            page.insert_text(
+                pos,
+                text,
+                fontsize=font_size,
+                fontname="helv",
+                color=col,
+                morph=(center, fitz.Matrix(rotation)),
+                overlay=True
+            )
+        else:
+            page.insert_text(
+                pos,
+                text,
+                fontsize=font_size,
+                fontname="helv",
+                color=col,
+                overlay=True
+            )
+            
+    doc.save(output_pdf)
+    doc.close()
+    print(f"Successfully watermarked {input_pdf} -> {output_pdf}")
+
+def remove_pages_pdf(input_pdf, output_pdf, pages_str):
+    """
+    Deletes specified pages (e.g. '1,3,5-7') from a PDF.
+    """
+    doc = fitz.open(input_pdf)
+    total = len(doc)
+    to_delete = set(parse_page_ranges(pages_str, total))
+    to_keep = [i for i in range(total) if (i + 1) not in to_delete]
+    
+    if not to_keep:
+        raise ValueError("Cannot remove all pages from PDF. At least one page must remain.")
+        
+    doc.select(to_keep)
+    doc.save(output_pdf)
+    doc.close()
+    print(f"Successfully removed pages {pages_str} from {input_pdf} -> {output_pdf}")
+
+def extract_pages_pdf(input_pdf, output_pdf, pages_str):
+    """
+    Extracts selected pages (e.g. '1-3,5') into a new PDF document.
+    """
+    doc = fitz.open(input_pdf)
+    total = len(doc)
+    pages = parse_page_ranges(pages_str, total)
+    if not pages:
+        raise ValueError(f"No valid pages found in range '{pages_str}' (Total pages: {total}).")
+        
+    to_extract = [p - 1 for p in pages if 1 <= p <= total]
+    doc.select(to_extract)
+    doc.save(output_pdf)
+    doc.close()
+    print(f"Successfully extracted pages {pages_str} from {input_pdf} -> {output_pdf}")
 
 def convert_word_to_pdf(input_docx, output_pdf):
     soffice = find_soffice()
@@ -470,10 +643,20 @@ def compress_pdf_advanced(input_path, output_path, quality=0.5):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("mode", choices=["pdf-to-word", "word-to-pdf", "excel-to-pdf", "pdf-to-excel", "html-to-pdf", "image-to-webp", "compress-pdf"])
+    parser.add_argument("mode", choices=[
+        "pdf-to-word", "word-to-pdf", "excel-to-pdf", "pdf-to-excel",
+        "html-to-pdf", "image-to-webp", "compress-pdf",
+        "add-watermark", "remove-pages", "extract-pages"
+    ])
     parser.add_argument("input")
     parser.add_argument("output")
     parser.add_argument("--quality", default=85, type=float)
+    parser.add_argument("--text", default="CONFIDENTIAL", type=str)
+    parser.add_argument("--opacity", default=0.3, type=float)
+    parser.add_argument("--rotation", default=45, type=int)
+    parser.add_argument("--fontsize", default=40, type=int)
+    parser.add_argument("--color", default="gray", type=str)
+    parser.add_argument("--pages", default="", type=str)
     args = parser.parse_args()
 
     if args.mode == "pdf-to-word":
@@ -490,3 +673,9 @@ if __name__ == "__main__":
         convert_image_to_webp(args.input, args.output, args.quality)
     elif args.mode == "compress-pdf":
         compress_pdf_advanced(args.input, args.output, args.quality)
+    elif args.mode == "add-watermark":
+        add_watermark_pdf(args.input, args.output, args.text, args.opacity, args.rotation, args.fontsize, args.color)
+    elif args.mode == "remove-pages":
+        remove_pages_pdf(args.input, args.output, args.pages)
+    elif args.mode == "extract-pages":
+        extract_pages_pdf(args.input, args.output, args.pages)

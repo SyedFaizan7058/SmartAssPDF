@@ -22,6 +22,7 @@
   </script>
 
   <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
   <!-- Global Header — Identical Dropdown Navbar across all pages -->
@@ -61,6 +62,8 @@
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
               <a class="nav-dropdown-item" href="tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/remove-pages.html"><i class="bi bi-trash3"></i> <span>Remove Pages</span></a>
+              <a class="nav-dropdown-item" href="tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span></a>
               <a class="nav-dropdown-item" href="tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
               <a class="nav-dropdown-item" href="tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
             </div>
@@ -73,6 +76,7 @@
             </button>
             <div class="nav-dropdown">
               <a class="nav-dropdown-item" href="tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+              <a class="nav-dropdown-item" href="tools/add-watermark.html"><i class="bi bi-shield-shaded"></i> <span>Add Watermark</span></a>
               <a class="nav-dropdown-item" href="tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
               <a class="nav-dropdown-item" href="tools/unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
             </div>
@@ -170,26 +174,26 @@
 
   <!-- Main Content -->
   <main class="section-pad" style="display:grid; place-items:center; min-height:65vh;">
-    <div class="container container-narrow text-center">
+    <div class="container container-narrow text-center" data-aos="fade-down">
       <div style="font-size: clamp(4rem, 10vw, 7rem); font-weight:900; color:var(--primary); line-height:1; margin-bottom:12px;">404</div>
       <h1 style="font-size:clamp(1.75rem, 3.5vw, 2.5rem); font-weight:800; margin-bottom:16px;">Page Not Found</h1>
       <p style="color:var(--text-secondary); font-size:1.05rem; max-width:540px; margin:0 auto 32px; line-height:1.7;">
         The page, document tool, or guide you requested doesn't exist or has moved. Explore our popular document utilities below or return home.
       </p>
 
-      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:48px;">
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:48px;" data-aos="fade-up" data-aos-delay="100">
         <a href="index.html" class="btn btn-primary btn-lg"><i class="bi bi-house-door"></i> Back to Homepage</a>
         <a href="blog/index.html" class="btn btn-secondary btn-lg"><i class="bi bi-journal-text"></i> Browse Guides</a>
       </div>
 
-      <div class="card card-folded text-start" style="padding:28px;">
+      <div class="card card-folded text-start" style="padding:28px;" data-aos="fade-up" data-aos-delay="200">
         <h2 style="font-size:1.1rem; font-weight:750; margin-bottom:16px; color:var(--text-primary);"><i class="bi bi-stars text-primary me-2"></i> Popular PDF Tools</h2>
         <div class="related-tools-grid">
           <a href="tools/pdf-to-word.html" class="related-tool-item"><i class="bi bi-file-earmark-word"></i> PDF to Word</a>
           <a href="tools/merge-pdf.html" class="related-tool-item"><i class="bi bi-files"></i> Merge PDF</a>
           <a href="tools/compress-pdf.html" class="related-tool-item"><i class="bi bi-arrows-collapse"></i> Compress PDF</a>
           <a href="tools/split-pdf.html" class="related-tool-item"><i class="bi bi-scissors"></i> Split PDF</a>
-          <a href="tools/jpg-to-pdf.html" class="related-tool-item"><i class="bi bi-image"></i> JPG to PDF</a>
+          <a href="tools/image-to-pdf.html" class="related-tool-item"><i class="bi bi-image"></i> Image to PDF</a>
           <a href="tools/word-to-pdf.html" class="related-tool-item"><i class="bi bi-file-earmark-pdf"></i> Word to PDF</a>
         </div>
       </div>
@@ -249,8 +253,8 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="assets/js/tools-config.js"></script>
   <script src="assets/js/app.js"></script>
-  <script src="assets/js/ai-agent.js"></script>
 </body>
 </html>
