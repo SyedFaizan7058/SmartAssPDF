@@ -170,24 +170,46 @@
     renderLivePreview();
   }
 
+  function formatDisplayName(name, maxLen = 20) {
+    if (!name || name.length <= maxLen) return name;
+    const lastDot = name.lastIndexOf(".");
+    if (lastDot > 0 && name.length - lastDot <= 6) {
+      const ext = name.slice(lastDot);
+      const base = name.slice(0, lastDot);
+      const keep = maxLen - ext.length - 3;
+      if (keep > 3) {
+        return base.slice(0, keep) + "..." + ext;
+      }
+    }
+    return name.slice(0, maxLen - 3) + "...";
+  }
+
   function renderFileList() {
     if (!fileList) return;
 
     if (!files.length) {
       fileList.innerHTML = "";
       fileList.style.display = "none";
+      if (dropzone) {
+        dropzone.style.display = "";
+      }
       return;
     }
 
+    if (dropzone) {
+      dropzone.style.display = "none";
+    }
+
     fileList.style.display = "grid";
-    fileList.innerHTML = files.map((file, index) => {
+    let html = files.map((file, index) => {
       const ext = getFileExt(file).toUpperCase();
+      const displayName = formatDisplayName(file.name, 20);
       return `
         <div class="file-item" data-index="${index}">
           <div class="file-item-left">
             <span class="file-type-badge">${escapeHtml(ext)}</span>
             <div class="file-meta-info">
-              <strong title="${escapeHtml(file.name)}">${escapeHtml(file.name)}</strong>
+              <strong title="${escapeHtml(file.name)}">${escapeHtml(displayName)}</strong>
               <small>${formatSize(file.size)}</small>
             </div>
           </div>
@@ -200,6 +222,9 @@
                 <i class="bi bi-chevron-down"></i>
               </button>
             ` : ''}
+            <button type="button" class="file-action-btn change-file-btn" data-action="change" data-index="${index}" title="Change file">
+              <i class="bi bi-arrow-repeat"></i>
+            </button>
             <button type="button" class="file-action-btn delete-btn" data-action="remove" data-index="${index}" title="Remove file">
               <i class="bi bi-trash3"></i>
             </button>
@@ -208,6 +233,29 @@
       `;
     }).join("");
 
+    if (toolConfig.multiple && files.length < (toolConfig.maxFiles || 20)) {
+      html += `
+        <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;">
+          <button type="button" id="addMoreFilesBtn" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
+            <i class="bi bi-plus-lg"></i>
+            <span>Add More Files</span>
+          </button>
+          <small style="color: var(--text-muted);">${files.length} of ${toolConfig.maxFiles || 20}</small>
+        </div>
+      `;
+    }
+
+    fileList.innerHTML = html;
+
+    // Bind "Add More Files" button
+    const addMoreBtn = fileList.querySelector("#addMoreFilesBtn");
+    if (addMoreBtn && fileInput) {
+      addMoreBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        fileInput.click();
+      });
+    }
+
     // Bind action events
     fileList.querySelectorAll("[data-action]").forEach(btn => {
       btn.addEventListener("click", (e) => {
@@ -215,7 +263,9 @@
         const action = btn.dataset.action;
         const idx = Number(btn.dataset.index);
 
-        if (action === "remove") {
+        if (action === "change") {
+          fileInput?.click();
+        } else if (action === "remove") {
           files.splice(idx, 1);
           setFiles(files);
         } else if (action === "up" && idx > 0) {
