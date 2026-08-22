@@ -95,7 +95,294 @@
   window.SmartAssToast = { show: showToast };
 
   /* ==========================================================================
-     3. Header Scroll & Mobile Navigation Drawer
+     3. Centralized Global Navigation & Footer Template (Single Source of Truth)
+     ========================================================================== */
+  function getBasePath() {
+    const path = window.location.pathname.replace(/\\/g, '/');
+    if (path.includes('/tools/') || path.includes('/blog/')) {
+      return '../';
+    }
+    return '';
+  }
+
+  function initGlobalLayout() {
+    const base = getBasePath();
+    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    const isHome = currentFile === 'index.html' || currentFile === '';
+
+    // 1. Render Header
+    const header = document.getElementById('siteHeader');
+    if (header) {
+      header.innerHTML = `
+        <div class="container header-inner">
+          <a class="brand" href="${base}index.html" aria-label="SmartAssPDF home">
+            <span class="brand-mark"><img src="${base}assets/images/logo-mark.png" width="26" height="26" alt="SmartAssPDF Logo"></span>
+            <span class="brand-name">SmartAss<em>PDF</em></span>
+          </a>
+
+          <nav aria-label="Main navigation">
+            <ul class="nav-desktop">
+              <li class="nav-item">
+                <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+                  <span>Convert</span>
+                  <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+                </button>
+                <div class="nav-dropdown">
+                  <a class="nav-dropdown-item" href="${base}tools/ocr-pdf.html"><i class="bi bi-search"></i> <span>OCR PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> <span>PDF to Word</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> <span>PDF to Excel</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> <span>PDF to JPG</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> <span>PDF to PowerPoint</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> <span>Word to PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> <span>Excel to PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/image-to-webp.html"><i class="bi bi-file-earmark-image"></i> <span>Image to WebP</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/image-to-pdf.html"><i class="bi bi-images"></i> <span>Image to PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/html-to-pdf.html"><i class="bi bi-filetype-html"></i> <span>HTML to PDF</span></a>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+                  <span>Organize</span>
+                  <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+                </button>
+                <div class="nav-dropdown">
+                  <a class="nav-dropdown-item" href="${base}tools/repair-pdf.html"><i class="bi bi-wrench-adjustable"></i> <span>Repair PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/compare-pdf.html"><i class="bi bi-layout-split"></i> <span>Compare PDFs</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/remove-pages.html"><i class="bi bi-trash3"></i> <span>Remove Pages</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+                  <span>Optimize & Security</span>
+                  <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+                </button>
+                <div class="nav-dropdown">
+                  <a class="nav-dropdown-item" href="${base}tools/sanitize-pdf.html"><i class="bi bi-shield-check"></i> <span>Sanitize PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/sign-pdf.html"><i class="bi bi-pen"></i> <span>Sign PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/add-watermark.html"><i class="bi bi-shield-shaded"></i> <span>Add Watermark</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
+                  <a class="nav-dropdown-item" href="${base}tools/unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link ${currentFile === 'faq.html' ? 'is-active' : ''}" href="${base}faq.html" data-nav="faq">FAQ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ${currentFile === 'about.html' ? 'is-active' : ''}" href="${base}about.html" data-nav="about">About</a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="header-actions">
+            <button type="button" class="search-trigger-btn" id="searchTriggerBtn" aria-label="Search tools">
+              <i class="bi bi-search" aria-hidden="true"></i>
+              <span>Search tools</span>
+              <kbd class="search-kbd">⌘K</kbd>
+            </button>
+
+            <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle dark/light theme">
+              <i class="bi bi-sun-fill" aria-hidden="true"></i>
+            </button>
+
+            <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Toggle navigation menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // 2. Ensure Mobile Drawer Backdrop & Drawer Exist
+    let backdrop = document.getElementById('mobileDrawerBackdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'mobile-drawer-backdrop';
+      backdrop.id = 'mobileDrawerBackdrop';
+      backdrop.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(backdrop);
+    }
+
+    let drawer = document.getElementById('mobileDrawer');
+    if (!drawer) {
+      drawer = document.createElement('aside');
+      drawer.className = 'mobile-drawer';
+      drawer.id = 'mobileDrawer';
+      drawer.setAttribute('aria-label', 'Mobile navigation');
+      document.body.appendChild(drawer);
+    }
+
+    drawer.innerHTML = `
+      <div class="mobile-drawer-header">
+        <a class="brand" href="${base}index.html">
+          <span class="brand-mark"><img src="${base}assets/images/logo-mark.png" width="24" height="24" alt=""></span>
+          <span class="brand-name">SmartAss<em>PDF</em></span>
+        </a>
+        <button type="button" class="file-action-btn" id="drawerCloseBtn" aria-label="Close menu">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="mobile-drawer-nav">
+        <div>
+          <div class="mobile-nav-section-title">Convert Tools</div>
+          <ul class="mobile-nav-list">
+            <li><a href="${base}tools/ocr-pdf.html"><i class="bi bi-search"></i> OCR PDF</a></li>
+            <li><a href="${base}tools/pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> PDF to Word</a></li>
+            <li><a href="${base}tools/pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> PDF to Excel</a></li>
+            <li><a href="${base}tools/pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> PDF to JPG</a></li>
+            <li><a href="${base}tools/pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> PDF to PowerPoint</a></li>
+            <li><a href="${base}tools/word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> Word to PDF</a></li>
+            <li><a href="${base}tools/excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> Excel to PDF</a></li>
+            <li><a href="${base}tools/image-to-webp.html"><i class="bi bi-file-earmark-image"></i> Image to WebP</a></li>
+            <li><a href="${base}tools/image-to-pdf.html"><i class="bi bi-images"></i> Image to PDF</a></li>
+            <li><a href="${base}tools/html-to-pdf.html"><i class="bi bi-filetype-html"></i> HTML to PDF</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="mobile-nav-section-title">Organize & Optimize</div>
+          <ul class="mobile-nav-list">
+            <li><a href="${base}tools/repair-pdf.html"><i class="bi bi-wrench-adjustable"></i> Repair PDF</a></li>
+            <li><a href="${base}tools/compare-pdf.html"><i class="bi bi-layout-split"></i> Compare PDFs</a></li>
+            <li><a href="${base}tools/sanitize-pdf.html"><i class="bi bi-shield-check"></i> Sanitize PDF</a></li>
+            <li><a href="${base}tools/sign-pdf.html"><i class="bi bi-pen"></i> Sign PDF</a></li>
+            <li><a href="${base}tools/merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
+            <li><a href="${base}tools/split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
+            <li><a href="${base}tools/remove-pages.html"><i class="bi bi-trash3"></i> Remove Pages</a></li>
+            <li><a href="${base}tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> Extract Pages</a></li>
+            <li><a href="${base}tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a></li>
+            <li><a href="${base}tools/add-watermark.html"><i class="bi bi-shield-shaded"></i> Add Watermark</a></li>
+            <li><a href="${base}tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a></li>
+            <li><a href="${base}tools/add-page-numbers.html"><i class="bi bi-123"></i> Add Page Numbers</a></li>
+            <li><a href="${base}tools/protect-pdf.html"><i class="bi bi-shield-lock"></i> Protect PDF</a></li>
+            <li><a href="${base}tools/unlock-pdf.html"><i class="bi bi-unlock"></i> Unlock PDF</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="mobile-nav-section-title">Resources</div>
+          <ul class="mobile-nav-list">
+            <li><a href="${base}faq.html"><i class="bi bi-question-circle"></i> FAQ</a></li>
+            <li><a href="${base}about.html"><i class="bi bi-info-circle"></i> About</a></li>
+            <li><a href="${base}contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
+            <li><a href="${base}privacy.html"><i class="bi bi-shield-check"></i> Privacy Policy</a></li>
+            <li><a href="${base}cookie-policy.html"><i class="bi bi-shield-lock"></i> Cookie Policy</a></li>
+            <li><a href="${base}terms.html"><i class="bi bi-file-text"></i> Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+    `;
+
+    // 3. Ensure Quick Search Modal Exists
+    let searchModal = document.getElementById('searchModalBackdrop');
+    if (!searchModal) {
+      searchModal = document.createElement('div');
+      searchModal.className = 'search-modal-backdrop';
+      searchModal.id = 'searchModalBackdrop';
+      searchModal.setAttribute('role', 'dialog');
+      searchModal.setAttribute('aria-modal', 'true');
+      searchModal.setAttribute('aria-label', 'Search tools');
+      document.body.appendChild(searchModal);
+    }
+
+    searchModal.innerHTML = `
+      <div class="search-modal">
+        <div class="search-input-wrap">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <input type="search" class="search-input" id="searchModalInput" placeholder="Search by tool name or format (e.g. Word, OCR, Split)..." autocomplete="off" spellcheck="false">
+          <button type="button" class="file-action-btn" id="searchModalClose" aria-label="Close search">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+        <div class="search-modal-footer">
+          <span><kbd class="search-kbd">↑</kbd> <kbd class="search-kbd">↓</kbd> to navigate</span>
+          <span><kbd class="search-kbd">↵</kbd> to select</span>
+          <span><kbd class="search-kbd">ESC</kbd> to close</span>
+        </div>
+      </div>
+    `;
+
+    // 4. Render Global Footer
+    const footer = document.querySelector('.site-footer') || document.getElementById('siteFooter');
+    if (footer) {
+      footer.innerHTML = `
+        <div class="container">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <a class="brand" href="${base}index.html">
+                <span class="brand-mark"><img src="${base}assets/images/logo-mark.png" width="24" height="24" alt=""></span>
+                <span class="brand-name">SmartAss<em>PDF</em></span>
+              </a>
+              <p>Free, fast, and practical document workflows built around open-source technology.</p>
+              <div class="footer-social-links">
+                <a href="https://www.facebook.com/profile.php?id=61580387357259" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="https://x.com/smartasspdf_com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Twitter X"><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.linkedin.com/company/108761055/admin/dashboard/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="https://www.instagram.com/smartasspdf_official/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+              </div>
+            </div>
+
+            <div class="footer-col">
+              <h4>Convert</h4>
+              <ul class="footer-col-nav">
+                <li><a href="${base}tools/ocr-pdf.html">OCR PDF</a></li>
+                <li><a href="${base}tools/pdf-to-word.html">PDF to Word</a></li>
+                <li><a href="${base}tools/pdf-to-excel.html">PDF to Excel</a></li>
+                <li><a href="${base}tools/pdf-to-jpg.html">PDF to JPG</a></li>
+                <li><a href="${base}tools/word-to-pdf.html">Word to PDF</a></li>
+                <li><a href="${base}tools/image-to-webp.html">Image to WebP</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Organize & Protect</h4>
+              <ul class="footer-col-nav">
+                <li><a href="${base}tools/repair-pdf.html">Repair PDF</a></li>
+                <li><a href="${base}tools/compare-pdf.html">Compare PDFs</a></li>
+                <li><a href="${base}tools/sanitize-pdf.html">Sanitize PDF</a></li>
+                <li><a href="${base}tools/sign-pdf.html">Sign PDF</a></li>
+                <li><a href="${base}tools/merge-pdf.html">Merge PDF</a></li>
+                <li><a href="${base}tools/split-pdf.html">Split PDF</a></li>
+                <li><a href="${base}tools/compress-pdf.html">Compress PDF</a></li>
+                <li><a href="${base}tools/protect-pdf.html">Protect PDF</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Company & Legal</h4>
+              <ul class="footer-col-nav">
+                <li><a href="${base}blog/index.html">Blog & Guides</a></li>
+                <li><a href="${base}about.html">About</a></li>
+                <li><a href="${base}faq.html">FAQ</a></li>
+                <li><a href="${base}contact.html">Contact</a></li>
+                <li><a href="${base}privacy.html">Privacy Policy</a></li>
+                <li><a href="${base}cookie-policy.html">Cookie Policy</a></li>
+                <li><a href="${base}terms.html">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <small>© 2026 SmartAssPDF. Open-source powered document utilities.</small>
+            <span>Free Tools • No Account Required • Temporary Storage</span>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  /* ==========================================================================
+     4. Header Scroll & Mobile Navigation Drawer
      ========================================================================== */
   function initHeaderAndDrawer() {
     const header = document.getElementById('siteHeader');
@@ -441,11 +728,12 @@
 
   // Initialize on DOM ready
   document.addEventListener('DOMContentLoaded', () => {
+    initGlobalLayout();
     initTheme();
     initHeaderAndDrawer();
     initSearchModal();
     initScrollAnimations();
     initToolGrid();
     markActiveNav();
-});
+  });
 })();

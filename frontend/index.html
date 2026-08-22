@@ -37,42 +37,65 @@
   </script>
 
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <link href="assets/css/app.css" rel="stylesheet">
+  <link href="assets/css/app.css?v=6" rel="stylesheet">
+  <style>
+    /* Critical overrides – hero floating card hidden on small screens */
+    @media (max-width: 1024px) {
+      .hero-visual { display: none !important; }
+      .hero-content { text-align: center; max-width: 680px; margin: 0 auto; }
+      .hero-cta-group { justify-content: center; }
+      .trust-badges { display: none !important; }
+      .hero-section { padding-bottom: 32px !important; }
+    }
+  </style>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
-      {{
+      {
+        "@type": "Organization",
+        "name": "SmartAssPDF",
+        "url": "https://smartasspdf.com/",
+        "logo": "https://smartasspdf.com/assets/images/logo-mark.png",
+        "sameAs": [
+          "https://x.com/smartasspdf_com",
+          "https://www.facebook.com/profile.php?id=61580387357259",
+          "https://www.linkedin.com/company/108761055/admin/dashboard/",
+          "https://www.instagram.com/smartasspdf_official/"
+        ]
+      },
+      {
         "@type": "WebSite",
         "name": "SmartAssPDF",
         "url": "https://smartasspdf.com/",
         "description": "Free online PDF and document utilities with zero registration and temporary job cleanup.",
-        "potentialAction": {{
+        "potentialAction": {
           "@type": "SearchAction",
           "target": "https://smartasspdf.com/?q={search_term_string}",
           "query-input": "required name=search_term_string"
-        }}
-      }},
-      {{
+        }
+      },
+      {
         "@type": "WebApplication",
-        "name": "SmartAssPDF",
+        "name": "SmartAssPDF Document Suite",
         "url": "https://smartasspdf.com/",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Web",
-        "description": "Free online PDF and document tools for conversion, merging, splitting, compression, rotation and protection.",
-        "offers": {{
+        "description": "Free online PDF and document tools for OCR, repair, comparison, sanitization, digital signing, conversion, merging, splitting, compression, and protection.",
+        "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD"
-        }},
+        },
         "featureList": [
+          "OCR PDF", "Repair PDF", "Compare PDFs", "Sanitize PDF", "Sign PDF",
           "PDF to Word", "PDF to Excel", "PDF to JPG", "PDF to PowerPoint",
-          "Word to PDF", "Excel to PDF", "JPG to PDF", "Image to PDF", "HTML to PDF",
+          "Word to PDF", "Excel to PDF", "Image to PDF", "Image to WebP", "HTML to PDF",
           "Merge PDF", "Split PDF", "Compress PDF", "Rotate PDF", "Add Page Numbers",
-          "Protect PDF", "Unlock PDF"
+          "Extract Pages", "Remove Pages", "Add Watermark", "Protect PDF", "Unlock PDF"
         ]
-      }}
+      }
     ]
   }
   </script>
@@ -136,6 +159,9 @@
               <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
             </button>
             <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="tools/ocr-pdf.html">
+                <i class="bi bi-search"></i> <span>OCR PDF</span>
+              </a>
               <a class="nav-dropdown-item" href="tools/pdf-to-word.html">
                 <i class="bi bi-file-earmark-word"></i> <span>PDF to Word</span>
               </a>
@@ -172,6 +198,12 @@
               <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
             </button>
             <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="tools/repair-pdf.html">
+                <i class="bi bi-wrench-adjustable"></i> <span>Repair PDF</span>
+              </a>
+              <a class="nav-dropdown-item" href="tools/compare-pdf.html">
+                <i class="bi bi-layout-split"></i> <span>Compare PDFs</span>
+              </a>
               <a class="nav-dropdown-item" href="tools/merge-pdf.html">
                 <i class="bi bi-plus-square"></i> <span>Merge PDF</span>
               </a>
@@ -199,6 +231,12 @@
               <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
             </button>
             <div class="nav-dropdown">
+              <a class="nav-dropdown-item" href="tools/sanitize-pdf.html">
+                <i class="bi bi-shield-check"></i> <span>Sanitize PDF</span>
+              </a>
+              <a class="nav-dropdown-item" href="tools/sign-pdf.html">
+                <i class="bi bi-pen"></i> <span>Sign PDF</span>
+              </a>
               <a class="nav-dropdown-item" href="tools/compress-pdf.html">
                 <i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span>
               </a>
@@ -259,6 +297,7 @@
       <div>
         <div class="mobile-nav-section-title">Convert Tools</div>
         <ul class="mobile-nav-list">
+          <li><a href="tools/ocr-pdf.html"><i class="bi bi-search"></i> OCR PDF</a></li>
           <li><a href="tools/pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> PDF to Word</a></li>
           <li><a href="tools/pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> PDF to Excel</a></li>
           <li><a href="tools/pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> PDF to JPG</a></li>
@@ -273,6 +312,10 @@
       <div>
         <div class="mobile-nav-section-title">Organize & Optimize</div>
         <ul class="mobile-nav-list">
+          <li><a href="tools/repair-pdf.html"><i class="bi bi-wrench-adjustable"></i> Repair PDF</a></li>
+          <li><a href="tools/compare-pdf.html"><i class="bi bi-layout-split"></i> Compare PDFs</a></li>
+          <li><a href="tools/sanitize-pdf.html"><i class="bi bi-shield-check"></i> Sanitize PDF</a></li>
+          <li><a href="tools/sign-pdf.html"><i class="bi bi-pen"></i> Sign PDF</a></li>
           <li><a href="tools/merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
           <li><a href="tools/split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
           <li><a href="tools/remove-pages.html"><i class="bi bi-trash3"></i> Remove Pages</a></li>
@@ -388,16 +431,16 @@
 
         <div class="filter-tabs-wrapper">
           <div class="filter-tabs" role="tablist">
-            <button type="button" class="filter-pill is-active" data-category="all" role="tab" aria-selected="true">All 19 Tools</button>
+            <button type="button" class="filter-pill is-active" data-category="all" role="tab" aria-selected="true">All</button>
             <button type="button" class="filter-pill" data-category="convert-from-pdf" role="tab" aria-selected="false">Convert from PDF</button>
             <button type="button" class="filter-pill" data-category="convert-to-pdf" role="tab" aria-selected="false">Convert to PDF</button>
-            <button type="button" class="filter-pill" data-category="organize-pdf" role="tab" aria-selected="false">Organize</button>
-            <button type="button" class="filter-pill" data-category="optimize-security" role="tab" aria-selected="false">Optimize & Security</button>
+            <button type="button" class="filter-pill" data-category="organize-pdf" role="tab" aria-selected="false">Organize PDF</button>
+            <button type="button" class="filter-pill" data-category="optimize-security" role="tab" aria-selected="false">Optimize &amp; Security</button>
           </div>
 
           <div class="category-search-input">
             <i class="bi bi-search" aria-hidden="true"></i>
-            <input type="text" id="toolFilterInput" placeholder="Filter tools..." aria-label="Filter tools in grid">
+            <input type="text" id="toolFilterInput" placeholder="Search by tool name or format..." aria-label="Filter tools in grid">
           </div>
         </div>
 

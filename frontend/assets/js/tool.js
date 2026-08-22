@@ -465,6 +465,56 @@
           if (colInput) colInput.value = chip.dataset.color;
         });
       });
+    } else if (toolId === "ocr-pdf") {
+      toolOptions.innerHTML = `
+        <div class="tool-options-card">
+          <div class="options-heading">OCR Recognition Language</div>
+          <div class="options-grid">
+            <button type="button" class="option-chip-btn is-active" data-lang="eng">English (eng)</button>
+            <button type="button" class="option-chip-btn" data-lang="spa">Spanish (spa)</button>
+            <button type="button" class="option-chip-btn" data-lang="fra">French (fra)</button>
+            <button type="button" class="option-chip-btn" data-lang="deu">German (deu)</button>
+          </div>
+          <input type="hidden" id="languageInput" value="eng">
+          <div class="form-hint" style="margin-top:10px;">Select the primary language of the text within your scanned document.</div>
+        </div>
+      `;
+      const langChips = toolOptions.querySelectorAll("[data-lang]");
+      const langInput = document.getElementById("languageInput");
+      langChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          langChips.forEach(c => c.classList.remove("is-active"));
+          chip.classList.add("is-active");
+          if (langInput) langInput.value = chip.dataset.lang;
+        });
+      });
+    } else if (toolId === "sign-pdf") {
+      toolOptions.innerHTML = `
+        <div class="tool-options-card">
+          <div class="options-heading">Digital Signature Details</div>
+          <label class="form-label" for="signerNameInput">Signer Full Name</label>
+          <input id="signerNameInput" class="form-control" placeholder="e.g. John Doe, Sarah Connor" value="Authorized Signer">
+          
+          <label class="form-label" style="margin-top:14px;">Signature Stamp Position</label>
+          <div class="options-grid">
+            <button type="button" class="option-chip-btn is-active" data-pos="bottom-right">Bottom Right</button>
+            <button type="button" class="option-chip-btn" data-pos="bottom-left">Bottom Left</button>
+            <button type="button" class="option-chip-btn" data-pos="bottom-center">Bottom Center</button>
+            <button type="button" class="option-chip-btn" data-pos="top-right">Top Right</button>
+          </div>
+          <input type="hidden" id="positionInput" value="bottom-right">
+          <div class="form-hint" style="margin-top:10px;">Tip: You can optionally upload a 2nd file (PNG signature image) to embed your actual signature.</div>
+        </div>
+      `;
+      const posChips = toolOptions.querySelectorAll("[data-pos]");
+      const posInput = document.getElementById("positionInput");
+      posChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          posChips.forEach(c => c.classList.remove("is-active"));
+          chip.classList.add("is-active");
+          if (posInput) posInput.value = chip.dataset.pos;
+        });
+      });
     } else {
       toolOptions.innerHTML = "";
     }
@@ -695,6 +745,11 @@
       return;
     }
 
+    if (toolId === "compare-pdf" && files.length < 2) {
+      showStatusError("Compare PDFs requires two PDF files (Document A and Document B) to compare.");
+      return;
+    }
+
     const passwordInput = document.getElementById("passwordInput");
     if ((toolId === "protect-pdf" || toolId === "unlock-pdf") && !passwordInput?.value.trim()) {
       showStatusError("Please enter the PDF password before processing.");
@@ -743,6 +798,12 @@
 
     const colorInput = document.getElementById("colorInput");
     if (colorInput) fd.append("color", colorInput.value);
+
+    const languageInput = document.getElementById("languageInput");
+    if (languageInput?.value) fd.append("language", languageInput.value);
+
+    const signerNameInput = document.getElementById("signerNameInput");
+    if (signerNameInput?.value) fd.append("signer", signerNameInput.value);
 
     if (passwordInput?.value) fd.append("password", passwordInput.value);
 

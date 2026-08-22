@@ -1,45 +1,53 @@
 # SmartAssPDF
 
-> SmartAssPDF is a free, private, open-source-oriented web application for PDF, image, and document conversion, organization, and optimization workflows.
+> SmartAssPDF (https://smartasspdf.com) is a free, privacy-first, open-source-powered web platform for PDF, document, and image conversion, organization, security, and optical character recognition (OCR) workflows.
 
-## Primary Capabilities (16 Live Tools)
+## Primary Capabilities (24 Live Tools)
 
 ### Convert from PDF
-- **PDF to Word (DOCX)**: `/tools/pdf-to-word.html` — Converts PDF pages and documents into editable Microsoft Word (.docx) documents with 1:1 layout preservation, tables, vector rules, and fonts.
-- **PDF to Excel (XLSX)**: `/tools/pdf-to-excel.html` — Extracts tabular data and text into structured, auto-fitted Excel spreadsheets (.xlsx) with numerical cell formatting.
-- **PDF to JPG**: `/tools/pdf-to-jpg.html` — Renders PDF pages into high-resolution JPG images (packaged as ZIP for multi-page).
+- **OCR PDF**: `/tools/ocr-pdf.html` — Performs Optical Character Recognition using Tesseract OCR to convert scanned documents and flat image PDFs into searchable, selectable text with multi-language support (English, Spanish, French, German).
+- **PDF to Word (DOCX)**: `/tools/pdf-to-word.html` — Converts PDF pages into editable Microsoft Word (.docx) documents with 1:1 layout preservation, tables, vector rules, and embedded graphics.
+- **PDF to Excel (XLSX)**: `/tools/pdf-to-excel.html` — Extracts structured tabular data and matrices into auto-formatted Excel spreadsheets (.xlsx) with numeric cell typing.
+- **PDF to JPG**: `/tools/pdf-to-jpg.html` — Renders PDF pages into high-resolution JPG images (100 to 300 DPI) packaged as a ZIP archive for multi-page documents.
 - **PDF to PowerPoint (PPTX)**: `/tools/pdf-to-ppt.html` — Exports PDF pages into high-fidelity PowerPoint slide decks (.pptx).
 
 ### Convert to PDF
-- **Word to PDF**: `/tools/word-to-pdf.html` — Converts DOCX files into universal, printer-ready PDF files with full style, table, and image preservation.
+- **Word to PDF**: `/tools/word-to-pdf.html` — Converts DOCX files into universal, printer-ready PDF files with full typography and margin preservation.
 - **Excel to PDF**: `/tools/excel-to-pdf.html` — Renders spreadsheet worksheets and tables into paginated, grid-lined PDF documents.
-- **Image to PDF**: `/tools/image-to-pdf.html` — Converts JPG, PNG, and JPEG images into a unified PDF document.
-- **HTML to PDF**: `/tools/html-to-pdf.html` — Renders HTML markup, styles, and full CSS layouts into formatted PDF pages.
+- **Image to PDF**: `/tools/image-to-pdf.html` — Converts JPG, PNG, and JPEG images into a unified, clean PDF document.
+- **HTML to PDF**: `/tools/html-to-pdf.html` — Renders HTML markup, CSS layouts, web typography, and tables into paginated PDF pages.
 
-### Optimize & Security
+### Optimize, Security & Document Integrity
+- **Repair PDF**: `/tools/repair-pdf.html` — Diagnoses and recovers damaged, unreadable, or corrupted PDF files by parsing broken cross-reference (XREF) tables and restoring orphaned content streams using QPDF and PDFBox.
+- **Compare PDFs**: `/tools/compare-pdf.html` — Performs visual and textual diff analysis between two PDF versions, rendering side-by-side pages with highlighted additions, deletions, and structural alterations.
+- **Sanitize PDF**: `/tools/sanitize-pdf.html` — Strips hidden metadata packets (XMP, EXIF), author names, GPS tags, document revision histories, embedded thumbnails, and tracking IDs for complete privacy before publishing.
+- **Sign PDF**: `/tools/sign-pdf.html` — Applies cryptographic digital certificate signatures (.p12 / PFX) and stamped signature seals onto documents.
 - **Image to WebP**: `/tools/image-to-webp.html` — Converts PNG, JPG, and JPEG images into modern, ultra-compressed WebP format with alpha transparency preservation.
-- **Compress PDF**: `/tools/compress-pdf.html` — Reduces PDF file size by 60-80% using multi-stage image downsampling and object stream optimization.
-- **Protect PDF**: `/tools/protect-pdf.html` — Enforces 256-bit AES password encryption on PDF files.
-- **Unlock PDF**: `/tools/unlock-pdf.html` — Removes password protection from authorized PDFs when password is provided.
+- **Compress PDF**: `/tools/compress-pdf.html` — Reduces PDF file size by 60–80% using multi-stage image downsampling and object stream optimization.
+- **Protect PDF**: `/tools/protect-pdf.html` — Enforces 256-bit AES password encryption and permission restrictions on PDF files.
+- **Unlock PDF**: `/tools/unlock-pdf.html` — Removes password protection from authorized PDFs when the decryption key is supplied.
+- **Add Watermark**: `/tools/add-watermark.html` — Stamps custom text or graphic watermarks with customizable opacity, rotation, and positioning.
 
 ### Organize PDF
-- **Merge PDF**: `/tools/merge-pdf.html` — Combines multiple PDF files into one organized document.
-- **Split PDF**: `/tools/split-pdf.html` — Extracts individual pages or custom ranges (e.g. 1-3, 5, 8-10) with ZIP bundling.
+- **Merge PDF**: `/tools/merge-pdf.html` — Combines multiple PDF files into one ordered document.
+- **Split PDF**: `/tools/split-pdf.html` — Extracts individual pages or custom ranges (e.g. `1-3, 5, 8-10`) with ZIP bundling.
+- **Extract Pages**: `/tools/extract-pages.html` — Pulls specific page intervals into standalone PDF documents.
+- **Remove Pages**: `/tools/remove-pages.html` — Deletes unwanted pages from any PDF document.
 - **Rotate PDF**: `/tools/rotate-pdf.html` — Rotates PDF pages clockwise by 90, 180, or 270 degrees.
-- **Add Page Numbers**: `/tools/add-page-numbers.html` — Inserts formatted page numbers into PDF headers or footers.
+- **Add Page Numbers**: `/tools/add-page-numbers.html` — Inserts formatted page numbers (e.g. "Page X of Y") into headers or footers.
 
-## Technology Stack
+## Technology Stack & Architecture
 
-- **Frontend**: Lightweight vanilla HTML5, modern CSS3 custom properties (Dark & Light themes), modular ES6 JavaScript, SmartAss AI browser agent.
-- **Backend API**: Java 17+, Spring Boot 3.5 REST API on `/api/v1`.
-- **Core Engines & Libraries**:
-  - Apache PDFBox 3.0 (PDF rendering, security encryption, object stream compression).
+- **Zero-Storage Privacy Model**: Files reside exclusively in temporary, isolated UUID server directories with automated hard deletion after 30 minutes. No user database, no persistent tracking, and zero AI training on user files.
+- **Backend API**: Java 17 LTS, Spring Boot 3 REST API on `/api/v1`.
+- **Core Processing Engines**:
+  - Apache PDFBox 3.0 (PDF rendering, security encryption, object stream compression, and page manipulation).
+  - Tesseract OCR (Optical Character Recognition and searchable PDF generation).
+  - QPDF (Deep stream reconstruction, linearization, and XREF repair).
+  - PyMuPDF / fitz (High-speed vector layout parsing, diffing, and table extraction).
   - Apache POI (Office DOCX/XLSX/PPTX handling).
-  - PyMuPDF / fitz (High-speed vector graphics, layout parsing, table extraction).
-  - Tabula & OpenPyXL (Structured PDF table extraction and spreadsheet generation).
   - LibreOffice Headless (Native document compiler for Word, Excel, and HTML rendering).
   - Pillow / PIL (High-performance WebP and image processing).
-- **Architecture**: In-memory job management; files reside in temporary isolated server directories with automated deletion. No persistent storage, zero user tracking.
 
 ## Blog & Educational Resources
 
@@ -55,6 +63,7 @@
 
 ## API Endpoints
 
-- `GET /api/v1/tools`: Lists all available tools and system status.
-- `POST /api/v1/tools/{tool}/jobs`: Accepts multipart form uploads (`files`) and returns job status and download URLs.
-- `GET /api/v1/jobs/{jobId}/download`: Streams the converted result file.
+- `GET /api/v1/tools`: Lists all available tools and backend health status.
+- `POST /api/v1/tools/{tool}/jobs`: Accepts multipart form uploads (`files`) with optional processing parameters and returns job UUID and download URLs.
+- `GET /api/v1/jobs/{jobId}/download`: Streams the resulting converted document.
+

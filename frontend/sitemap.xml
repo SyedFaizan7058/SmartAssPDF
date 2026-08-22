@@ -1,40 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Core Homepage & Info Pages -->
-  <url><loc>https://smartasspdf.com/</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://smartasspdf.com/about.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://smartasspdf.com/faq.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://smartasspdf.com/contact.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://smartasspdf.com/privacy.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://smartasspdf.com/terms.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://smartasspdf.com/cookie-policy.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <!-- Core Homepage & Authority Pages -->
+  <url><loc>https://smartasspdf.com/</loc><lastmod>2026-08-22</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://smartasspdf.com/about.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://smartasspdf.com/faq.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://smartasspdf.com/contact.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://smartasspdf.com/privacy.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://smartasspdf.com/terms.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://smartasspdf.com/cookie-policy.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <!-- 16 Live Tool Pages -->
-  <url><loc>https://smartasspdf.com/tools/pdf-to-word.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://smartasspdf.com/tools/pdf-to-excel.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartasspdf.com/tools/pdf-to-jpg.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartasspdf.com/tools/pdf-to-ppt.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartasspdf.com/tools/word-to-pdf.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartasspdf.com/tools/excel-to-pdf.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartasspdf.com/tools/image-to-webp.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartasspdf.com/tools/image-to-pdf.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartasspdf.com/tools/html-to-pdf.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartasspdf.com/tools/merge-pdf.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://smartasspdf.com/tools/split-pdf.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartasspdf.com/tools/compress-pdf.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://smartasspdf.com/tools/rotate-pdf.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://smartasspdf.com/tools/add-page-numbers.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://smartasspdf.com/tools/protect-pdf.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://smartasspdf.com/tools/unlock-pdf.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <!-- Live Tool Pages (24 Tools) -->
+  <url><loc>https://smartasspdf.com/tools/ocr-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://smartasspdf.com/tools/pdf-to-word.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://smartasspdf.com/tools/pdf-to-excel.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://smartasspdf.com/tools/pdf-to-jpg.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://smartasspdf.com/tools/pdf-to-ppt.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://smartasspdf.com/tools/word-to-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://smartasspdf.com/tools/excel-to-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://smartasspdf.com/tools/image-to-webp.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://smartasspdf.com/tools/image-to-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://smartasspdf.com/tools/html-to-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://smartasspdf.com/tools/repair-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://smartasspdf.com/tools/compare-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://smartasspdf.com/tools/sanitize-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://smartasspdf.com/tools/sign-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://smartasspdf.com/tools/merge-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://smartasspdf.com/tools/split-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://smartasspdf.com/tools/compress-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://smartasspdf.com/tools/rotate-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://smartasspdf.com/tools/add-page-numbers.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://smartasspdf.com/tools/extract-pages.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://smartasspdf.com/tools/remove-pages.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://smartasspdf.com/tools/protect-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://smartasspdf.com/tools/unlock-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://smartasspdf.com/tools/add-watermark.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
 
-  <!-- Blog & Educational Content Hub -->
-  <url><loc>https://smartasspdf.com/blog/index.html</loc><lastmod>2026-08-20</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://smartasspdf.com/blog/how-to-convert-pdf-to-word.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://smartasspdf.com/blog/how-to-compress-pdf-without-losing-quality.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://smartasspdf.com/blog/how-to-merge-pdf-files.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://smartasspdf.com/blog/how-to-split-pdf-pages.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://smartasspdf.com/blog/pdf-vs-word.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://smartasspdf.com/blog/how-to-protect-pdf-with-password.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://smartasspdf.com/blog/how-to-convert-jpg-to-pdf.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://smartasspdf.com/blog/what-is-pdfa.html</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- Blog & Educational Resource Articles -->
+  <url><loc>https://smartasspdf.com/blog/index.html</loc><lastmod>2026-08-22</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://smartasspdf.com/blog/how-to-convert-pdf-to-word.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://smartasspdf.com/blog/how-to-compress-pdf-without-losing-quality.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://smartasspdf.com/blog/how-to-merge-pdf-files.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://smartasspdf.com/blog/how-to-split-pdf-pages.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://smartasspdf.com/blog/pdf-vs-word.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://smartasspdf.com/blog/how-to-protect-pdf-with-password.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://smartasspdf.com/blog/how-to-convert-jpg-to-pdf.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://smartasspdf.com/blog/what-is-pdfa.html</loc><lastmod>2026-08-22</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
 </urlset>

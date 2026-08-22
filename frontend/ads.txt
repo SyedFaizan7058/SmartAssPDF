@@ -1,0 +1,4 @@
+# ads.txt for SmartAssPDF (smartasspdf.com)
+# Google AdSense authorized digital seller record
+# Replace pub-XXXXXXXXXXXXXXXX with your approved AdSense Publisher ID
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

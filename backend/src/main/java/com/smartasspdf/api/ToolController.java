@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api/v1")
 public class ToolController {
   private static final Set<String> TOOLS = Set.of(
+      "ocr-pdf","repair-pdf","compare-pdf","sanitize-pdf","sign-pdf",
       "pdf-to-word","pdf-to-excel","pdf-to-jpg","pdf-to-ppt","word-to-pdf","excel-to-pdf",
       "image-to-webp","image-to-pdf","html-to-pdf","merge-pdf","split-pdf","compress-pdf",
       "rotate-pdf","add-page-numbers","protect-pdf","unlock-pdf",
@@ -44,7 +45,10 @@ public class ToolController {
       @RequestParam(value="opacity", required=false) Float opacity,
       @RequestParam(value="rotation", required=false) Integer rotation,
       @RequestParam(value="fontSize", required=false) Integer fontSize,
-      @RequestParam(value="color", required=false) String color) {
+      @RequestParam(value="color", required=false) String color,
+      @RequestParam(value="language", required=false) String language,
+      @RequestParam(value="signer", required=false) String signer,
+      @RequestParam(value="signatureText", required=false) String signatureText) {
 
     if(!TOOLS.contains(tool)) return error(HttpStatus.NOT_FOUND,"TOOL_NOT_FOUND","Unknown tool: " + tool);
     if(files==null || files.isEmpty()) return error(HttpStatus.BAD_REQUEST,"NO_FILE","Please upload at least one file.");
@@ -67,6 +71,11 @@ public class ToolController {
     try{
       Path result;
       switch(tool){
+        case "ocr-pdf" -> { requireCount(saved,1,"OCR PDF accepts exactly one file."); result=pdf.ocrPdf(saved.get(0),job.dir(),language); }
+        case "repair-pdf" -> { requireCount(saved,1,"Repair PDF accepts exactly one file."); result=pdf.repairPdf(saved.get(0),job.dir()); }
+        case "compare-pdf" -> { if(saved.size()<2) throw new IllegalArgumentException("Compare PDFs requires at least two PDF files to compare."); result=pdf.comparePdf(saved.get(0),saved.get(1),job.dir()); }
+        case "sanitize-pdf" -> { requireCount(saved,1,"Sanitize PDF accepts exactly one file."); result=pdf.sanitizePdf(saved.get(0),job.dir()); }
+        case "sign-pdf" -> { if(saved.isEmpty()) throw new IllegalArgumentException("Sign PDF accepts at least one document."); result=pdf.signPdf(saved,job.dir(),signer,position,signatureText); }
         case "merge-pdf" -> result=pdf.merge(saved,job.dir());
         case "split-pdf" -> { requireCount(saved,1,"Split PDF accepts exactly one file."); result=pdf.split(saved.get(0),pages,job.dir()); }
         case "compress-pdf" -> { requireCount(saved,1,"Compress PDF accepts exactly one file."); result=pdf.compress(saved.get(0),job.dir(),quality==null?.5f:quality); }

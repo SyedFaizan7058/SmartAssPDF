@@ -205,34 +205,72 @@
       </nav>
 
       <div class="section-heading" data-aos="fade-down">
-        <span class="eyebrow"><i class="bi bi-shield-check"></i> DATA & PRIVACY</span>
+        <span class="eyebrow"><i class="bi bi-shield-check"></i> DATA & PRIVACY COMPLIANCE</span>
         <h1 style="font-size:clamp(2.2rem, 4vw, 3.2rem); font-weight:800; letter-spacing:-0.03em; margin: 12px 0;">Privacy Policy</h1>
-        <p>SmartAssPDF is designed around privacy, temporary processing, and automatic file cleanup.</p>
+        <p>SmartAssPDF is engineered around a strict zero-retention, privacy-first document processing model. Last Updated: August 22, 2026.</p>
       </div>
 
       <div class="card card-folded" style="margin-bottom: 24px;">
-        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">1. Uploaded Documents</h2>
-        <p style="color:var(--text-secondary); line-height:1.75;">When you select a tool and click Process, your chosen file is transmitted to the backend processing service. A temporary job directory is created for the duration of the operation to execute the conversion or manipulation task.</p>
+        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">1. Overview & Zero-Permanent-Storage Architecture</h2>
+        <p style="color:var(--text-secondary); line-height:1.75;">SmartAssPDF ("we", "us", or "our") provides free, open-source-powered online document utilities. We operate under a strict <strong>Zero-Permanent-Storage Architecture</strong>. We do not require account registration, do not collect personal profiles, and never sell, rent, or trade your document contents to any third party.</p>
       </div>
 
       <div class="card card-folded" style="margin-bottom: 24px;">
-        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">2. Automatic File Deletion</h2>
-        <p style="color:var(--text-secondary); line-height:1.75;">Temporary job directories and converted outputs are scheduled for automatic deletion by our background cleanup service after 30 minutes. We do not maintain a permanent document archive.</p>
+        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">2. Uploaded Documents & Processing Lifecycle</h2>
+        <p style="color:var(--text-secondary); line-height:1.75; margin-bottom:12px;">When you upload a file to perform a conversion, repair, OCR scan, comparison, sanitization, or merge:</p>
+        <ul style="color:var(--text-secondary); line-height:1.75; padding-left:24px;">
+          <li>Your file is securely transmitted over TLS 1.3 encryption to our stateless backend service.</li>
+          <li>Files are stored temporarily in an isolated, randomized UUID folder on the server solely for the duration required to complete the transformation.</li>
+          <li><strong>Automated 30-Minute File Destruction:</strong> All original uploaded documents and converted output files are automatically and permanently deleted by an automated cleanup daemon 30 minutes after creation.</li>
+          <li>We do not inspect, index, train artificial intelligence models on, or create backups of your private document contents.</li>
+        </ul>
       </div>
 
       <div class="card card-folded" style="margin-bottom: 24px;">
-        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">3. No Account Database</h2>
-        <p style="color:var(--text-secondary); line-height:1.75;">SmartAssPDF operates without a user account database. Active jobs and temporary file paths exist solely in application memory while being processed.</p>
+        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">3. Google AdSense & Third-Party Advertising Disclosures</h2>
+        <p style="color:var(--text-secondary); line-height:1.75; margin-bottom:12px;">SmartAssPDF displays advertisements provided by Google AdSense and third-party advertising networks to maintain free access to our tools. In compliance with Google's policies and global privacy regulations, please note:</p>
+        <ul style="color:var(--text-secondary); line-height:1.75; padding-left:24px;">
+          <li><strong>DoubleClick DART Cookies:</strong> Google, as a third-party vendor, uses cookies to serve ads on our site. Google's use of advertising cookies enables it and its partners to serve ads to users based on their visits to SmartAssPDF and/or other sites on the Internet.</li>
+          <li><strong>Personalized Advertising Opt-Out:</strong> You may opt out of personalized advertising by visiting the <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer" style="color:var(--primary); text-decoration:underline;">Google Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" style="color:var(--primary); text-decoration:underline;">www.aboutads.info</a> or the <a href="https://optout.networkadvertising.org/" target="_blank" rel="noopener noreferrer" style="color:var(--primary); text-decoration:underline;">Network Advertising Initiative Opt-Out Page</a>.</li>
+          <li><strong>Third-Party Ad Networks:</strong> Third-party ad servers or ad networks may use technologies like cookies, JavaScript, or Web Beacons in their respective advertisements and links that appear on SmartAssPDF, which are sent directly to your browser. They automatically receive your IP address when this occurs. SmartAssPDF has no access to or control over these cookies used by third-party advertisers.</li>
+        </ul>
       </div>
 
       <div class="card card-folded" style="margin-bottom: 24px;">
-        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">4. Passwords in Protect & Unlock</h2>
-        <p style="color:var(--text-secondary); line-height:1.75;">Passwords provided to the Protect PDF or Unlock PDF utilities are passed exclusively to transient PDFBox memory during encryption/decryption. Passwords are never logged or stored.</p>
+        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">4. Log Files & Anonymous Telemetry</h2>
+        <p style="color:var(--text-secondary); line-height:1.75;">Like most web servers, SmartAssPDF logs standard, non-personally identifiable server traffic records for system health, abuse prevention, and rate limiting. These log entries include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date/time stamps, referring/exit pages, and error logs. Log data is not linked to any personally identifiable information and is routinely rotated and purged.</p>
       </div>
 
       <div class="card card-folded" style="margin-bottom: 24px;">
-        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">5. User Responsibility</h2>
-        <p style="color:var(--text-secondary); line-height:1.75;">You should only upload documents you have authorization to process. Always keep original copies of your important files.</p>
+        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">5. Passwords & Cryptographic Keys</h2>
+        <p style="color:var(--text-secondary); line-height:1.75;">When you utilize our <em>Protect PDF</em> or <em>Unlock PDF</em> utilities, passwords and cryptographic keys are passed exclusively in-memory to the PDFBox security handler. Passwords are never written to disk, never logged to diagnostic consoles, and are immediately cleared from JVM heap memory once the file stream is flushed.</p>
+      </div>
+
+      <div class="card card-folded" style="margin-bottom: 24px;">
+        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">6. GDPR Rights (European Economic Area & UK Users)</h2>
+        <p style="color:var(--text-secondary); line-height:1.75; margin-bottom:12px;">If you are a resident of the European Economic Area (EEA) or the United Kingdom, you are entitled to rights under the General Data Protection Regulation (GDPR), including:</p>
+        <ul style="color:var(--text-secondary); line-height:1.75; padding-left:24px;">
+          <li>The right to access, rectify, or erase any personal data held about you.</li>
+          <li>The right to restrict or object to the processing of your personal data.</li>
+          <li>The right to data portability.</li>
+          <li>The right to withdraw consent at any time for cookie-based personalized tracking.</li>
+        </ul>
+        <p style="color:var(--text-secondary); line-height:1.75; margin-top:10px;">Because SmartAssPDF does not store accounts, emails, or persistent files, we do not retain identifiable personal records on our servers.</p>
+      </div>
+
+      <div class="card card-folded" style="margin-bottom: 24px;">
+        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">7. California Privacy Rights (CCPA / CPRA)</h2>
+        <p style="color:var(--text-secondary); line-height:1.75;">Under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA), California residents have the right to know what personal data is collected and request its deletion. <strong>SmartAssPDF does not sell or share personal information</strong> or document data to data brokers or commercial third parties.</p>
+      </div>
+
+      <div class="card card-folded" style="margin-bottom: 24px;">
+        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">8. Children's Privacy (COPPA Compliance)</h2>
+        <p style="color:var(--text-secondary); line-height:1.75;">SmartAssPDF does not knowingly collect any personal information from children under the age of 13. If a parent or guardian believes that a child has submitted personal data to our platform, please contact us immediately and we will promptly purge the data from our temporary server logs.</p>
+      </div>
+
+      <div class="card card-folded" style="margin-bottom: 24px;">
+        <h2 style="font-size:1.3rem; font-weight:750; margin-bottom:10px;">9. Contact Information & Privacy Inquiries</h2>
+        <p style="color:var(--text-secondary); line-height:1.75;">For questions, legal requests, or data privacy inquiries regarding this Privacy Policy, please contact our data compliance officer at: <a href="mailto:privacy@smartasspdf.com" style="color:var(--primary); font-weight:600;">privacy@smartasspdf.com</a> or visit our <a href="contact.html" style="color:var(--primary); text-decoration:underline;">Contact Page</a>.</p>
       </div>
 
       <!-- AdSense Placeholder -->
