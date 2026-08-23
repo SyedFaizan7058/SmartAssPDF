@@ -297,17 +297,23 @@
     searchModal.innerHTML = `
       <div class="search-modal">
         <div class="search-input-wrap">
-          <i class="bi bi-search" aria-hidden="true"></i>
-          <input type="search" class="search-input" id="searchModalInput" placeholder="Search by tool name or format (e.g. Word, OCR, Split)..." autocomplete="off" spellcheck="false">
-          <button type="button" class="file-action-btn" id="searchModalClose" aria-label="Close search">
+          <i class="bi bi-search search-input-icon" aria-hidden="true"></i>
+          <input type="search" class="search-input" id="searchModalInput" placeholder="Search 24 tools (e.g. Word, OCR, Split, Merge)..." autocomplete="off" spellcheck="false">
+          <button type="button" class="file-action-btn search-close-btn" id="searchModalClose" aria-label="Close search">
             <i class="bi bi-x-lg"></i>
           </button>
         </div>
         <div class="search-results" id="searchResults"></div>
         <div class="search-modal-footer">
-          <span><kbd class="search-kbd">↑</kbd> <kbd class="search-kbd">↓</kbd> to navigate</span>
-          <span><kbd class="search-kbd">↵</kbd> to select</span>
-          <span><kbd class="search-kbd">ESC</kbd> to close</span>
+          <div class="search-footer-desktop">
+            <span><kbd class="search-kbd">↑</kbd> <kbd class="search-kbd">↓</kbd> navigate</span>
+            <span><kbd class="search-kbd">↵</kbd> select</span>
+            <span><kbd class="search-kbd">ESC</kbd> close</span>
+          </div>
+          <div class="search-footer-mobile">
+            <span><i class="bi bi-lightning-charge"></i> Instant Access</span>
+            <span>Tap tool to open</span>
+          </div>
         </div>
       </div>
     `;
@@ -509,18 +515,26 @@
       }
 
       const prefix = getPrefix();
-      resultsContainer.innerHTML = filteredTools.map((t, idx) => `
-        <a class="search-result-item ${idx === 0 ? 'is-selected' : ''}" href="${prefix}${t.id}.html" data-index="${idx}">
-          <div class="search-result-left">
-            ${t.iconSvg}
-            <div class="search-result-info">
-              <strong>${t.name}</strong>
-              <small>${t.description}</small>
+      resultsContainer.innerHTML = filteredTools.map((t, idx) => {
+        const formatBadge = t.badge ? t.badge.replace(/ → /g, '→') : (t.inputFormat + '→' + (t.outputFormat ? t.outputFormat.split(' ')[0] : 'PDF'));
+        return `
+          <a class="search-result-item ${idx === 0 ? 'is-selected' : ''}" href="${prefix}${t.id}.html" data-index="${idx}">
+            <div class="search-result-left">
+              <div class="search-result-icon-box">
+                ${t.iconSvg}
+              </div>
+              <div class="search-result-info">
+                <strong>${escapeHtml(t.name)}</strong>
+                <small title="${escapeHtml(t.description)}">${escapeHtml(t.description)}</small>
+              </div>
             </div>
-          </div>
-          <span class="tool-card-badge">${t.badge}</span>
-        </a>
-      `).join('');
+            <div class="search-result-action">
+              <span class="search-result-badge">${escapeHtml(formatBadge)}</span>
+              <i class="bi bi-chevron-right search-result-chevron" aria-hidden="true"></i>
+            </div>
+          </a>
+        `;
+      }).join('');
 
       resultsContainer.querySelectorAll('.search-result-item').forEach(item => {
         item.addEventListener('mouseenter', () => {
