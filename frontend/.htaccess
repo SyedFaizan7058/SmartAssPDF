@@ -1,0 +1,105 @@
+﻿# ==============================================================================
+# SmartAssPDF — Apache / LiteSpeed Server Configuration (.htaccess)
+# 301 Permanent Redirects (Old to New URLs), HTTPS, Security & Caching
+# ==============================================================================
+
+# Enable Rewrite Engine
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # ----------------------------------------------------------------------------
+  # 1. Force HTTPS & Canonical Non-WWW Domain
+  # ----------------------------------------------------------------------------
+  # Redirect HTTP to HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://smartasspdf.com/$1 [R=301,L]
+
+  # Redirect www.smartasspdf.com to smartasspdf.com
+  RewriteCond %{HTTP_HOST} ^www\.smartasspdf\.com$ [NC]
+  RewriteRule ^(.*)$ https://smartasspdf.com/$1 [R=301,L]
+
+  # ----------------------------------------------------------------------------
+  # 2. 301 Redirects: Old Tool URLs (Root) -> New Tool URLs (/tools/)
+  # ----------------------------------------------------------------------------
+  RewriteRule ^pdf-to-word\.html$ /tools/pdf-to-word.html [R=301,L]
+  RewriteRule ^word-to-pdf\.html$ /tools/word-to-pdf.html [R=301,L]
+  RewriteRule ^pdf-to-excel\.html$ /tools/pdf-to-excel.html [R=301,L]
+  RewriteRule ^excel-to-pdf\.html$ /tools/excel-to-pdf.html [R=301,L]
+  RewriteRule ^pdf-to-ppt\.html$ /tools/pdf-to-ppt.html [R=301,L]
+  RewriteRule ^html-to-pdf\.html$ /tools/html-to-pdf.html [R=301,L]
+  RewriteRule ^pdf-to-jpg\.html$ /tools/pdf-to-jpg.html [R=301,L]
+  RewriteRule ^jpg-to-pdf\.html$ /tools/image-to-pdf.html [R=301,L]
+  RewriteRule ^image-to-pdf\.html$ /tools/image-to-pdf.html [R=301,L]
+  RewriteRule ^image-to-webp\.html$ /tools/image-to-webp.html [R=301,L]
+  RewriteRule ^compress-pdf\.html$ /tools/compress-pdf.html [R=301,L]
+  RewriteRule ^merge-pdf\.html$ /tools/merge-pdf.html [R=301,L]
+  RewriteRule ^split-pdf\.html$ /tools/split-pdf.html [R=301,L]
+  RewriteRule ^rotate-pdf\.html$ /tools/rotate-pdf.html [R=301,L]
+  RewriteRule ^add-page-numbers\.html$ /tools/add-page-numbers.html [R=301,L]
+  RewriteRule ^protect-pdf\.html$ /tools/protect-pdf.html [R=301,L]
+  RewriteRule ^unlock-pdf\.html$ /tools/unlock-pdf.html [R=301,L]
+  RewriteRule ^add-watermark\.html$ /tools/add-watermark.html [R=301,L]
+  RewriteRule ^extract-pages\.html$ /tools/extract-pages.html [R=301,L]
+  RewriteRule ^remove-pages\.html$ /tools/remove-pages.html [R=301,L]
+  RewriteRule ^ocr-pdf\.html$ /tools/ocr-pdf.html [R=301,L]
+  RewriteRule ^repair-pdf\.html$ /tools/repair-pdf.html [R=301,L]
+  RewriteRule ^compare-pdf\.html$ /tools/compare-pdf.html [R=301,L]
+  RewriteRule ^sanitize-pdf\.html$ /tools/sanitize-pdf.html [R=301,L]
+  RewriteRule ^sign-pdf\.html$ /tools/sign-pdf.html [R=301,L]
+
+  # ----------------------------------------------------------------------------
+  # 3. 301 Redirects: Old Legacy Pages -> Clean New Architecture
+  # ----------------------------------------------------------------------------
+  RewriteRule ^FAQ\.html$ /faq.html [R=301,NC,L]
+  RewriteRule ^blog\.html$ /blog/index.html [R=301,L]
+  RewriteRule ^tools\.html$ /#tools [R=301,NE,L]
+  RewriteRule ^continue-tools\.html$ /#tools [R=301,NE,L]
+  RewriteRule ^features\.html$ /#features [R=301,NE,L]
+  RewriteRule ^security\.html$ /privacy.html [R=301,L]
+  RewriteRule ^dpa\.html$ /privacy.html [R=301,L]
+
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 4. Custom Error Documents
+# ------------------------------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# ------------------------------------------------------------------------------
+# 5. Security Headers
+# ------------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 6. GZIP Compression (Speed & Performance)
+# ------------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 7. Browser Caching (Fast Loading for Returning Users)
+# ------------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+
+  # HTML documents (keep fresh)
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # Static assets (CSS, JS, Fonts, Images)
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
