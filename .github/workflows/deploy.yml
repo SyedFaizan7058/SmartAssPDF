@@ -21,5 +21,5 @@ jobs:
           set ftp:ssl-allow no;
           set ftp:passive-mode true;
           open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' '${{ secrets.FTP_SERVER }}';
-          mirror --reverse --verbose --overwrite ./frontend/ ./;
+          mirror --reverse --verbose --overwrite ./frontend/ ./public_html/;
           "
