@@ -208,54 +208,72 @@
       <div class="section-heading" data-aos="fade-down">
         <span class="eyebrow"><i class="bi bi-shield-check"></i> TRANSPARENCY & COMPLIANCE</span>
         <h1>Cookie & Local Storage Policy</h1>
-        <p>Comprehensive disclosure regarding cookies, client-side storage, and advertising partners. Last updated: August 22, 2026.</p>
+        <p>Comprehensive disclosure regarding cookies, client-side storage, Google Consent Mode v2, and advertising partners. Last updated: August 24, 2026.</p>
       </div>
 
       <article class="content-article card-folded" style="margin-bottom:32px;">
         <h2>1. Overview</h2>
-        <p>SmartAssPDF is committed to delivering fast, private document utilities with transparent data practices. This policy explains how we utilize browser cookies, client-side storage mechanisms (localStorage), and third-party advertising cookies.</p>
+        <p>SmartAssPDF is committed to delivering fast, private document utilities with transparent data practices. This policy explains how we utilize browser cookies, client-side storage mechanisms (<code>localStorage</code>), third-party advertising cookies, and how you can control your privacy preferences at any time.</p>
 
         <h2>2. What Are Cookies and Local Storage?</h2>
-        <p>Cookies are small text data files stored on your computer or mobile device when you browse websites. Local Storage is a modern HTML5 web API that allows client-side applications to store key-value data persistently in your browser sandbox without sending it over the network with every HTTP request.</p>
+        <p><strong>Cookies</strong> are small text files placed on your computer or mobile device when you visit websites. They help websites recognize your browser, deliver personalized features, and serve relevant advertisements.</p>
+        <p><strong>Local Storage</strong> is a modern web standard that allows client-side applications to store key-value data persistently in your browser sandbox without sending it over the network with every HTTP request.</p>
 
-        <h2>3. Detailed Breakdown of Technologies We Use</h2>
+        <h2>3. Complete Inventory of Technologies We Use</h2>
         
         <h3 style="font-size:1.15rem; margin-top:20px;">A. Strictly Necessary & Functional Local Storage</h3>
-        <p>We do not use tracking or session cookies for document processing. We store a single functional key in your browser's Local Storage:</p>
+        <p>We do not use session or authentication cookies for document processing. We store two functional keys in your browser's Local Storage:</p>
         <ul class="facts-list" style="margin:12px 0 20px;">
-          <li><i class="bi bi-check-circle-fill"></i> <span><code>smartasspdf_theme</code>: Saves your preferred UI mode (Dark or Light theme). This eliminates Flash of Unstyled Content (FOUC) and never leaves your local device.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i> <span><code>smartasspdf_theme</code>: Saves your preferred UI mode (Dark or Light theme) to eliminate Flash of Unstyled Content (FOUC). Never transmitted to servers.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i> <span><code>smartasspdf_cookie_consent</code>: Stores your cookie preference (<code>accepted</code> or <code>declined</code>) so you are not repeatedly prompted on every visit.</span></li>
         </ul>
 
-        <h3 style="font-size:1.15rem; margin-top:20px;">B. Third-Party Advertising Cookies (Google AdSense)</h3>
-        <p>To keep all 24 PDF and document utilities 100% free without paywalls or subscriptions, SmartAssPDF serves advertisements via Google AdSense and accredited third-party advertising networks:</p>
+        <h3 style="font-size:1.15rem; margin-top:20px;">B. Performance & Anonymous Analytics</h3>
+        <p>We use lightweight Google Analytics 4 (GA4) telemetry to analyze site stability, aggregated traffic trends, and tool reliability:</p>
+        <ul class="facts-list" style="margin:12px 0 20px;">
+          <li><i class="bi bi-check-circle-fill"></i> <span><strong>Google Consent Mode v2:</strong> Analytics storage (<code>_ga</code>, <code>_ga_*</code>) is synchronized with your cookie preferences and restricted if you decline non-essential cookies.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i> <span><strong>Document Data Protection:</strong> We never log or transmit file names, document contents, passwords, or personal credentials into analytics.</span></li>
+        </ul>
+
+        <h3 style="font-size:1.15rem; margin-top:20px;">C. Third-Party Advertising Cookies (Google AdSense)</h3>
+        <p>To keep all 24 PDF and document utilities 100% free without subscription paywalls, SmartAssPDF displays advertisements via Google AdSense and accredited advertising networks:</p>
         <ul class="facts-list" style="margin:12px 0 20px;">
           <li><i class="bi bi-check-circle-fill"></i> <span><strong>DoubleClick DART Cookies:</strong> Google uses cookies to serve ads based on your visit to SmartAssPDF and other websites on the Internet.</span></li>
-          <li><i class="bi bi-check-circle-fill"></i> <span><strong>Frequency Capping & Fraud Prevention:</strong> Cookies help prevent the same ad from appearing continuously and protect against click fraud.</span></li>
-          <li><i class="bi bi-check-circle-fill"></i> <span><strong>Personalized Ads:</strong> Advertisers may deliver targeted ads based on inferred interests. You may opt out at any time.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i> <span><strong>Frequency Capping & Fraud Prevention:</strong> Cookies help prevent the same ad from appearing repeatedly and protect against invalid traffic/click fraud.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i> <span><strong>Personalized Ads:</strong> Certified ad networks may deliver ads tailored to your general interests. You may customize or opt out at any time.</span></li>
         </ul>
 
-        <h2>4. How to Opt Out of Personalized Ads</h2>
-        <p>You have full control over personalized advertising preferences. You can opt out using the following official portals:</p>
+        <h2>4. Manage Your Cookie Preferences</h2>
+        <p>You can change your mind and adjust or revoke your cookie consent on SmartAssPDF at any time by clicking the button below:</p>
+        <div style="margin: 16px 0 24px;">
+          <button type="button" class="btn btn-primary btn-sm" data-action="reset-cookies">
+            <i class="bi bi-sliders"></i> Reset Cookie Preferences
+          </button>
+        </div>
+
+        <h2>5. Global Opt-Out Portals</h2>
+        <p>In addition to our on-site cookie controls, you can manage behavioral advertising across major networks via official industry opt-out portals:</p>
         <ul class="facts-list" style="margin:12px 0 20px;">
-          <li><i class="bi bi-arrow-right-circle-fill"></i> <span><a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:700;">Google Ad Settings</a>: Customize or disable personalized Google ads.</span></li>
-          <li><i class="bi bi-arrow-right-circle-fill"></i> <span><a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:700;">Digital Advertising Alliance (DAA)</a>: Multi-network consumer opt-out.</span></li>
-          <li><i class="bi bi-arrow-right-circle-fill"></i> <span><a href="https://optout.networkadvertising.org/" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:700;">Network Advertising Initiative (NAI)</a>: Opt out of behavioral advertising.</span></li>
+          <li><i class="bi bi-arrow-right-circle-fill"></i> <span><a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:700;">Google Ad Settings</a>: Manage or disable personalized Google Ads.</span></li>
+          <li><i class="bi bi-arrow-right-circle-fill"></i> <span><a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:700;">Digital Advertising Alliance (DAA)</a>: US industry multi-network consumer choice.</span></li>
+          <li><i class="bi bi-arrow-right-circle-fill"></i> <span><a href="https://optout.networkadvertising.org/" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:700;">Network Advertising Initiative (NAI)</a>: Opt out of participating advertising networks.</span></li>
+          <li><i class="bi bi-arrow-right-circle-fill"></i> <span><a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:700;">Your Online Choices (EDAA)</a>: European digital advertising opt-out guide.</span></li>
         </ul>
 
-        <h2>5. Managing Cookies in Your Web Browser</h2>
-        <p>You can configure your web browser to block, alert, or delete all cookies at any time:</p>
+        <h2>6. Managing Cookies in Your Web Browser</h2>
+        <p>You can configure your browser to block, filter, or erase all cookies:</p>
         <ul style="color:var(--text-secondary); line-height:1.8; padding-left:24px; margin-bottom:20px;">
           <li><strong>Google Chrome:</strong> Settings → Privacy and security → Third-party cookies → Block third-party cookies.</li>
           <li><strong>Mozilla Firefox:</strong> Settings → Privacy & Security → Enhanced Tracking Protection → Strict mode.</li>
-          <li><strong>Apple Safari:</strong> Settings → Safari → Privacy & Security → Prevent Cross-Site Tracking & Block All Cookies.</li>
+          <li><strong>Apple Safari:</strong> Settings → Safari → Privacy & Security → Prevent Cross-Site Tracking.</li>
           <li><strong>Microsoft Edge:</strong> Settings → Cookies and site permissions → Manage and delete cookies and site data.</li>
         </ul>
 
-        <h2>6. Document Privacy Guarantee</h2>
-        <p><strong>No uploaded file content, converted document, or cryptographic password is ever stored in browser cookies or transmitted to advertising partners.</strong> Files reside exclusively in temporary server RAM/scratch storage and are destroyed permanently within 30 minutes.</p>
+        <h2>7. Document Privacy Guarantee</h2>
+        <p><strong>No uploaded file content, converted document, or cryptographic password is ever stored in browser cookies, cached in Local Storage, or shared with advertising partners.</strong> All file processing is performed in temporary, isolated server RAM and deleted permanently within 30 minutes.</p>
 
-        <h2>7. Contact Us</h2>
-        <p>For questions or feedback regarding this Cookie Policy, please email <a href="mailto:privacy@smartasspdf.com" style="color:var(--primary); font-weight:700;">privacy@smartasspdf.com</a> or visit our <a href="contact.html" style="color:var(--primary); font-weight:700;">Contact Page</a>.</p>
+        <h2>8. Contact Information</h2>
+        <p>For questions or privacy inquiries, please review our <a href="privacy.html" style="color:var(--primary); font-weight:700;">Privacy Policy</a>, email <a href="mailto:support@smartasspdf.com" style="color:var(--primary); font-weight:700;">support@smartasspdf.com</a>, or visit our <a href="contact.html" style="color:var(--primary); font-weight:700;">Contact Page</a>.</p>
       </article>
 
       <!-- AdSense Placeholder -->

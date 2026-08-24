@@ -737,6 +737,116 @@
     }));
   }
 
+  /* ==========================================================================
+     9. Cookie Consent Banner (GDPR, CCPA & AdSense Compliance)
+     ========================================================================== */
+  function initCookieConsent() {
+    const CONSENT_KEY = 'smartasspdf_cookie_consent';
+    const savedConsent = localStorage.getItem(CONSENT_KEY);
+
+    // Apply Google Consent Mode v2 state if gtag is available
+    if (typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        'ad_storage': savedConsent === 'accepted' ? 'granted' : 'denied',
+        'ad_user_data': savedConsent === 'accepted' ? 'granted' : 'denied',
+        'ad_personalization': savedConsent === 'accepted' ? 'granted' : 'denied',
+        'analytics_storage': savedConsent === 'accepted' ? 'granted' : 'denied'
+      });
+    }
+
+    if (savedConsent) {
+      return; // Already set preference
+    }
+
+    const base = getBasePath();
+
+    // Create banner element
+    const banner = document.createElement('aside');
+    banner.className = 'cookie-consent-banner';
+    banner.id = 'cookieConsentBanner';
+    banner.setAttribute('role', 'region');
+    banner.setAttribute('aria-label', 'Cookie and privacy preferences');
+
+    banner.innerHTML = `
+      <div class="cookie-consent-content">
+        <div class="cookie-consent-header">
+          <span class="cookie-consent-badge">
+            <i class="bi bi-shield-check" aria-hidden="true"></i> Privacy & Cookies
+          </span>
+        </div>
+        <p class="cookie-consent-text">
+          We use cookies and browser storage to enhance site functionality, measure performance, and deliver personalized ads. We never store or transmit your documents. Read our <a href="${base}cookie-policy.html" class="cookie-link">Cookie Policy</a> and <a href="${base}privacy.html" class="cookie-link">Privacy Policy</a>.
+        </p>
+        <div class="cookie-consent-actions">
+          <button type="button" class="btn btn-secondary btn-sm cookie-decline-btn" id="cookieDeclineBtn">
+            Essential Only
+          </button>
+          <button type="button" class="btn btn-primary btn-sm cookie-accept-btn" id="cookieAcceptBtn">
+            Accept All
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    // Smooth entrance after slight delay
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        banner.classList.add('is-visible');
+      }, 500);
+    });
+
+    const setConsent = (status) => {
+      localStorage.setItem(CONSENT_KEY, status);
+      banner.classList.remove('is-visible');
+      setTimeout(() => {
+        if (banner.parentNode) banner.parentNode.removeChild(banner);
+      }, 400);
+
+      const isGranted = status === 'accepted';
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          'ad_storage': isGranted ? 'granted' : 'denied',
+          'ad_user_data': isGranted ? 'granted' : 'denied',
+          'ad_personalization': isGranted ? 'granted' : 'denied',
+          'analytics_storage': isGranted ? 'granted' : 'denied'
+        });
+      }
+
+      window.dispatchEvent(new CustomEvent('smartasspdf:consent_update', {
+        detail: { status, isGranted, timestamp: Date.now() }
+      }));
+    };
+
+    const acceptBtn = document.getElementById('cookieAcceptBtn');
+    const declineBtn = document.getElementById('cookieDeclineBtn');
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', () => setConsent('accepted'));
+    }
+    if (declineBtn) {
+      declineBtn.addEventListener('click', () => setConsent('declined'));
+    }
+  }
+
+  // Global helper to reset cookie preferences (for Cookie Policy page button)
+  window.resetCookieConsent = function () {
+    localStorage.removeItem('smartasspdf_cookie_consent');
+    const oldBanner = document.getElementById('cookieConsentBanner');
+    if (oldBanner) oldBanner.remove();
+    initCookieConsent();
+  };
+
+  // Bind any data-action="reset-cookies" buttons
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-action="reset-cookies"]');
+    if (trigger) {
+      e.preventDefault();
+      window.resetCookieConsent();
+    }
+  });
+
   window.SmartAssAnalytics = { track: trackEvent };
   window.initScrollAnimations = initScrollAnimations;
 
@@ -748,6 +858,7 @@
     initSearchModal();
     initScrollAnimations();
     initToolGrid();
+    initCookieConsent();
     markActiveNav();
   });
 })();
