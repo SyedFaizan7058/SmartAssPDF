@@ -840,9 +840,22 @@ button, input, select, textarea {
   border-color: var(--primary);
 }
 
+.tool-icon-svg,
+svg.tool-icon-svg,
+.search-result-icon-box svg,
+.search-result-left svg,
+.search-result-item svg {
+  width: 20px !important;
+  height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+  flex-shrink: 0 !important;
+  display: block;
+}
+
 .search-result-icon-box .tool-icon-svg {
-  width: 20px;
-  height: 20px;
+  width: 20px !important;
+  height: 20px !important;
 }
 
 .search-result-info {
