@@ -1,4 +1,4 @@
-﻿# ==============================================================================
+# ==============================================================================
 # SmartAssPDF — Production Apache / LiteSpeed Configuration (.htaccess)
 # Automatic Frontend Routing, Security Shield, 301 Redirects, HTTPS & Caching
 # ==============================================================================
@@ -56,7 +56,8 @@
   RewriteRule ^sign-pdf\.html$ /tools/sign-pdf.html [R=301,L]
 
   # Legacy Pages
-  RewriteRule ^FAQ\.html$ /faq.html [R=301,NC,L]
+  RewriteCond %{REQUEST_URI} ^/FAQ\.html$
+  RewriteRule ^FAQ\.html$ /faq.html [R=301,L]
   RewriteRule ^blog\.html$ /blog/index.html [R=301,L]
   RewriteRule ^tools\.html$ /#tools [R=301,NE,L]
   RewriteRule ^continue-tools\.html$ /#tools [R=301,NE,L]
