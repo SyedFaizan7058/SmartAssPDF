@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'frontend/**'
+  workflow_dispatch:
 
 jobs:
   web-deploy:
@@ -22,5 +21,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./frontend/
-          server-dir: ./
+          server-dir: ${{ secrets.FTP_SERVER_DIR || './' }}
           dangerous-clean-slate: false
+          log-level: verbose
