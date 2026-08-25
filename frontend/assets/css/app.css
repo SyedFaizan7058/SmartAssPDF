@@ -3798,6 +3798,132 @@ div:has(> iframe[src*="netlify"]) {
    Interactive Drag-and-Drop Sign PDF Studio
    ========================================================================== */
 
+.workflow-stepper,
+.sign-workflow-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.workflow-step-indicator,
+.sign-step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.55;
+  transition: all var(--transition-normal);
+}
+
+.workflow-step-indicator.is-active,
+.sign-step-indicator.is-active {
+  opacity: 1;
+}
+
+.workflow-step-indicator .step-num,
+.sign-step-indicator .step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: all var(--transition-fast);
+}
+
+.workflow-step-indicator.is-active .step-num,
+.sign-step-indicator.is-active .step-num {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+}
+
+.workflow-step-indicator.is-complete .step-num,
+.sign-step-indicator.is-complete .step-num {
+  background: var(--success);
+  border-color: var(--success);
+  color: #ffffff;
+}
+
+.workflow-step-indicator .step-info,
+.sign-step-indicator .step-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.workflow-step-indicator .step-info strong,
+.sign-step-indicator .step-info strong {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.workflow-step-indicator .step-info small,
+.sign-step-indicator .step-info small {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.workflow-step-arrow,
+.sign-step-arrow {
+  color: var(--text-muted);
+  opacity: 0.4;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .workflow-stepper,
+  .sign-workflow-stepper {
+    padding: 10px 12px;
+    gap: 4px;
+  }
+  .workflow-step-indicator .step-info small,
+  .sign-step-indicator .step-info small {
+    display: none;
+  }
+  .workflow-step-indicator .step-num,
+  .sign-step-indicator .step-num {
+    width: 28px;
+    height: 28px;
+    font-size: 0.82rem;
+  }
+  .workflow-step-indicator .step-info strong,
+  .sign-step-indicator .step-info strong {
+    font-size: 0.75rem;
+  }
+}
+
+.badge-step {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #818cf8;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
 .sign-studio-card {
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-medium);
@@ -3807,6 +3933,28 @@ div:has(> iframe[src*="netlify"]) {
   flex-direction: column;
   gap: 16px;
   box-shadow: var(--shadow-md);
+}
+
+.sign-step-tag {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sign-step-heading {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sign-step-subheading {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
 }
 
 .sign-tabs-nav {
@@ -3954,8 +4102,44 @@ div:has(> iframe[src*="netlify"]) {
   background: rgba(99, 102, 241, 0.1);
 }
 
+.signature-status-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  color: #10b981;
+  font-weight: 700;
+}
+
+.preview-step-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.preview-step-title {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.preview-step-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  margin: 4px 0 0 0;
+  line-height: 1.4;
+}
+
 .pdf-sign-stage {
-  margin-top: 20px;
+  margin-top: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3974,6 +4158,7 @@ div:has(> iframe[src*="netlify"]) {
   padding: 10px 16px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-medium);
+  box-sizing: border-box;
 }
 
 .pdf-page-counter {
@@ -3986,17 +4171,72 @@ div:has(> iframe[src*="netlify"]) {
   position: relative;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   border-radius: 6px;
-  overflow: hidden;
+  overflow: visible;
   background: #ffffff;
   user-select: none;
   -webkit-user-select: none;
   max-width: 100%;
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.pulse-highlight {
+  animation: pulseGlow 1.2s ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 25px 8px rgba(99, 102, 241, 0.85);
+  }
+  100% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.placement-guide-banner {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid rgba(99, 102, 241, 0.5);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 30;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.placement-guide-banner::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #0f172a;
+}
+
+.placement-guide-banner i {
+  color: #818cf8;
+  font-size: 0.9rem;
 }
 
 .pdf-page-canvas {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 6px;
 }
 
 .draggable-signature-overlay {
@@ -4012,18 +4252,45 @@ div:has(> iframe[src*="netlify"]) {
   user-select: none;
   -webkit-user-select: none;
   z-index: 20;
-  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35);
+  box-sizing: border-box;
+  padding: 4px;
 }
 
 .draggable-signature-overlay:active {
   cursor: grabbing;
   border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.18);
+}
+
+.sig-group-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .sig-overlay-img {
   width: 100%;
-  height: 100%;
+  flex: 1;
   object-fit: contain;
+  pointer-events: none;
+  min-height: 0;
+}
+
+.sig-printed-name-text {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   pointer-events: none;
 }
 
@@ -4031,19 +4298,20 @@ div:has(> iframe[src*="netlify"]) {
   position: absolute;
   top: -12px;
   right: -12px;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: #ef4444;
   color: #ffffff;
   border: 2px solid #ffffff;
   display: grid;
   place-items: center;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: transform var(--transition-fast);
+  touch-action: manipulation;
 }
 
 .sig-handle-delete:hover {
@@ -4052,15 +4320,27 @@ div:has(> iframe[src*="netlify"]) {
 
 .sig-handle-resize {
   position: absolute;
-  bottom: -6px;
-  right: -6px;
-  width: 14px;
-  height: 14px;
+  bottom: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: #4f46e5;
   border: 2px solid #ffffff;
   cursor: nwse-resize;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+.sig-handle-resize::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
 }
 
 

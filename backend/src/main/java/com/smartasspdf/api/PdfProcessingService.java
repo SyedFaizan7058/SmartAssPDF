@@ -742,7 +742,7 @@ public class PdfProcessingService {
         ProcessBuilder pb = new ProcessBuilder(cmd);
         pb.redirectErrorStream(true);
         Process p = pb.start();
-        boolean finished = p.waitFor(60, TimeUnit.SECONDS);
+        boolean finished = p.waitFor(120, TimeUnit.SECONDS);
         if (finished && p.exitValue() == 0 && Files.exists(outPath) && Files.size(outPath) > 0) {
           return true;
         }

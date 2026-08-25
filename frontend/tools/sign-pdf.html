@@ -40,7 +40,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <link href="../assets/css/app.css?v=11" rel="stylesheet">
+  <link href="../assets/css/app.css?v=25" rel="stylesheet">
 
   <script type="application/ld+json">
   {
@@ -273,6 +273,33 @@
         </div>
       </div>
 
+      <!-- 3-Step Guided Workflow Bar -->
+      <div class="sign-workflow-stepper" id="signWorkflowStepper" data-aos="fade-up">
+        <div class="sign-step-indicator is-active" id="stepIndicator1">
+          <span class="step-num"><i class="bi bi-file-earmark-pdf"></i></span>
+          <div class="step-info">
+            <strong>1. PDF & Signature</strong>
+            <small>Upload & create</small>
+          </div>
+        </div>
+        <div class="sign-step-arrow"><i class="bi bi-chevron-right"></i></div>
+        <div class="sign-step-indicator" id="stepIndicator2">
+          <span class="step-num"><i class="bi bi-arrows-move"></i></span>
+          <div class="step-info">
+            <strong>2. Place on PDF</strong>
+            <small>Position & resize</small>
+          </div>
+        </div>
+        <div class="sign-step-arrow"><i class="bi bi-chevron-right"></i></div>
+        <div class="sign-step-indicator" id="stepIndicator3">
+          <span class="step-num"><i class="bi bi-check-circle"></i></span>
+          <div class="step-info">
+            <strong>3. Download</strong>
+            <small>Signed document</small>
+          </div>
+        </div>
+      </div>
+
       <!-- 2-Column Workspace Layout -->
       <div class="tool-workspace-grid" data-aos="fade-up">
         <!-- Left: Upload & Processing Panel -->
@@ -283,7 +310,7 @@
               <i class="bi bi-cloud-arrow-up"></i>
             </div>
             <h2>Drop your PDF here to sign</h2>
-            <p class="dropzone-hint">Upload your PDF (and optionally a PNG signature image). SmartAssPDF applies a clean, verified signature block.</p>
+            <p class="dropzone-hint">Upload your PDF document to create and place your verified digital signature.</p>
             <input id="fileInput" type="file" multiple class="d-none" aria-label="Select files" style="display:none;">
             <button id="browseBtn" class="btn btn-primary" type="button">
               <i class="bi bi-folder2-open"></i>
@@ -304,8 +331,7 @@
 
           <!-- Process Action Button -->
           <button id="processBtn" class="btn btn-primary btn-lg btn-block" type="button" disabled>
-            <span>Process Sign PDF</span>
-            <i class="bi bi-arrow-right"></i>
+            <span>Select file to continue</span>
           </button>
 
           <!-- Status & Result Container -->
@@ -489,9 +515,9 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="../assets/js/tools-config.js?v=17"></script>
-  <script src="../assets/js/tool.js?v=17"></script>
-  <script src="../assets/js/app.js?v=17"></script>
+  <script src="../assets/js/tools-config.js?v=25"></script>
+  <script src="../assets/js/tool.js?v=25"></script>
+  <script src="../assets/js/app.js?v=25"></script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     if (typeof AOS !== 'undefined') {

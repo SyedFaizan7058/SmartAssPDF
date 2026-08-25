@@ -165,6 +165,7 @@
 
     files = candidate;
     clearStatus();
+    updateWorkflowProgress(files.length > 0 ? 2 : 1);
     renderFileList();
     updateProcessButtonState();
     renderLivePreview();
@@ -299,6 +300,16 @@
     if (toolId === "merge-pdf" && files.length < 2) {
       processBtn.disabled = true;
       processBtn.innerHTML = `<span>Select at least 2 PDF files to merge</span>`;
+      return;
+    }
+
+    if (toolId === "sign-pdf") {
+      processBtn.disabled = false;
+      if (signStudioState.workflowStep === 1) {
+        processBtn.innerHTML = `<span>Place Signature on PDF</span> <i class="bi bi-arrow-down-right"></i>`;
+      } else {
+        processBtn.innerHTML = `<span><i class="bi bi-pen-fill"></i> Sign PDF Now (Page ${signStudioState.currentPage})</span> <i class="bi bi-arrow-right"></i>`;
+      }
       return;
     }
 
@@ -583,23 +594,21 @@
 
           <!-- Upload Tab -->
           <div class="sign-tab-panel" id="signTabUpload">
-            <div id="signUploadDropzone" class="dropzone" style="min-height: 220px; padding: 28px 16px; margin: 0; box-sizing: border-box; width: 100%;">
-              <div class="drop-icon-box" style="width: 54px; height: 54px; font-size: 1.5rem; margin-bottom: 12px;">
+            <div id="signUploadDropzone" class="dropzone" style="min-height: 200px; padding: 24px 16px; margin: 0; box-sizing: border-box; width: 100%;">
+              <div class="drop-icon-box" style="width: 50px; height: 50px; font-size: 1.4rem; margin-bottom: 10px;">
                 <i class="bi bi-cloud-arrow-up"></i>
               </div>
-              <h2 style="font-size: 1.12rem; font-weight: 750; margin-bottom: 6px; color: var(--text-primary);">Drop your signature image here</h2>
-              <p class="dropzone-hint" style="font-size: 0.85rem; margin-bottom: 16px; max-width: 320px;">
-                Upload your PNG or JPG signature image. Transparent PNG signatures work best.
+              <h2 style="font-size: 1.08rem; font-weight: 750; margin-bottom: 6px; color: var(--text-primary);">Drop your signature image here</h2>
+              <p class="dropzone-hint" style="font-size: 0.82rem; margin-bottom: 14px; max-width: 300px;">
+                PNG, JPG, or WebP. Transparent PNG signature works best.
               </p>
               <button type="button" class="btn btn-primary btn-md" id="signBrowseImageBtn" style="pointer-events: none;">
                 <i class="bi bi-folder2-open"></i>
                 <span>Choose signature image</span>
               </button>
               <input type="file" id="signImageFileInput" accept="image/png,image/jpeg,image/webp" style="display:none;">
-              <div class="dropzone-specs" style="margin-top: 12px;">
+              <div class="dropzone-specs" style="margin-top: 10px;">
                 <span>Accepted: <strong>PNG, JPG, WebP</strong></span>
-                <span>•</span>
-                <span>Transparent recommended</span>
               </div>
             </div>
 
@@ -623,20 +632,16 @@
             </div>
           </div>
 
-          <!-- Name + Signature Combination Option -->
+          <!-- Dynamic Printed Name Addon -->
           <div class="sign-name-addon" style="margin-top: 4px; padding: 12px 14px; background: var(--bg-subtle); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
             <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); cursor: pointer; margin: 0;">
               <input type="checkbox" id="includePrintedNameCheck" style="cursor: pointer; width: 16px; height: 16px; accent-color: var(--primary);">
-              <span>Add Printed Name below Signature</span>
+              <span>Add printed name below signature</span>
             </label>
             <div id="signerNameInputWrapper" style="display: none; margin-top: 10px;">
               <input type="text" id="signerPrintedNameInput" class="form-control" placeholder="e.g. John Doe, Director" value="">
-              <small style="color: var(--text-muted); font-size: 0.75rem; display: block; margin-top: 4px;">Your name will appear neatly centered beneath your signature.</small>
+              <small style="color: var(--text-muted); font-size: 0.75rem; display: block; margin-top: 4px;">Dynamic scale: Automatically adjusts font size as you resize the signature.</small>
             </div>
-          </div>
-
-          <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.4; padding:8px 12px; background:rgba(99,102,241,0.08); border-radius:var(--radius-sm); border:1px solid rgba(99,102,241,0.2);">
-            <i class="bi bi-arrows-move" style="color:var(--primary);"></i> <strong>Drag & Drop Freedom:</strong> Drag your signature directly onto any page of the PDF preview below.
           </div>
         </div>
       `;
@@ -655,61 +660,244 @@
     penColor: '#0f172a',
     activeFont: "'Dancing Script', cursive",
     rawSignatureDataUrl: null,
-    signatureDataUrl: null,
     includeName: false,
     printedName: "",
     pdfDoc: null,
     pdfBytes: null,
     currentPage: 1,
     totalPages: 1,
-    sigX: 80,
-    sigY: 80,
-    sigWidth: 150,
-    sigHeight: 60,
+    sigX: 60,
+    sigY: 60,
+    sigWidth: 160,
+    sigHeight: 65,
     isPlaced: false,
-    scaleFactor: 1
+    scaleFactor: 1,
+    hasInteracted: false,
+    workflowStep: 1
   };
 
-  async function composeSignatureWithName(baseSigDataUrl, printedName, shouldInclude) {
-    if (!baseSigDataUrl) return null;
-    if (!shouldInclude || !printedName || !printedName.trim()) {
-      return baseSigDataUrl;
+  function updateWorkflowProgress(stepNum) {
+    if (toolId === "sign-pdf") {
+      signStudioState.workflowStep = stepNum;
     }
 
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.onload = () => {
-        const c = document.createElement("canvas");
-        const imgW = img.naturalWidth || img.width || 400;
-        const imgH = img.naturalHeight || img.height || 140;
+    const ind1 = document.getElementById("stepIndicator1");
+    const ind2 = document.getElementById("stepIndicator2");
+    const ind3 = document.getElementById("stepIndicator3");
 
-        // Proportional font size (26% of signature height, minimum 26px)
-        const fontSize = Math.max(26, Math.round(imgH * 0.26));
-        const spacing = Math.round(fontSize * 0.45);
-        const pad = Math.round(fontSize * 0.35);
+    if (stepNum === 1) {
+      if (ind1) ind1.className = "workflow-step-indicator sign-step-indicator is-active";
+      if (ind2) ind2.className = "workflow-step-indicator sign-step-indicator";
+      if (ind3) ind3.className = "workflow-step-indicator sign-step-indicator";
+    } else if (stepNum === 2) {
+      if (ind1) ind1.className = "workflow-step-indicator sign-step-indicator is-complete";
+      if (ind2) ind2.className = "workflow-step-indicator sign-step-indicator is-active";
+      if (ind3) ind3.className = "workflow-step-indicator sign-step-indicator";
+    } else if (stepNum === 3) {
+      if (ind1) ind1.className = "workflow-step-indicator sign-step-indicator is-complete";
+      if (ind2) ind2.className = "workflow-step-indicator sign-step-indicator is-complete";
+      if (ind3) ind3.className = "workflow-step-indicator sign-step-indicator is-active";
+    }
 
-        c.width = Math.max(imgW, 320) + (pad * 2);
-        c.height = imgH + fontSize + spacing + (pad * 2);
-        const ctx = c.getContext("2d");
-        ctx.clearRect(0, 0, c.width, c.height);
+    updateProcessButtonState();
+  }
 
-        // Draw signature centered
-        const imgX = (c.width - imgW) / 2;
-        ctx.drawImage(img, imgX, pad, imgW, imgH);
+  function updateSignWorkflowUI(stepNum) {
+    updateWorkflowProgress(stepNum);
+  }
 
-        // Draw printed name clearly beneath signature
-        ctx.font = `700 ${fontSize}px system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif`;
-        ctx.fillStyle = signStudioState.penColor || "#0f172a";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "top";
-        ctx.fillText(printedName.trim(), c.width / 2, pad + imgH + spacing);
+  function renderWorkflowStepper() {
+    let stepperDiv = document.getElementById("workflowStepper") || document.getElementById("signWorkflowStepper");
+    if (stepperDiv) return;
 
-        resolve(c.toDataURL("image/png"));
-      };
-      img.onerror = () => resolve(baseSigDataUrl);
-      img.src = baseSigDataUrl;
-    });
+    const toolGrid = document.querySelector(".tool-workspace-grid");
+    if (!toolGrid) return;
+
+    let step1Title = "1. Select File";
+    let step1Desc = "Upload & verify";
+    let step1Icon = "bi-file-earmark-arrow-up";
+
+    let step2Title = `2. ${toolConfig.name || "Process Document"}`;
+    let step2Desc = "Configure & convert";
+    let step2Icon = "bi-gear-fill";
+
+    let step3Title = "3. Download";
+    let step3Desc = `${toolConfig.outputFormat || "Result"} document`;
+    let step3Icon = "bi-check-circle-fill";
+
+    if (toolId.startsWith("pdf-to-")) {
+      step1Title = "1. Select PDF";
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = `2. Convert to ${toolConfig.outputFormat || "Format"}`;
+      step2Desc = "Extract & convert";
+      step2Icon = "bi-arrow-repeat";
+    } else if (toolId.endsWith("-to-pdf")) {
+      const inFmt = (toolConfig.inputFormat || "File").split("/")[0].trim();
+      step1Title = `1. Select ${inFmt}`;
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-arrow-up";
+      step2Title = "2. Convert to PDF";
+      step2Desc = "Format & convert";
+      step2Icon = "bi-file-earmark-pdf";
+    } else if (toolId === "merge-pdf") {
+      step1Title = "1. Select PDFs";
+      step1Desc = "Upload 2+ files";
+      step1Icon = "bi-files";
+      step2Title = "2. Merge Documents";
+      step2Desc = "Order & combine";
+      step2Icon = "bi-intersect";
+    } else if (toolId === "split-pdf") {
+      step1Title = "1. Select PDF";
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = "2. Split Pages";
+      step2Desc = "Select ranges";
+      step2Icon = "bi-scissors";
+    } else if (toolId === "compress-pdf") {
+      step1Title = "1. Select PDF";
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = "2. Compress PDF";
+      step2Desc = "Optimize size";
+      step2Icon = "bi-file-earmark-zip";
+    } else if (toolId === "ocr-pdf") {
+      step1Title = "1. Select Scanned PDF";
+      step1Desc = "Upload scan";
+      step1Icon = "bi-file-earmark-text";
+      step2Title = "2. Recognize Text";
+      step2Desc = "Build searchable layer";
+      step2Icon = "bi-eye";
+    } else if (toolId === "sign-pdf") {
+      step1Title = "1. PDF & Signature";
+      step1Desc = "Upload & create";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = "2. Place on PDF";
+      step2Desc = "Position & resize";
+      step2Icon = "bi-arrows-move";
+    } else if (toolId === "protect-pdf") {
+      step1Title = "1. Select PDF";
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = "2. Set Password";
+      step2Desc = "AES-256 encrypt";
+      step2Icon = "bi-shield-lock";
+    } else if (toolId === "unlock-pdf") {
+      step1Title = "1. Select PDF";
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = "2. Unlock Document";
+      step2Desc = "Remove password";
+      step2Icon = "bi-unlock";
+    } else if (toolId === "add-watermark") {
+      step1Title = "1. Select PDF";
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = "2. Add Watermark";
+      step2Desc = "Text & angle";
+      step2Icon = "bi-stamp";
+    } else if (toolId === "add-page-numbers") {
+      step1Title = "1. Select PDF";
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = "2. Number Pages";
+      step2Desc = "Position & format";
+      step2Icon = "bi-123";
+    } else if (toolId === "rotate-pdf") {
+      step1Title = "1. Select PDF";
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = "2. Rotate Pages";
+      step2Desc = "Select orientation";
+      step2Icon = "bi-arrow-clockwise";
+    } else if (toolId === "remove-pages") {
+      step1Title = "1. Select PDF";
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = "2. Remove Pages";
+      step2Desc = "Choose page range";
+      step2Icon = "bi-trash";
+    } else if (toolId === "extract-pages") {
+      step1Title = "1. Select PDF";
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = "2. Extract Pages";
+      step2Desc = "Choose page range";
+      step2Icon = "bi-box-arrow-up-right";
+    } else if (toolId === "compare-pdf") {
+      step1Title = "1. Select 2 PDFs";
+      step1Desc = "Doc A & Doc B";
+      step1Icon = "bi-files";
+      step2Title = "2. Compare Content";
+      step2Desc = "Detect differences";
+      step2Icon = "bi-layout-split";
+    } else if (toolId === "repair-pdf") {
+      step1Title = "1. Select PDF";
+      step1Desc = "Corrupted document";
+      step1Icon = "bi-file-earmark-medical";
+      step2Title = "2. Repair PDF";
+      step2Desc = "Rebuild structure";
+      step2Icon = "bi-tools";
+    } else if (toolId === "sanitize-pdf") {
+      step1Title = "1. Select PDF";
+      step1Desc = "Upload document";
+      step1Icon = "bi-file-earmark-pdf";
+      step2Title = "2. Sanitize PDF";
+      step2Desc = "Scrub metadata";
+      step2Icon = "bi-shield-check";
+    } else if (toolId === "image-to-webp") {
+      step1Title = "1. Select Images";
+      step1Desc = "JPG / PNG photos";
+      step1Icon = "bi-file-earmark-image";
+      step2Title = "2. Convert to WebP";
+      step2Desc = "Next-gen compression";
+      step2Icon = "bi-lightning-charge";
+    }
+
+    stepperDiv = document.createElement("div");
+    stepperDiv.className = "workflow-stepper sign-workflow-stepper";
+    stepperDiv.id = "workflowStepper";
+    stepperDiv.setAttribute("data-aos", "fade-up");
+    stepperDiv.innerHTML = `
+      <div class="workflow-step-indicator sign-step-indicator is-active" id="stepIndicator1">
+        <span class="step-num"><i class="bi ${step1Icon}"></i></span>
+        <div class="step-info">
+          <strong>${escapeHtml(step1Title)}</strong>
+          <small>${escapeHtml(step1Desc)}</small>
+        </div>
+      </div>
+      <div class="workflow-step-arrow sign-step-arrow"><i class="bi bi-chevron-right"></i></div>
+      <div class="workflow-step-indicator sign-step-indicator" id="stepIndicator2">
+        <span class="step-num"><i class="bi ${step2Icon}"></i></span>
+        <div class="step-info">
+          <strong>${escapeHtml(step2Title)}</strong>
+          <small>${escapeHtml(step2Desc)}</small>
+        </div>
+      </div>
+      <div class="workflow-step-arrow sign-step-arrow"><i class="bi bi-chevron-right"></i></div>
+      <div class="workflow-step-indicator sign-step-indicator" id="stepIndicator3">
+        <span class="step-num"><i class="bi ${step3Icon}"></i></span>
+        <div class="step-info">
+          <strong>${escapeHtml(step3Title)}</strong>
+          <small>${escapeHtml(step3Desc)}</small>
+        </div>
+      </div>
+    `;
+
+    toolGrid.parentNode.insertBefore(stepperDiv, toolGrid);
+  }
+
+  function scrollToPdfPlacementArea() {
+    const previewEl = document.getElementById("previewPanel") || document.getElementById("pdfPageCanvasWrapper");
+    if (previewEl) {
+      previewEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      const canvasWrap = document.getElementById("pdfPageCanvasWrapper");
+      if (canvasWrap) {
+        canvasWrap.classList.add("pulse-highlight");
+        setTimeout(() => canvasWrap.classList.remove("pulse-highlight"), 1400);
+      }
+    }
+    updateSignWorkflowUI(2);
   }
 
   function initSignStudioLogic() {
@@ -742,7 +930,7 @@
       canvas.height = (rect.height || 140) * dpr;
       ctx.scale(dpr, dpr);
       ctx.strokeStyle = signStudioState.penColor;
-      ctx.lineWidth = 2.5;
+      ctx.lineWidth = 2.8;
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
 
@@ -770,16 +958,11 @@
         ctx.stroke();
       };
 
-      const stopDraw = async () => {
+      const stopDraw = () => {
         if (!drawing) return;
         drawing = false;
         ctx.closePath();
         signStudioState.rawSignatureDataUrl = canvas.toDataURL("image/png");
-        signStudioState.signatureDataUrl = await composeSignatureWithName(
-          signStudioState.rawSignatureDataUrl,
-          signStudioState.printedName,
-          signStudioState.includeName
-        );
         updateDraggableSignatureOverlay();
       };
 
@@ -796,7 +979,6 @@
         clearBtn.addEventListener("click", () => {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           signStudioState.rawSignatureDataUrl = null;
-          signStudioState.signatureDataUrl = null;
           updateDraggableSignatureOverlay();
         });
       }
@@ -818,28 +1000,24 @@
     const cursivePreview = document.getElementById("signCursivePreview");
     const fontChips = toolOptions.querySelectorAll(".sign-font-chip");
 
-    const updateTypeSignature = async () => {
+    const updateTypeSignature = () => {
       const text = (nameInput?.value || "").trim() || "Your Signature";
       if (cursivePreview) {
         cursivePreview.textContent = text;
         cursivePreview.style.fontFamily = signStudioState.activeFont;
+        cursivePreview.style.color = signStudioState.penColor;
       }
       // Render text to offscreen canvas
       const offCanvas = document.createElement("canvas");
-      offCanvas.width = 400;
-      offCanvas.height = 120;
+      offCanvas.width = 440;
+      offCanvas.height = 130;
       const offCtx = offCanvas.getContext("2d");
       offCtx.font = `48px ${signStudioState.activeFont}`;
       offCtx.fillStyle = signStudioState.penColor;
       offCtx.textAlign = "center";
       offCtx.textBaseline = "middle";
-      offCtx.fillText(text, 200, 60);
+      offCtx.fillText(text, 220, 65);
       signStudioState.rawSignatureDataUrl = offCanvas.toDataURL("image/png");
-      signStudioState.signatureDataUrl = await composeSignatureWithName(
-        signStudioState.rawSignatureDataUrl,
-        signStudioState.printedName,
-        signStudioState.includeName
-      );
       updateDraggableSignatureOverlay();
     };
 
@@ -879,13 +1057,8 @@
       if (uploadedCard) uploadedCard.style.display = "flex";
 
       const reader = new FileReader();
-      reader.onload = async (evt) => {
+      reader.onload = (evt) => {
         signStudioState.rawSignatureDataUrl = evt.target.result;
-        signStudioState.signatureDataUrl = await composeSignatureWithName(
-          signStudioState.rawSignatureDataUrl,
-          signStudioState.printedName,
-          signStudioState.includeName
-        );
         updateDraggableSignatureOverlay();
       };
       reader.readAsDataURL(file);
@@ -942,18 +1115,17 @@
         if (uploadedCard) uploadedCard.style.display = "none";
         if (dropzone) dropzone.style.display = "flex";
         signStudioState.rawSignatureDataUrl = null;
-        signStudioState.signatureDataUrl = null;
         updateDraggableSignatureOverlay();
       });
     }
 
-    // Name + Signature Addon Handlers
+    // Dynamic Printed Name Handlers
     const nameCheck = document.getElementById("includePrintedNameCheck");
     const nameInputWrapper = document.getElementById("signerNameInputWrapper");
     const printedNameInput = document.getElementById("signerPrintedNameInput");
 
     if (nameCheck) {
-      nameCheck.addEventListener("change", async () => {
+      nameCheck.addEventListener("change", () => {
         signStudioState.includeName = nameCheck.checked;
         if (nameInputWrapper) {
           nameInputWrapper.style.display = nameCheck.checked ? "block" : "none";
@@ -961,40 +1133,28 @@
         if (nameCheck.checked && printedNameInput && !printedNameInput.value.trim()) {
           printedNameInput.focus();
         }
-        await updateActiveSignature();
+        updateDraggableSignatureOverlay();
       });
     }
 
     if (printedNameInput) {
-      printedNameInput.addEventListener("input", async () => {
+      printedNameInput.addEventListener("input", () => {
         signStudioState.printedName = printedNameInput.value;
-        await updateActiveSignature();
+        updateDraggableSignatureOverlay();
       });
     }
 
-    async function updateActiveSignature() {
+    function updateActiveSignature() {
       if (signStudioState.activeTab === "type") {
-        await updateTypeSignature();
+        updateTypeSignature();
       } else if (signStudioState.activeTab === "draw") {
         const c = document.getElementById("signDrawCanvas");
         if (c) {
           signStudioState.rawSignatureDataUrl = c.toDataURL("image/png");
-          signStudioState.signatureDataUrl = await composeSignatureWithName(
-            signStudioState.rawSignatureDataUrl,
-            signStudioState.printedName,
-            signStudioState.includeName
-          );
         }
         updateDraggableSignatureOverlay();
       } else if (signStudioState.activeTab === "upload") {
-        if (signStudioState.rawSignatureDataUrl) {
-          signStudioState.signatureDataUrl = await composeSignatureWithName(
-            signStudioState.rawSignatureDataUrl,
-            signStudioState.printedName,
-            signStudioState.includeName
-          );
-          updateDraggableSignatureOverlay();
-        }
+        updateDraggableSignatureOverlay();
       }
     }
 
@@ -1005,19 +1165,46 @@
   function updateDraggableSignatureOverlay() {
     const overlay = document.getElementById("draggableSigOverlay");
     const overlayImg = document.getElementById("sigOverlayImg");
+    const nameEl = document.getElementById("sigPrintedNameText");
     if (!overlay || !overlayImg) return;
 
-    if (!signStudioState.signatureDataUrl) {
+    if (!signStudioState.rawSignatureDataUrl) {
       overlay.style.display = "none";
       return;
     }
 
     overlay.style.display = "flex";
-    overlayImg.src = signStudioState.signatureDataUrl;
+    overlayImg.src = signStudioState.rawSignatureDataUrl;
     overlay.style.left = `${signStudioState.sigX}px`;
     overlay.style.top = `${signStudioState.sigY}px`;
     overlay.style.width = `${signStudioState.sigWidth}px`;
     overlay.style.height = `${signStudioState.sigHeight}px`;
+
+    // Dynamic Printed Name calculation
+    if (nameEl) {
+      if (signStudioState.includeName && signStudioState.printedName && signStudioState.printedName.trim()) {
+        nameEl.style.display = "block";
+        nameEl.textContent = signStudioState.printedName.trim();
+        nameEl.style.color = signStudioState.penColor || "#0f172a";
+
+        // Proportional dynamic font size: clamp based on signature width and height
+        let fontSize = Math.round(Math.min(signStudioState.sigWidth * 0.08, signStudioState.sigHeight * 0.28));
+        fontSize = Math.max(9, Math.min(36, fontSize));
+
+        // Overflow protection for long names
+        const textLen = signStudioState.printedName.trim().length;
+        const approxWidth = textLen * (fontSize * 0.58);
+        if (approxWidth > (signStudioState.sigWidth * 0.95)) {
+          fontSize = Math.max(8, Math.floor((signStudioState.sigWidth * 0.95) / (textLen * 0.58)));
+        }
+
+        nameEl.style.fontSize = `${fontSize}px`;
+        nameEl.style.marginTop = `${Math.max(2, Math.round(fontSize * 0.2))}px`;
+      } else {
+        nameEl.style.display = "none";
+      }
+    }
+
     signStudioState.isPlaced = true;
   }
 
@@ -1084,15 +1271,28 @@
           <div class="pdf-page-canvas-wrapper" id="pdfPageCanvasWrapper">
             <canvas id="pdfSignCanvas" class="pdf-page-canvas"></canvas>
             <div class="draggable-signature-overlay" id="draggableSigOverlay" style="display:none;">
-              <img id="sigOverlayImg" class="sig-overlay-img" alt="Signature">
+              <div class="placement-guide-banner" id="placementGuideBanner">
+                <i class="bi bi-arrows-move"></i>
+                <span>Drag to place signature</span>
+              </div>
+              <div class="sig-group-container" id="sigGroupContainer">
+                <img id="sigOverlayImg" class="sig-overlay-img" alt="Signature">
+                <div id="sigPrintedNameText" class="sig-printed-name-text" style="display:none;"></div>
+              </div>
               <div class="sig-handle-delete" id="sigDeleteBtn" title="Remove signature">✕</div>
               <div class="sig-handle-resize" id="sigResizeBtn" title="Drag to resize"></div>
             </div>
           </div>
+          <button type="button" class="btn btn-primary btn-lg btn-block" id="pdfStageSignBtn" style="max-width:680px; font-weight:700;">
+            <i class="bi bi-pen-fill"></i>
+            <span>Sign PDF Now</span>
+            <i class="bi bi-arrow-right"></i>
+          </button>
         </div>
       `;
 
       loadAndRenderPdfSignPage(firstFile);
+      updateSignWorkflowUI(1);
       return;
     }
 
@@ -1168,6 +1368,7 @@
         if (signStudioState.currentPage > 1) {
           signStudioState.currentPage--;
           renderCurrentPdfSignPage();
+          updateSignWorkflowUI(2);
         }
       };
     }
@@ -1176,6 +1377,7 @@
         if (signStudioState.currentPage < signStudioState.totalPages) {
           signStudioState.currentPage++;
           renderCurrentPdfSignPage();
+          updateSignWorkflowUI(2);
         }
       };
     }
@@ -1186,7 +1388,12 @@
     const wrapper = document.getElementById("pdfPageCanvasWrapper");
     const deleteBtn = document.getElementById("sigDeleteBtn");
     const resizeBtn = document.getElementById("sigResizeBtn");
+    const stageSignBtn = document.getElementById("pdfStageSignBtn");
     if (!overlay || !wrapper) return;
+
+    if (stageSignBtn) {
+      stageSignBtn.onclick = handleProcess;
+    }
 
     let isDragging = false;
     let isResizing = false;
@@ -1200,6 +1407,15 @@
       return { x: clientX, y: clientY };
     };
 
+    const notifyUserInteraction = () => {
+      if (!signStudioState.hasInteracted) {
+        signStudioState.hasInteracted = true;
+        const banner = document.getElementById("placementGuideBanner");
+        if (banner) banner.style.opacity = "0";
+      }
+      updateSignWorkflowUI(2);
+    };
+
     // Drag start
     overlay.addEventListener("mousedown", (e) => {
       if (e.target === deleteBtn || e.target === resizeBtn) return;
@@ -1208,6 +1424,7 @@
       startY = e.clientY;
       startLeft = overlay.offsetLeft;
       startTop = overlay.offsetTop;
+      notifyUserInteraction();
       e.preventDefault();
     });
 
@@ -1219,6 +1436,7 @@
       startY = p.y;
       startLeft = overlay.offsetLeft;
       startTop = overlay.offsetTop;
+      notifyUserInteraction();
     }, { passive: true });
 
     // Resize start
@@ -1229,6 +1447,7 @@
         startY = e.clientY;
         startW = overlay.offsetWidth;
         startH = overlay.offsetHeight;
+        notifyUserInteraction();
         e.stopPropagation();
         e.preventDefault();
       });
@@ -1240,6 +1459,7 @@
         startY = p.y;
         startW = overlay.offsetWidth;
         startH = overlay.offsetHeight;
+        notifyUserInteraction();
         e.stopPropagation();
       }, { passive: true });
     }
@@ -1250,6 +1470,7 @@
         e.stopPropagation();
         overlay.style.display = "none";
         signStudioState.isPlaced = false;
+        signStudioState.rawSignatureDataUrl = null;
       });
     }
 
@@ -1277,6 +1498,20 @@
         overlay.style.height = `${newH}px`;
         signStudioState.sigWidth = newW;
         signStudioState.sigHeight = newH;
+
+        // Dynamic printed name live resize
+        const nameEl = document.getElementById("sigPrintedNameText");
+        if (nameEl && signStudioState.includeName && signStudioState.printedName && signStudioState.printedName.trim()) {
+          let fontSize = Math.round(Math.min(newW * 0.08, newH * 0.28));
+          fontSize = Math.max(9, Math.min(36, fontSize));
+          const textLen = signStudioState.printedName.trim().length;
+          const approxWidth = textLen * (fontSize * 0.58);
+          if (approxWidth > (newW * 0.95)) {
+            fontSize = Math.max(8, Math.floor((newW * 0.95) / (textLen * 0.58)));
+          }
+          nameEl.style.fontSize = `${fontSize}px`;
+          nameEl.style.marginTop = `${Math.max(2, Math.round(fontSize * 0.2))}px`;
+        }
       }
     };
 
@@ -1296,6 +1531,11 @@
      ========================================================================== */
   function showStatusProcessing() {
     if (!statusContainer) return;
+    if (toolOptions) toolOptions.style.display = "none";
+    if (processBtn) processBtn.style.display = "none";
+    if (fileList) fileList.style.display = "none";
+    if (dropzone) dropzone.style.display = "none";
+
     statusContainer.innerHTML = `
       <div class="processing-card animate-fade-in">
         <div class="processing-spinner"></div>
@@ -1320,6 +1560,16 @@
 
   function showStatusError(message) {
     if (!statusContainer) return;
+    if (files.length > 0) {
+      if (fileList) fileList.style.display = "grid";
+      if (dropzone) dropzone.style.display = "none";
+    } else {
+      if (fileList) fileList.style.display = "none";
+      if (dropzone) dropzone.style.display = "";
+    }
+    if (toolOptions) toolOptions.style.display = "";
+    if (processBtn) processBtn.style.display = "";
+
     statusContainer.innerHTML = `
       <div class="error-card animate-fade-in">
         <i class="bi bi-exclamation-triangle-fill"></i>
@@ -1378,6 +1628,8 @@
       </div>
     `;
 
+    updateWorkflowProgress(3);
+
     const downloadBtn = document.getElementById("downloadResultBtn");
     if (downloadBtn) {
       downloadBtn.addEventListener("click", () => downloadResult(fullUrl, filename, downloadBtn));
@@ -1388,6 +1640,7 @@
       resetBtn.addEventListener("click", () => {
         files = [];
         clearStatus();
+        updateWorkflowProgress(1);
         if (toolOptions) toolOptions.style.display = "";
         if (processBtn) processBtn.style.display = "";
         if (dropzone) dropzone.style.display = "";
@@ -1404,6 +1657,15 @@
 
   function clearStatus() {
     if (statusContainer) statusContainer.innerHTML = "";
+    if (files.length > 0) {
+      if (fileList) fileList.style.display = "grid";
+      if (dropzone) dropzone.style.display = "none";
+    } else {
+      if (fileList) fileList.style.display = "none";
+      if (dropzone) dropzone.style.display = "";
+    }
+    if (toolOptions) toolOptions.style.display = "";
+    if (processBtn) processBtn.style.display = "";
   }
 
   /* ==========================================================================
@@ -1465,25 +1727,58 @@
   /* ==========================================================================
      7. Process Submission
      ========================================================================== */
-  async function ensurePngDataUrl(dataUrl) {
+  async function buildDynamicSignatureGroupCanvas(rawSigUrl, printedName, shouldInclude, targetW, targetH, penColor) {
     return new Promise((resolve, reject) => {
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.onload = () => {
         try {
           const c = document.createElement("canvas");
-          c.width = img.naturalWidth || img.width || 300;
-          c.height = img.naturalHeight || img.height || 100;
+          // High-resolution 3x scale multiplier for vector-grade sharp PDF embedding
+          const scale = 3;
+          c.width = Math.max(300, Math.round(targetW * scale));
+          c.height = Math.max(100, Math.round(targetH * scale));
           const ctx = c.getContext("2d");
           ctx.clearRect(0, 0, c.width, c.height);
-          ctx.drawImage(img, 0, 0);
+
+          if (!shouldInclude || !printedName || !printedName.trim()) {
+            ctx.drawImage(img, 0, 0, c.width, c.height);
+            resolve(c.toDataURL("image/png"));
+            return;
+          }
+
+          // Proportional dynamic font size: derived from rendered target dimensions
+          let fontSize = Math.round(Math.min(targetW * 0.08, targetH * 0.28)) * scale;
+          fontSize = Math.max(9 * scale, Math.min(36 * scale, fontSize));
+
+          // Overflow protection for long names
+          const textLen = printedName.trim().length;
+          const approxWidth = textLen * (fontSize * 0.58);
+          if (approxWidth > (c.width * 0.95)) {
+            fontSize = Math.max(8 * scale, Math.floor((c.width * 0.95) / (textLen * 0.58)));
+          }
+
+          const textSpacing = Math.round(fontSize * 0.2);
+          const textHeight = fontSize + textSpacing;
+          const imgHeight = Math.max(10, c.height - textHeight);
+
+          // Draw signature graphic centered in top section
+          ctx.drawImage(img, 0, 0, c.width, imgHeight);
+
+          // Draw printed name centered directly below signature
+          ctx.font = `700 ${fontSize}px system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif`;
+          ctx.fillStyle = penColor || "#0f172a";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "top";
+          ctx.fillText(printedName.trim(), c.width / 2, imgHeight + textSpacing);
+
           resolve(c.toDataURL("image/png"));
         } catch (e) {
           reject(e);
         }
       };
-      img.onerror = () => reject(new Error("Unable to read signature image format."));
-      img.src = dataUrl;
+      img.onerror = () => reject(new Error("Unable to read signature graphic format."));
+      img.src = rawSigUrl;
     });
   }
 
@@ -1495,7 +1790,7 @@
       return;
     }
 
-    if (!signStudioState.signatureDataUrl) {
+    if (!signStudioState.rawSignatureDataUrl) {
       showStatusError("Please draw, type, or upload a signature before signing.");
       return;
     }
@@ -1539,8 +1834,15 @@
       const pdfW = sigDisplayW * scaleX;
       const pdfH = sigDisplayH * scaleY;
 
-      // Auto-convert any image format (JPG, PNG, WebP) to clean PNG data URL
-      const cleanPngDataUrl = await ensurePngDataUrl(signStudioState.signatureDataUrl);
+      // Generate composite signature graphic with dynamic proportional printed name
+      const cleanPngDataUrl = await buildDynamicSignatureGroupCanvas(
+        signStudioState.rawSignatureDataUrl,
+        signStudioState.printedName,
+        signStudioState.includeName,
+        signStudioState.sigWidth,
+        signStudioState.sigHeight,
+        signStudioState.penColor
+      );
       const pngImage = await pdfDoc.embedPng(cleanPngDataUrl);
 
       targetPage.drawImage(pngImage, {
@@ -1558,6 +1860,7 @@
       const outputFilename = `${baseName}_signed.pdf`;
 
       updateProcessingStep(100, "Done!", "Document signed successfully.");
+      updateSignWorkflowUI(3);
       setTimeout(() => {
         showStatusSuccess({
           downloadUrl: downloadUrl,
@@ -1577,6 +1880,10 @@
     if (!files.length || isProcessing) return;
 
     if (toolId === "sign-pdf") {
+      if (signStudioState.workflowStep === 1) {
+        scrollToPdfPlacementArea();
+        return;
+      }
       await handleClientSideSignPdf();
       return;
     }
@@ -1750,6 +2057,7 @@
       processBtn.addEventListener("click", handleProcess);
     }
 
+    renderWorkflowStepper();
     renderToolOptions();
     renderLivePreview();
     updateProcessButtonState();
