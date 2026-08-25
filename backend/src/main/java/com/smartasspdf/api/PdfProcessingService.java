@@ -271,6 +271,59 @@ public class PdfProcessingService {
   }
 
   /**
+   * Convert scanned document photos into standardized, multi-page PDF document.
+   */
+  public Path scanToPdf(List<Path> inputs, Path outDir, String pageSize) throws IOException {
+    if (inputs.isEmpty()) throw new IllegalArgumentException("Scan to PDF requires at least one scanned page.");
+    String base = extractBaseName(inputs.get(0), "scan");
+    if (!base.toLowerCase().contains("scan")) {
+      base = "Scanned_" + base;
+    }
+    Path out = outDir.resolve(base + ".pdf");
+    PDRectangle selectedBox = PDRectangle.A4;
+    if ("letter".equalsIgnoreCase(pageSize)) {
+      selectedBox = PDRectangle.LETTER;
+    } else if ("legal".equalsIgnoreCase(pageSize)) {
+      selectedBox = PDRectangle.LEGAL;
+    }
+
+    try (PDDocument doc = new PDDocument()) {
+      for (Path input : inputs) {
+        BufferedImage image;
+        try { image = ImageIO.read(input.toFile()); } catch (Exception e) { image = null; }
+        if (image == null) throw new IllegalArgumentException("Unsupported scanned image format: " + input.getFileName());
+
+        PDRectangle pageBox = selectedBox;
+        if ("auto".equalsIgnoreCase(pageSize)) {
+          pageBox = new PDRectangle(image.getWidth(), image.getHeight());
+        }
+
+        PDPage page = new PDPage(pageBox);
+        doc.addPage(page);
+
+        PDImageXObject x = JPEGFactory.createFromImage(doc, image, 0.92f);
+        if ("auto".equalsIgnoreCase(pageSize)) {
+          try (PDPageContentStream cs = new PDPageContentStream(doc, page)) {
+            cs.drawImage(x, 0, 0, pageBox.getWidth(), pageBox.getHeight());
+          }
+        } else {
+          float margin = 20f;
+          float maxW = page.getMediaBox().getWidth() - (margin * 2);
+          float maxH = page.getMediaBox().getHeight() - (margin * 2);
+          float scale = Math.min(maxW / image.getWidth(), maxH / image.getHeight());
+          float w = image.getWidth() * scale;
+          float h = image.getHeight() * scale;
+          try (PDPageContentStream cs = new PDPageContentStream(doc, page)) {
+            cs.drawImage(x, (page.getMediaBox().getWidth() - w) / 2, (page.getMediaBox().getHeight() - h) / 2, w, h);
+          }
+        }
+      }
+      doc.save(out.toFile());
+    }
+    return out;
+  }
+
+  /**
    * Convert PNG/JPG/JPEG images to modern compressed WebP format
    */
   public Path imageToWebp(List<Path> inputs, Path outDir, float quality) throws IOException {

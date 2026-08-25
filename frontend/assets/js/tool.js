@@ -117,8 +117,8 @@
     if (toolId === "image-to-webp" && !isImage(file)) {
       return `Image to WebP accepts PNG, JPG, and JPEG images only. ("${file.name}" is unsupported).`;
     }
-    if (toolId === "image-to-pdf" && !isImage(file)) {
-      return `Image to PDF accepts JPG, JPEG, and PNG images only. ("${file.name}" is unsupported).`;
+    if ((toolId === "image-to-pdf" || toolId === "scan-to-pdf") && !isImage(file)) {
+      return `${toolConfig.name} accepts JPG, JPEG, and PNG images only. ("${file.name}" is unsupported).`;
     }
     if (toolId === "word-to-pdf" && !isDocx(file)) {
       return `Word to PDF accepts DOCX documents only. ("${file.name}" is unsupported).`;
@@ -852,6 +852,16 @@
       step2Title = "2. Convert to WebP";
       step2Desc = "Next-gen compression";
       step2Icon = "bi-lightning-charge";
+    } else if (toolId === "scan-to-pdf") {
+      step1Title = "1. Scan or Add Pages";
+      step1Desc = "Camera or photos";
+      step1Icon = "bi-camera";
+      step2Title = "2. Crop & Enhance";
+      step2Desc = "Perspective & filters";
+      step2Icon = "bi-crop";
+      step3Title = "3. Download PDF";
+      step3Desc = "Multi-page document";
+      step3Icon = "bi-check-circle-fill";
     }
 
     stepperDiv = document.createElement("div");

@@ -4344,5 +4344,827 @@ div:has(> iframe[src*="netlify"]) {
 }
 
 
+/* ==========================================================================
+   Professional "Scan to PDF" Studio — Mobile-First Complete Styling
+   ========================================================================== */
 
+/* 1. Launcher State */
+.scanner-launcher-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(24px, 5vw, 40px) clamp(16px, 4vw, 28px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  gap: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  width: 100%;
+}
 
+.scanner-launcher-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--primary-subtle);
+  color: var(--primary);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.scanner-launcher-title {
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.scanner-launcher-desc {
+  color: var(--text-secondary);
+  max-width: 520px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.scanner-launcher-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 480px;
+  margin-top: 8px;
+}
+
+.btn-start-scan {
+  flex: 1 1 200px;
+  min-height: 48px;
+  padding: 12px 22px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--primary), #818cf8);
+  box-shadow: 0 4px 16px var(--primary-glow);
+  color: #ffffff !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-start-scan:hover {
+  background: linear-gradient(135deg, var(--primary-hover), var(--primary));
+  box-shadow: 0 6px 20px var(--primary-glow);
+  transform: translateY(-1px);
+}
+
+.btn-upload-photos {
+  flex: 1 1 180px;
+  min-height: 48px;
+  padding: 12px 22px;
+  font-size: 0.95rem;
+  font-weight: 650;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-upload-photos:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .scanner-launcher-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .btn-start-scan,
+  .btn-upload-photos {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    min-height: 44px !important;
+    max-height: 48px !important;
+    padding: 10px 18px !important;
+    font-size: 0.92rem !important;
+  }
+}
+
+/* 2. Live Camera Viewfinder Modal & Viewport */
+.camera-scanner-modal {
+  display: flex;
+  flex-direction: column;
+  background: #000000;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--border-medium);
+  width: 100%;
+}
+
+.camera-viewfinder-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 520px;
+  background: #090d16;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .camera-viewfinder-box {
+    aspect-ratio: 3 / 4;
+    max-height: 68vh;
+  }
+}
+
+.camera-live-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Real-Time Guidance Pill */
+.camera-guidance-pill {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(19, 27, 46, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 15;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  animation: pulseGuidance 2s infinite ease-in-out;
+  white-space: nowrap;
+}
+
+@keyframes pulseGuidance {
+  0%, 100% { opacity: 0.92; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.03); }
+}
+
+.guidance-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+/* Camera Frame Guidelines */
+.camera-framing-box {
+  position: absolute;
+  inset: 20px;
+  pointer-events: none;
+  border: 2px dashed rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-md);
+}
+
+.corner-bracket {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: var(--primary);
+  border-style: solid;
+}
+
+.corner-bracket.tl { top: -2px; left: -2px; border-width: 4px 0 0 4px; border-top-left-radius: 8px; }
+.corner-bracket.tr { top: -2px; right: -2px; border-width: 4px 4px 0 0; border-top-right-radius: 8px; }
+.corner-bracket.bl { bottom: -2px; left: -2px; border-width: 0 0 4px 4px; border-bottom-left-radius: 8px; }
+.corner-bracket.br { bottom: -2px; right: -2px; border-width: 0 4px 4px 0; border-bottom-right-radius: 8px; }
+
+/* Camera Controls Bar */
+.camera-top-controls {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+}
+
+.camera-bottom-controls {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 24px;
+  z-index: 20;
+}
+
+.cam-circle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.15rem;
+  transition: all var(--transition-fast);
+}
+
+.cam-circle-btn:hover {
+  background: rgba(99, 102, 241, 0.8);
+  transform: scale(1.08);
+}
+
+.cam-circle-btn.is-active {
+  background: #f59e0b;
+  color: #000000;
+  border-color: #f59e0b;
+}
+
+/* Shutter Trigger */
+.scanner-shutter-btn {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 3px solid #ffffff;
+  padding: 5px;
+  cursor: pointer;
+  outline: none;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+.scanner-shutter-btn:hover {
+  transform: scale(1.06);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.scanner-shutter-btn:active {
+  transform: scale(0.92);
+}
+
+.scanner-shutter-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.6);
+  transition: background var(--transition-fast);
+}
+
+.scanner-shutter-btn:active .scanner-shutter-inner {
+  background: var(--primary);
+}
+
+.camera-shutter-flash {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 30;
+  transition: opacity 0.1s ease-out;
+}
+
+.camera-shutter-flash.do-flash {
+  opacity: 0.9;
+}
+
+/* 3. 4-Corner Crop & Perspective Warper Stage */
+.crop-editor-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: clamp(16px, 3vw, 24px);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+}
+
+.crop-editor-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.crop-editor-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.crop-editor-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  max-height: 480px;
+  background: #000000;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  user-select: none;
+}
+
+.crop-interactive-canvas {
+  max-width: 100%;
+  max-height: 480px;
+  display: block;
+  object-fit: contain;
+}
+
+/* Filter Selector Toolbar */
+.crop-filter-toolbar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-preset-pill {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.filter-preset-pill:hover {
+  border-color: var(--primary);
+  color: var(--text-primary);
+}
+
+.filter-preset-pill.is-active {
+  background: var(--primary-subtle);
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 0 12px var(--primary-glow);
+}
+
+/* Crop Action Buttons */
+.crop-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 640px) {
+  .crop-actions-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .crop-actions-bar .btn {
+    width: 100%;
+  }
+}
+
+/* 4. Multi-Page Sequencer & Deck Manager */
+.page-manager-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: clamp(16px, 3vw, 24px);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+
+.page-manager-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-manager-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .page-manager-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .page-manager-header-actions {
+    width: 100%;
+  }
+  .page-manager-header-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+.page-manager-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-manager-deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 14px;
+  padding: 6px 0;
+}
+
+@media (max-width: 480px) {
+  .page-manager-deck {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.deck-page-card {
+  position: relative;
+  background: var(--bg-surface-elevated);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-xs);
+}
+
+.deck-page-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.deck-thumb-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #000000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.deck-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.deck-page-num {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.deck-page-actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 4px;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.deck-action-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  font-size: 0.9rem;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.deck-action-btn:hover {
+  color: var(--primary);
+  transform: scale(1.15);
+}
+
+.deck-action-btn.delete:hover {
+  color: var(--danger);
+}
+
+.deck-add-slot {
+  min-height: 160px;
+  border: 2px dashed var(--border-medium);
+  border-radius: var(--radius-md);
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 12px;
+}
+
+.deck-add-slot:hover {
+  border-color: var(--primary);
+  background: var(--primary-subtle);
+  color: var(--primary);
+}
+
+.deck-add-slot i {
+  font-size: 1.6rem;
+}
+
+.deck-add-slot span {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* 5. PDF Settings Grid */
+.pdf-settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+
+.pdf-setting-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pdf-setting-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 6. Professional Result Screen & Theme Button (Image 2 & 3) */
+.scan-result-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(20px, 4vw, 32px);
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.15);
+  animation: fadeInResult 0.3s ease-out;
+  width: 100%;
+}
+
+@keyframes fadeInResult {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scan-result-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.scan-result-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--success-subtle);
+  color: var(--success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.scan-result-meta-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.result-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.filename-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filename-input-wrap label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.filename-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.filename-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+.btn-download-result {
+  width: 100%;
+  min-height: 54px;
+  font-size: 1.1rem;
+  font-weight: 750;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--primary), #818cf8);
+  color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-download-result:hover {
+  background: linear-gradient(135deg, var(--primary-hover), var(--primary));
+  box-shadow: 0 6px 26px rgba(99, 102, 241, 0.55);
+  transform: translateY(-2px);
+}
+
+.scan-result-secondary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.scan-result-secondary-actions .btn {
+  flex: 1 1 180px;
+  min-height: 44px;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Key Studio Features Cards Section (Image 4)
+   ========================================================================== */
+.features-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 20px 0 28px;
+}
+
+@media (max-width: 640px) {
+  .features-mini-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-mini-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-mini-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.18);
+}
+
+.feature-mini-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--primary-subtle);
+  border: 1px solid var(--primary-border);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.feature-mini-card h4 {
+  font-size: 1.02rem;
+  font-weight: 750;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.feature-mini-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}

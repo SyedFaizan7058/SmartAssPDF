@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api/v1")
 public class ToolController {
   private static final Set<String> TOOLS = Set.of(
-      "ocr-pdf","repair-pdf","compare-pdf","sanitize-pdf","sign-pdf",
+      "scan-to-pdf","ocr-pdf","repair-pdf","compare-pdf","sanitize-pdf","sign-pdf",
       "pdf-to-word","pdf-to-excel","pdf-to-jpg","pdf-to-ppt","word-to-pdf","excel-to-pdf",
       "image-to-webp","image-to-pdf","html-to-pdf","merge-pdf","split-pdf","compress-pdf",
       "rotate-pdf","add-page-numbers","protect-pdf","unlock-pdf",
@@ -35,6 +35,7 @@ public class ToolController {
   public ResponseEntity<?> create(
       @PathVariable String tool,
       @RequestParam("files") List<MultipartFile> files,
+      @RequestParam(value="pageSize", required=false) String pageSize,
       @RequestParam(value="pages", required=false) String pages,
       @RequestParam(value="quality", required=false) Float quality,
       @RequestParam(value="angle", required=false) Integer angle,
@@ -71,6 +72,7 @@ public class ToolController {
     try{
       Path result;
       switch(tool){
+        case "scan-to-pdf" -> result=pdf.scanToPdf(saved,job.dir(),pageSize);
         case "ocr-pdf" -> { requireCount(saved,1,"OCR PDF accepts exactly one file."); result=pdf.ocrPdf(saved.get(0),job.dir(),language); }
         case "repair-pdf" -> { requireCount(saved,1,"Repair PDF accepts exactly one file."); result=pdf.repairPdf(saved.get(0),job.dir()); }
         case "compare-pdf" -> { if(saved.size()<2) throw new IllegalArgumentException("Compare PDFs requires at least two PDF files to compare."); result=pdf.comparePdf(saved.get(0),saved.get(1),job.dir()); }

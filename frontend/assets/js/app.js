@@ -128,6 +128,7 @@
                   <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
                 </button>
                 <div class="nav-dropdown">
+                  <a class="nav-dropdown-item" href="${base}tools/scan-to-pdf.html"><i class="bi bi-camera"></i> <span>Scan to PDF</span></a>
                   <a class="nav-dropdown-item" href="${base}tools/ocr-pdf.html"><i class="bi bi-search"></i> <span>OCR PDF</span></a>
                   <a class="nav-dropdown-item" href="${base}tools/pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> <span>PDF to Word</span></a>
                   <a class="nav-dropdown-item" href="${base}tools/pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> <span>PDF to Excel</span></a>
@@ -235,6 +236,7 @@
         <div>
           <div class="mobile-nav-section-title">Convert Tools</div>
           <ul class="mobile-nav-list">
+            <li><a href="${base}tools/scan-to-pdf.html"><i class="bi bi-camera"></i> Scan to PDF</a></li>
             <li><a href="${base}tools/ocr-pdf.html"><i class="bi bi-search"></i> OCR PDF</a></li>
             <li><a href="${base}tools/pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> PDF to Word</a></li>
             <li><a href="${base}tools/pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> PDF to Excel</a></li>
@@ -298,7 +300,7 @@
       <div class="search-modal">
         <div class="search-input-wrap">
           <i class="bi bi-search search-input-icon" aria-hidden="true"></i>
-          <input type="search" class="search-input" id="searchModalInput" placeholder="Search 24 tools (e.g. Word, OCR, Split, Merge)..." autocomplete="off" spellcheck="false">
+          <input type="search" class="search-input" id="searchModalInput" placeholder="Search 25 tools (e.g. Scan, Word, OCR, Split)..." autocomplete="off" spellcheck="false">
           <button type="button" class="file-action-btn search-close-btn" id="searchModalClose" aria-label="Close search">
             <i class="bi bi-x-lg"></i>
           </button>
@@ -341,6 +343,7 @@
             <div class="footer-col">
               <h4>Convert</h4>
               <ul class="footer-col-nav">
+                <li><a href="${base}tools/scan-to-pdf.html">Scan to PDF</a></li>
                 <li><a href="${base}tools/ocr-pdf.html">OCR PDF</a></li>
                 <li><a href="${base}tools/pdf-to-word.html">PDF to Word</a></li>
                 <li><a href="${base}tools/pdf-to-excel.html">PDF to Excel</a></li>

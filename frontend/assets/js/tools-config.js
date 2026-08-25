@@ -40,6 +40,7 @@
   };
 
   const ICONS = {
+    scanToPdf: `<svg class="tool-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4a2 2 0 0 1 2-2h3M15 2h3a2 2 0 0 1 2 2v3M4 17v3a2 2 0 0 0 2 2h3M15 22h3a2 2 0 0 0 2-2v-3"/><rect x="7" y="7" width="10" height="10" rx="1"/><line x1="7" y1="12" x2="17" y2="12"/></svg>`,
     ocrPdf: `<svg class="tool-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="11" cy="14" r="3"/><line x1="13.5" y1="16.5" x2="17" y2="20"/></svg>`,
     repairPdf: `<svg class="tool-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
     comparePdf: `<svg class="tool-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="3" width="8" height="18" rx="1"/><path d="M7 8h0M17 8h0M7 12h0M17 12h0M7 16h0M17 16h0"/></svg>`,
@@ -67,6 +68,25 @@
   };
 
   const TOOLS = {
+    'scan-to-pdf': {
+      id: 'scan-to-pdf',
+      name: 'Scan to PDF',
+      title: 'Scan to PDF Online Free – Document Scanner | SmartAssPDF',
+      category: 'convert-to-pdf',
+      badge: 'Camera / Images → PDF',
+      inputFormat: 'Camera / Images',
+      outputFormat: 'PDF',
+      iconSvg: ICONS.scanToPdf,
+      accentColor: '#6366f1',
+      description: 'Scan documents using your camera, arrange multiple pages, enhance them, and create a high-quality PDF for free.',
+      longDescription: 'Capture physical papers, receipts, and photos on mobile or desktop, adjust 4-corner perspective crops, enhance contrast with document filters, arrange multiple pages, and export clean A4/Letter PDFs.',
+      accept: 'image/*,.jpg,.jpeg,.png,.webp,.heic',
+      extensions: ['.jpg', '.jpeg', '.png', '.webp', '.heic'],
+      multiple: true,
+      maxFiles: 30,
+      optionsType: 'scan-to-pdf',
+      relatedTools: ['image-to-pdf', 'ocr-pdf', 'merge-pdf', 'compress-pdf']
+    },
     'ocr-pdf': {
       id: 'ocr-pdf',
       name: 'OCR PDF',

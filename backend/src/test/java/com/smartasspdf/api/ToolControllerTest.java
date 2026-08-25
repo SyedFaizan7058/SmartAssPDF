@@ -51,11 +51,26 @@ public class ToolControllerTest {
   void testToolsListContainsNewTools() throws Exception {
     mockMvc.perform(get("/api/v1/tools"))
         .andExpect(status().isOk())
+        .andExpect(jsonPath("$.tools", org.hamcrest.Matchers.hasItem("scan-to-pdf")))
         .andExpect(jsonPath("$.tools", org.hamcrest.Matchers.hasItem("ocr-pdf")))
         .andExpect(jsonPath("$.tools", org.hamcrest.Matchers.hasItem("repair-pdf")))
         .andExpect(jsonPath("$.tools", org.hamcrest.Matchers.hasItem("compare-pdf")))
         .andExpect(jsonPath("$.tools", org.hamcrest.Matchers.hasItem("sanitize-pdf")))
         .andExpect(jsonPath("$.tools", org.hamcrest.Matchers.hasItem("sign-pdf")));
+  }
+
+  @Test
+  void testScanToPdfEndpoint() throws Exception {
+    java.awt.image.BufferedImage img = new java.awt.image.BufferedImage(100, 100, java.awt.image.BufferedImage.TYPE_INT_RGB);
+    java.io.ByteArrayOutputStream imgBaos = new java.io.ByteArrayOutputStream();
+    javax.imageio.ImageIO.write(img, "png", imgBaos);
+    MockMultipartFile file = new MockMultipartFile("files", "scanned_doc.png", "image/png", imgBaos.toByteArray());
+    mockMvc.perform(multipart("/api/v1/tools/scan-to-pdf/jobs")
+            .file(file)
+            .param("pageSize", "a4"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.status", is("done")))
+        .andExpect(jsonPath("$.tool", is("scan-to-pdf")));
   }
 
   @Test
