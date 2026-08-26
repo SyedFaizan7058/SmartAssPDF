@@ -471,15 +471,6 @@
           <div class="form-hint">Enter the page numbers you wish to remove from the document.</div>
         </div>
       `;
-    } else if (toolId === "extract-pages") {
-      toolOptions.innerHTML = `
-        <div class="tool-options-card">
-          <div class="options-heading">Pages to Extract</div>
-          <label class="form-label" for="pagesInput">Page numbers or ranges to save into new PDF</label>
-          <input id="pagesInput" class="form-control" placeholder="e.g. 1-3, 5, 8-10" required>
-          <div class="form-hint">Enter the page numbers you wish to isolate and export.</div>
-        </div>
-      `;
     } else if (toolId === "add-watermark") {
       toolOptions.innerHTML = `
         <div class="tool-options-card">
@@ -817,13 +808,6 @@
       step2Title = "2. Remove Pages";
       step2Desc = "Choose page range";
       step2Icon = "bi-trash";
-    } else if (toolId === "extract-pages") {
-      step1Title = "1. Select PDF";
-      step1Desc = "Upload document";
-      step1Icon = "bi-file-earmark-pdf";
-      step2Title = "2. Extract Pages";
-      step2Desc = "Choose page range";
-      step2Icon = "bi-box-arrow-up-right";
     } else if (toolId === "compare-pdf") {
       step1Title = "1. Select 2 PDFs";
       step1Desc = "Doc A & Doc B";
@@ -1916,7 +1900,7 @@
     }
 
     const pagesInput = document.getElementById("pagesInput");
-    if ((toolId === "remove-pages" || toolId === "extract-pages") && !pagesInput?.value.trim()) {
+    if (toolId === "remove-pages" && !pagesInput?.value.trim()) {
       showStatusError("Please specify the page numbers or ranges (e.g. 1, 3, 5-7).");
       pagesInput?.focus();
       return;

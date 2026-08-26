@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Scan to PDF Online Free – Document Scanner | SmartAssPDF</title>
+  <title>Scan to PDF Online Free â€“ Document Scanner | SmartAssPDF</title>
   <meta name="description" content="Scan documents using your camera, arrange multiple pages, enhance them, and create a high-quality PDF for free. Features 4-corner perspective crop, Magic Color & B&W filters.">
   <link rel="canonical" href="https://smartasspdf.com/tools/scan-to-pdf.html">
 
   <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Scan to PDF Online Free – Document Scanner | SmartAssPDF">
+  <meta property="og:title" content="Scan to PDF Online Free â€“ Document Scanner | SmartAssPDF">
   <meta property="og:description" content="Scan documents using your camera, arrange multiple pages, enhance them, and create a high-quality PDF for free.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://smartasspdf.com/tools/scan-to-pdf.html">
@@ -18,7 +18,7 @@
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Scan to PDF Online Free – Document Scanner | SmartAssPDF">
+  <meta name="twitter:title" content="Scan to PDF Online Free â€“ Document Scanner | SmartAssPDF">
   <meta name="twitter:description" content="Scan documents using your camera, arrange multiple pages, enhance them, and create a high-quality PDF for free.">
   <meta name="twitter:image" content="https://smartasspdf.com/assets/images/og-banner.png">
 
@@ -44,7 +44,7 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "Scan to PDF — SmartAssPDF",
+        "name": "Scan to PDF â€” SmartAssPDF",
         "url": "https://smartasspdf.com/tools/scan-to-pdf.html",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Web",
@@ -139,7 +139,6 @@
               <a class="nav-dropdown-item" href="merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
               <a class="nav-dropdown-item" href="split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
               <a class="nav-dropdown-item" href="remove-pages.html"><i class="bi bi-trash3"></i> <span>Remove Pages</span></a>
-              <a class="nav-dropdown-item" href="extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span></a>
               <a class="nav-dropdown-item" href="rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
               <a class="nav-dropdown-item" href="add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
             </div>
@@ -168,7 +167,7 @@
         <button type="button" class="search-trigger-btn" id="searchTriggerBtn" aria-label="Search tools">
           <i class="bi bi-search" aria-hidden="true"></i>
           <span>Search tools</span>
-          <kbd class="search-kbd">⌘K</kbd>
+          <kbd class="search-kbd">âŒ˜K</kbd>
         </button>
         <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle dark/light theme">
           <i class="bi bi-sun-fill" aria-hidden="true"></i>
@@ -222,7 +221,6 @@
           <li><a href="merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
           <li><a href="split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
           <li><a href="remove-pages.html"><i class="bi bi-trash3"></i> Remove Pages</a></li>
-          <li><a href="extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> Extract Pages</a></li>
           <li><a href="compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a></li>
           <li><a href="add-watermark.html"><i class="bi bi-shield-shaded"></i> Add Watermark</a></li>
           <li><a href="rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a></li>
@@ -257,8 +255,8 @@
       <div class="search-results" id="searchResults"></div>
       <div class="search-modal-footer">
         <div class="search-footer-desktop">
-          <span><kbd class="search-kbd">↑</kbd> <kbd class="search-kbd">↓</kbd> navigate</span>
-          <span><kbd class="search-kbd">↵</kbd> select</span>
+          <span><kbd class="search-kbd">â†‘</kbd> <kbd class="search-kbd">â†“</kbd> navigate</span>
+          <span><kbd class="search-kbd">â†µ</kbd> select</span>
           <span><kbd class="search-kbd">ESC</kbd> close</span>
         </div>
       </div>
@@ -283,7 +281,7 @@
         <h1>Scan to PDF Online Free</h1>
         <p>Scan documents using your camera, arrange multiple pages, enhance them, and create a high-quality PDF for free.</p>
         <div class="tool-format-pill">
-          <span>Camera / Images → Multi-Page PDF</span>
+          <span>Camera / Images to’ Multi-Page PDF</span>
         </div>
       </div>
 
@@ -322,7 +320,7 @@
           <div id="stageLauncher" class="scanner-launcher-card">
             <div class="scanner-launcher-badge">
               <i class="bi bi-camera-fill"></i>
-              <span>Camera / Images → PDF</span>
+              <span>Camera / Images to PDF</span>
             </div>
             <h2 class="scanner-launcher-title">Scan Documents with Camera or Photos</h2>
             <p class="scanner-launcher-desc">
@@ -345,10 +343,11 @@
           <div id="stageCamera" class="camera-scanner-modal" style="display:none;">
             <div class="camera-viewfinder-box">
               <video id="cameraVideoFeed" class="camera-live-video" playsinline autoplay muted></video>
+              <canvas id="cameraOverlayCanvas" class="camera-overlay-canvas"></canvas>
 
               <!-- Real-Time Dynamic Guidance Pill -->
               <div class="camera-guidance-pill" id="cameraGuidancePill">
-                <span class="guidance-dot"></span> Align document inside frame
+                <span class="guidance-dot"></span> Looking for document...
               </div>
 
               <!-- Framing Overlay -->
@@ -367,7 +366,11 @@
                 <button type="button" class="cam-circle-btn" id="btnCloseCamera" title="Close Camera" aria-label="Close camera">
                   <i class="bi bi-x-lg"></i>
                 </button>
-                <div style="display:flex; gap:10px;">
+                <div style="display:flex; gap:10px; align-items:center;">
+                  <button type="button" class="cam-circle-btn" id="btnAutoCaptureToggle" title="Toggle Auto-Capture (Hands-Free)" style="width:auto; height:36px; padding:0 12px; border-radius:20px; font-size:0.8rem; font-weight:700; color:#38bdf8; border:1px solid rgba(56,189,248,0.5); background:rgba(15,23,42,0.85); display:flex; align-items:center; gap:6px;">
+                    <i class="bi bi-magic"></i>
+                    <span id="autoCaptureLabel">AUTO ON</span>
+                  </button>
                   <button type="button" class="cam-circle-btn" id="btnTorchToggle" title="Toggle Flashlight" style="display:none;" aria-label="Toggle torch">
                     <i class="bi bi-lightning-fill"></i>
                   </button>
@@ -410,33 +413,37 @@
               </label>
               <div class="crop-filter-toolbar">
                 <button type="button" class="filter-preset-pill is-active" data-filter="original">
-                  <i class="bi bi-image"></i> Original Photo
+                  <i class="bi bi-image"></i> Original
                 </button>
                 <button type="button" class="filter-preset-pill" data-filter="magic">
-                  <i class="bi bi-magic"></i> Magic Color (Clean)
+                  <i class="bi bi-magic"></i> Magic Color
                 </button>
                 <button type="button" class="filter-preset-pill" data-filter="bw">
-                  <i class="bi bi-file-text"></i> Document B&amp;W
+                  <i class="bi bi-file-text"></i> B&amp;W
                 </button>
                 <button type="button" class="filter-preset-pill" data-filter="grayscale">
                   <i class="bi bi-circle-half"></i> Grayscale
                 </button>
                 <button type="button" class="filter-preset-pill" data-filter="auto">
-                  <i class="bi bi-sliders"></i> Auto Enhance
+                  <i class="bi bi-sliders"></i> Auto
                 </button>
               </div>
             </div>
 
             <!-- Crop Actions Bar -->
             <div class="crop-actions-bar">
-              <div style="display:flex; gap:10px;">
+              <div class="crop-secondary-group">
                 <button type="button" class="btn btn-secondary btn-sm" id="btnCropRetake">
                   <i class="bi bi-arrow-left"></i>
                   <span>Retake</span>
                 </button>
                 <button type="button" class="btn btn-ghost btn-sm" id="btnCropRotate">
                   <i class="bi bi-arrow-clockwise"></i>
-                  <span>Rotate 90°</span>
+                  <span>Rotate</span>
+                </button>
+                <button type="button" class="btn btn-ghost btn-sm" id="btnAutoDetectCorners" title="Auto-detect document edges">
+                  <i class="bi bi-magic"></i>
+                  <span>Auto-Detect</span>
                 </button>
               </div>
               <button type="button" class="btn btn-primary" id="btnAcceptPage">
@@ -452,39 +459,7 @@
             <!-- Page Deck Grid -->
             <div class="page-manager-deck" id="pageDeckGrid"></div>
 
-            <!-- PDF Settings Options -->
-            <div class="pdf-settings-grid">
-              <div class="pdf-setting-group">
-                <label for="selPageSize"><i class="bi bi-file-earmark"></i> Page Size</label>
-                <select id="selPageSize" class="form-select" style="background:var(--bg-surface); color:var(--text-primary); border:1px solid var(--border-medium); border-radius:var(--radius-sm); padding:8px 12px; font-size:0.9rem;">
-                  <option value="a4" selected>Standard A4</option>
-                  <option value="letter">US Letter</option>
-                  <option value="legal">US Legal</option>
-                  <option value="original">Original Aspect Ratio</option>
-                </select>
-              </div>
-
-              <div class="pdf-setting-group">
-                <label for="selOrientation"><i class="bi bi-arrow-repeat"></i> Orientation</label>
-                <select id="selOrientation" class="form-select" style="background:var(--bg-surface); color:var(--text-primary); border:1px solid var(--border-medium); border-radius:var(--radius-sm); padding:8px 12px; font-size:0.9rem;">
-                  <option value="auto" selected>Auto Detect</option>
-                  <option value="portrait">Portrait</option>
-                  <option value="landscape">Landscape</option>
-                </select>
-              </div>
-
-              <div class="pdf-setting-group">
-                <label for="selQuality"><i class="bi bi-speedometer2"></i> Quality &amp; Compression</label>
-                <select id="selQuality" class="form-select" style="background:var(--bg-surface); color:var(--text-primary); border:1px solid var(--border-medium); border-radius:var(--radius-sm); padding:8px 12px; font-size:0.9rem;">
-                  <option value="0.98">Maximum Quality (100%)</option>
-                  <option value="0.85" selected>High Quality (85%)</option>
-                  <option value="0.70">Balanced (70%)</option>
-                  <option value="0.50">Compact / Small File (50%)</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Compile PDF Button (Image 3 theme style) -->
+            <!-- Compile PDF Button -->
             <button type="button" class="btn btn-primary btn-lg btn-block" id="btnCompilePdf" style="min-height:52px; font-size:1.05rem;">
               <span>Create PDF</span>
               <i class="bi bi-arrow-right"></i>
@@ -561,7 +536,7 @@
             </div>
             <div class="aeo-definition">Scan to PDF allows you to photograph physical documents using your mobile phone or webcam, fine-tune perspective corner crops, enhance text readability with high-contrast filters, and bundle all pages into a clean, printable PDF document.</div>
             <ul class="aeo-highlights">
-              <li><i class="bi bi-check-circle-fill"></i> <span>On-Demand Camera Permission — never requests access until you click</span></li>
+              <li><i class="bi bi-check-circle-fill"></i> <span>On-Demand Camera Permission â€” never requests access until you click</span></li>
               <li><i class="bi bi-check-circle-fill"></i> <span>Interactive 4-Corner Crop with touch-friendly quad corner handles</span></li>
               <li><i class="bi bi-check-circle-fill"></i> <span>Original Photo, Document B&amp;W, Magic Color, and Auto Enhance filters</span></li>
               <li><i class="bi bi-check-circle-fill"></i> <span>High-speed client-side PDF compilation (100% free with zero latency)</span></li>
@@ -625,7 +600,7 @@
             <div class="feature-mini-card">
               <div class="feature-mini-icon"><i class="bi bi-stack"></i></div>
               <h4>Multi-Page Sequencer</h4>
-              <p>Move pages left or right, rotate 90°, duplicate, or re-crop individual pages in your document sequence.</p>
+              <p>Move pages left or right, rotate 90Â°, duplicate, or re-crop individual pages in your document sequence.</p>
             </div>
             <div class="feature-mini-card">
               <div class="feature-mini-icon"><i class="bi bi-cpu"></i></div>
@@ -652,7 +627,7 @@
                 <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
               </summary>
               <div class="faq-answer">
-                Yes! In the document sequencer stage, you can use the left/right arrows to change page order, rotate pages clockwise by 90°, or tap any page to re-crop it.
+                Yes! In the document sequencer stage, you can use the left/right arrows to change page order, rotate pages clockwise by 90Â°, or tap any page to re-crop it.
               </div>
             </details>
             <details class="faq-item">
@@ -701,9 +676,10 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script async src="https://docs.opencv.org/4.7.0/opencv.js" type="text/javascript"></script>
   <script src="../assets/js/tools-config.js"></script>
   <script src="../assets/js/app.js"></script>
-  <script src="../assets/js/scanner.js"></script>
+  <script src="../assets/js/scanner.js?v=39"></script>
   <script>
     if (typeof AOS !== 'undefined') {
       AOS.init({ duration: 600, once: true });

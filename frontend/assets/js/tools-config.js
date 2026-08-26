@@ -522,26 +522,7 @@
       multiple: false,
       maxFiles: 1,
       optionsType: 'remove-pages',
-      relatedTools: ['extract-pages', 'split-pdf', 'merge-pdf', 'rotate-pdf']
-    },
-    'extract-pages': {
-      id: 'extract-pages',
-      name: 'Extract Pages',
-      title: 'Extract Pages from PDF',
-      category: 'organize-pdf',
-      badge: 'Save Selection',
-      inputFormat: 'PDF',
-      outputFormat: 'PDF',
-      iconSvg: ICONS.extractPages,
-      accentColor: '#0ea5e9',
-      description: 'Extract specific pages or sections into a new PDF document.',
-      longDescription: 'Select specific pages or page ranges (e.g. 1-3, 5, 8-10) to export them directly into a standalone PDF file.',
-      accept: '.pdf,application/pdf',
-      extensions: ['.pdf'],
-      multiple: false,
-      maxFiles: 1,
-      optionsType: 'extract-pages',
-      relatedTools: ['remove-pages', 'split-pdf', 'merge-pdf', 'rotate-pdf']
+      relatedTools: ['split-pdf', 'merge-pdf', 'rotate-pdf']
     }
   };
 

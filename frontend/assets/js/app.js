@@ -153,7 +153,6 @@
                   <a class="nav-dropdown-item" href="${base}tools/merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
                   <a class="nav-dropdown-item" href="${base}tools/split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
                   <a class="nav-dropdown-item" href="${base}tools/remove-pages.html"><i class="bi bi-trash3"></i> <span>Remove Pages</span></a>
-                  <a class="nav-dropdown-item" href="${base}tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> <span>Extract Pages</span></a>
                   <a class="nav-dropdown-item" href="${base}tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
                   <a class="nav-dropdown-item" href="${base}tools/add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
                 </div>
@@ -260,7 +259,6 @@
             <li><a href="${base}tools/merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
             <li><a href="${base}tools/split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
             <li><a href="${base}tools/remove-pages.html"><i class="bi bi-trash3"></i> Remove Pages</a></li>
-            <li><a href="${base}tools/extract-pages.html"><i class="bi bi-box-arrow-up-right"></i> Extract Pages</a></li>
             <li><a href="${base}tools/compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a></li>
             <li><a href="${base}tools/add-watermark.html"><i class="bi bi-shield-shaded"></i> Add Watermark</a></li>
             <li><a href="${base}tools/rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a></li>
@@ -273,12 +271,10 @@
         <div>
           <div class="mobile-nav-section-title">Resources</div>
           <ul class="mobile-nav-list">
-            <li><a href="${base}faq.html"><i class="bi bi-question-circle"></i> FAQ</a></li>
+            <li><a href="${base}blog/index.html"><i class="bi bi-journal-text"></i> Blog & Guides</a></li>
             <li><a href="${base}about.html"><i class="bi bi-info-circle"></i> About</a></li>
+            <li><a href="${base}faq.html"><i class="bi bi-question-circle"></i> FAQ</a></li>
             <li><a href="${base}contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
-            <li><a href="${base}privacy.html"><i class="bi bi-shield-check"></i> Privacy Policy</a></li>
-            <li><a href="${base}cookie-policy.html"><i class="bi bi-shield-lock"></i> Cookie Policy</a></li>
-            <li><a href="${base}terms.html"><i class="bi bi-file-text"></i> Terms of Service</a></li>
           </ul>
         </div>
       </div>
@@ -308,8 +304,8 @@
         <div class="search-results" id="searchResults"></div>
         <div class="search-modal-footer">
           <div class="search-footer-desktop">
-            <span><kbd class="search-kbd">↑</kbd> <kbd class="search-kbd">↓</kbd> navigate</span>
-            <span><kbd class="search-kbd">↵</kbd> select</span>
+            <span><kbd class="search-kbd">&uarr;</kbd> <kbd class="search-kbd">&darr;</kbd> navigate</span>
+            <span><kbd class="search-kbd">&crarr;</kbd> select</span>
             <span><kbd class="search-kbd">ESC</kbd> close</span>
           </div>
           <div class="search-footer-mobile">

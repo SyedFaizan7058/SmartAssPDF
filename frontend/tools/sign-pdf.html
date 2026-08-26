@@ -1,528 +1,1056 @@
 <!doctype html>
+
 <html lang="en" data-theme="dark">
 
+
+
 <head>
+
   <meta charset="utf-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sign PDF Online Free — Digital Signature | SmartAssPDF</title>
+
+  <title>Sign PDF Online Free | SmartAssPDF</title>
+
   <meta name="description" content="Sign PDF documents online with cryptographically verified seals, cursive name stamps, or uploaded signature images. 100% free with instant preview.">
+
   <link rel="canonical" href="https://smartasspdf.com/tools/sign-pdf.html">
 
+
+
   <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Sign PDF Online Free — Visual & Digital Signature Stamp | SmartAssPDF">
+
+  <meta property="og:title" content="Sign PDF Online Free â€” Visual & Digital Signature Stamp | SmartAssPDF">
+
   <meta property="og:description" content="Apply cryptographically verified signature badges, handwritten cursive stamps, and timestamps to legal documents.">
+
   <meta property="og:type" content="website">
+
   <meta property="og:url" content="https://smartasspdf.com/tools/sign-pdf.html">
+
   <meta property="og:image" content="https://smartasspdf.com/assets/images/og-banner.png">
+
   <meta property="og:site_name" content="SmartAssPDF">
 
+
+
   <!-- Twitter / X -->
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sign PDF Online Free — Visual & Digital Signature Stamp | SmartAssPDF">
+
+  <meta name="twitter:title" content="Sign PDF Online Free â€” Visual & Digital Signature Stamp | SmartAssPDF">
+
   <meta name="twitter:description" content="Apply cryptographically verified signature badges, handwritten cursive stamps, and timestamps to legal documents.">
+
   <meta name="twitter:image" content="https://smartasspdf.com/assets/images/og-banner.png">
 
+
+
   <link rel="icon" href="../assets/images/favicon.ico" sizes="any">
+
   <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+
   <link rel="manifest" href="../site.webmanifest">
 
+
+
   <!-- Immediate Theme Initializer to Prevent FOUC -->
+
   <script>
+
     (function () {
+
       const savedTheme = localStorage.getItem('smartasspdf_theme');
+
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
       document.documentElement.setAttribute('data-theme', savedTheme || (prefersDark ? 'dark' : 'light'));
+
     })();
+
   </script>
+
+
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
+
+
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
   <link href="../assets/css/app.css?v=25" rel="stylesheet">
 
+
+
   <script type="application/ld+json">
+
   {
+
     "@context": "https://schema.org",
+
     "@graph": [
+
       {
+
         "@type": "WebApplication",
-        "name": "Sign PDF — SmartAssPDF",
+
+        "name": "Sign PDF â€” SmartAssPDF",
+
         "url": "https://smartasspdf.com/tools/sign-pdf.html",
+
         "applicationCategory": "UtilitiesApplication",
+
         "operatingSystem": "Web",
+
         "description": "Sign PDF documents online with digital stamps, verified badges, or uploaded signatures.",
+
         "offers": {
+
           "@type": "Offer",
+
           "price": "0",
+
           "priceCurrency": "USD"
+
         }
+
       },
+
       {
+
         "@type": "BreadcrumbList",
+
         "itemListElement": [
+
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://smartasspdf.com/" },
+
           { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://smartasspdf.com/#tools" },
+
           { "@type": "ListItem", "position": 3, "name": "Sign PDF", "item": "https://smartasspdf.com/tools/sign-pdf.html" }
+
         ]
+
       },
+
       {
+
         "@type": "FAQPage",
+
         "mainEntity": [
+
           {
+
             "@type": "Question",
+
             "name": "What signature methods are supported?",
+
             "acceptedAnswer": {
+
               "@type": "Answer",
+
               "text": "SmartAssPDF supports type-based digital seals with timestamp certification, uploaded image signatures (PNG/JPG with transparency), and cryptographic certificate sealing."
+
             }
+
           },
+
           {
+
             "@type": "Question",
+
             "name": "Where can I position the signature on my PDF?",
+
             "acceptedAnswer": {
+
               "@type": "Answer",
+
               "text": "You can position your signature in the Bottom Right, Bottom Left, Top Right, Top Left, or Center of the document pages."
+
             }
+
           }
+
         ]
+
       }
+
     ]
+
   }
+
   </script>
+
 </head>
 
+
+
 <body data-tool="sign-pdf">
+
   <!-- Global Header -->
+
   <header class="site-header" id="siteHeader">
+
     <div class="container header-inner">
+
       <a class="brand" href="../index.html" aria-label="SmartAssPDF home">
+
         <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="26" height="26" alt="SmartAssPDF Logo"></span>
+
         <span class="brand-name">SmartAss<em>PDF</em></span>
+
       </a>
+
+
 
       <!-- Desktop Navigation with Dropdowns -->
+
       <nav aria-label="Main navigation">
+
         <ul class="nav-desktop">
+
           <li class="nav-item">
+
             <button type="button" class="nav-link is-active" aria-expanded="false" aria-haspopup="true">
+
               <span>Convert</span>
+
               <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+
             </button>
+
             <div class="nav-dropdown">
+
               <a class="nav-dropdown-item" href="ocr-pdf.html"><i class="bi bi-search"></i> <span>OCR PDF</span></a>
+
               <a class="nav-dropdown-item" href="pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> <span>PDF to Word</span></a>
+
               <a class="nav-dropdown-item" href="pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> <span>PDF to Excel</span></a>
+
               <a class="nav-dropdown-item" href="pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> <span>PDF to JPG</span></a>
+
               <a class="nav-dropdown-item" href="pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> <span>PDF to PowerPoint</span></a>
+
               <a class="nav-dropdown-item" href="word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> <span>Word to PDF</span></a>
+
               <a class="nav-dropdown-item" href="excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> <span>Excel to PDF</span></a>
+
               <a class="nav-dropdown-item" href="image-to-webp.html"><i class="bi bi-file-earmark-image"></i> <span>Image to WebP</span></a>
+
               <a class="nav-dropdown-item" href="image-to-pdf.html"><i class="bi bi-images"></i> <span>Image to PDF</span></a>
+
               <a class="nav-dropdown-item" href="html-to-pdf.html"><i class="bi bi-filetype-html"></i> <span>HTML to PDF</span></a>
+
             </div>
+
           </li>
+
           <li class="nav-item">
+
             <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+
               <span>Organize</span>
+
               <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+
             </button>
+
             <div class="nav-dropdown">
+
               <a class="nav-dropdown-item" href="repair-pdf.html"><i class="bi bi-wrench-adjustable"></i> <span>Repair PDF</span></a>
+
               <a class="nav-dropdown-item" href="compare-pdf.html"><i class="bi bi-layout-split"></i> <span>Compare PDFs</span></a>
+
               <a class="nav-dropdown-item" href="merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
+
               <a class="nav-dropdown-item" href="split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+
               <a class="nav-dropdown-item" href="rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
+
               <a class="nav-dropdown-item" href="add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
+
             </div>
+
           </li>
+
           <li class="nav-item">
+
             <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+
               <span>Optimize & Security</span>
+
               <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+
             </button>
+
             <div class="nav-dropdown">
+
               <a class="nav-dropdown-item" href="sanitize-pdf.html"><i class="bi bi-shield-check"></i> <span>Sanitize PDF</span></a>
+
               <a class="nav-dropdown-item" href="sign-pdf.html"><i class="bi bi-pen"></i> <span>Sign PDF</span></a>
+
               <a class="nav-dropdown-item" href="compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+
               <a class="nav-dropdown-item" href="protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
+
               <a class="nav-dropdown-item" href="unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
+
             </div>
+
           </li>
+
           <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+
           <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+
         </ul>
+
       </nav>
 
+
+
       <!-- Header Actions -->
+
       <div class="header-actions">
+
         <button type="button" class="search-trigger-btn" id="searchTriggerBtn" aria-label="Search tools">
+
           <i class="bi bi-search" aria-hidden="true"></i>
+
           <span>Search tools</span>
-          <kbd class="search-kbd">⌘K</kbd>
+
+          <kbd class="search-kbd">âŒ˜K</kbd>
+
         </button>
+
         <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle dark/light theme">
+
           <i class="bi bi-sun-fill" aria-hidden="true"></i>
+
         </button>
+
         <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open navigation menu"
+
           aria-expanded="false">
+
           <span></span><span></span><span></span>
+
         </button>
+
       </div>
+
     </div>
+
   </header>
 
+
+
   <!-- Mobile Drawer Backdrop & Drawer -->
+
   <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop" aria-hidden="true"></div>
+
   <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+
     <div class="mobile-drawer-header">
+
       <a class="brand" href="../index.html">
+
         <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="24" height="24" alt=""></span>
+
         <span class="brand-name">SmartAss<em>PDF</em></span>
+
       </a>
+
       <button type="button" class="file-action-btn" id="drawerCloseBtn" aria-label="Close menu">
+
         <i class="bi bi-x-lg"></i>
+
       </button>
+
     </div>
+
+
 
     <div class="mobile-drawer-nav">
+
       <div>
+
         <div class="mobile-nav-section-title">Convert Tools</div>
+
         <ul class="mobile-nav-list">
+
           <li><a href="ocr-pdf.html"><i class="bi bi-search"></i> OCR PDF</a></li>
+
           <li><a href="pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> PDF to Word</a></li>
+
           <li><a href="pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> PDF to Excel</a></li>
+
           <li><a href="pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> PDF to JPG</a></li>
+
           <li><a href="pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> PDF to PowerPoint</a></li>
+
           <li><a href="word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> Word to PDF</a></li>
+
           <li><a href="excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> Excel to PDF</a></li>
+
           <li><a href="image-to-webp.html"><i class="bi bi-file-earmark-image"></i> Image to WebP</a></li>
+
           <li><a href="image-to-pdf.html"><i class="bi bi-images"></i> Image to PDF</a></li>
+
           <li><a href="html-to-pdf.html"><i class="bi bi-filetype-html"></i> HTML to PDF</a></li>
+
         </ul>
+
       </div>
 
+
+
       <div>
+
         <div class="mobile-nav-section-title">Organize & Optimize</div>
+
         <ul class="mobile-nav-list">
+
           <li><a href="repair-pdf.html"><i class="bi bi-wrench-adjustable"></i> Repair PDF</a></li>
+
           <li><a href="compare-pdf.html"><i class="bi bi-layout-split"></i> Compare PDFs</a></li>
+
           <li><a href="sanitize-pdf.html"><i class="bi bi-shield-check"></i> Sanitize PDF</a></li>
+
           <li><a href="sign-pdf.html"><i class="bi bi-pen"></i> Sign PDF</a></li>
+
           <li><a href="merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
+
           <li><a href="split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
+
           <li><a href="compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a></li>
+
           <li><a href="rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a></li>
+
           <li><a href="add-page-numbers.html"><i class="bi bi-123"></i> Add Page Numbers</a></li>
+
           <li><a href="protect-pdf.html"><i class="bi bi-shield-lock"></i> Protect PDF</a></li>
+
           <li><a href="unlock-pdf.html"><i class="bi bi-unlock"></i> Unlock PDF</a></li>
+
         </ul>
+
       </div>
 
+
+
       <div>
+
         <div class="mobile-nav-section-title">Resources</div>
+
         <ul class="mobile-nav-list">
+
           <li><a href="../faq.html"><i class="bi bi-question-circle"></i> FAQ</a></li>
+
           <li><a href="../about.html"><i class="bi bi-info-circle"></i> About</a></li>
+
           <li><a href="../privacy.html"><i class="bi bi-shield-check"></i> Privacy Policy</a></li>
+
           <li><a href="../terms.html"><i class="bi bi-file-text"></i> Terms of Service</a></li>
+
         </ul>
+
       </div>
+
     </div>
+
   </aside>
 
+
+
   <!-- Quick Search Modal -->
+
   <div class="search-modal-backdrop" id="searchModalBackdrop" role="dialog" aria-modal="true" aria-label="Search tools">
+
     <div class="search-modal">
+
       <div class="search-input-wrap">
+
         <i class="bi bi-search" aria-hidden="true"></i>
+
         <input type="search" class="search-input" id="searchModalInput" placeholder="Search by tool name or format (e.g. Sign, Stamp, PDF)..." autocomplete="off" spellcheck="false">
+
         <button type="button" class="file-action-btn" id="searchModalClose" aria-label="Close search">
+
           <i class="bi bi-x-lg"></i>
+
         </button>
+
       </div>
+
       <div class="search-results" id="searchResults"></div>
+
       <div class="search-modal-footer">
-        <span><kbd class="search-kbd">↑</kbd> <kbd class="search-kbd">↓</kbd> to navigate</span>
-        <span><kbd class="search-kbd">↵</kbd> to select</span>
+
+        <span><kbd class="search-kbd">â†‘</kbd> <kbd class="search-kbd">â†“</kbd> to navigate</span>
+
+        <span><kbd class="search-kbd">â†µ</kbd> to select</span>
+
         <span><kbd class="search-kbd">ESC</kbd> to close</span>
+
       </div>
+
     </div>
+
   </div>
 
+
+
   <!-- Main Tool Page Content -->
+
   <main class="tool-page">
+
     <div class="container container-tool">
+
       <!-- Breadcrumbs -->
+
       <div class="tool-breadcrumbs" data-aos="fade-down">
+
         <a href="../index.html">Home</a>
+
         <i class="bi bi-chevron-right"></i>
+
         <a href="../index.html#tools">Tools</a>
+
         <i class="bi bi-chevron-right"></i>
+
         <span>Sign PDF</span>
+
       </div>
+
+
 
       <!-- Tool Header -->
+
       <div class="tool-header-hero" data-aos="fade-down">
+
         <span class="eyebrow"><i class="bi bi-lightning-charge-fill"></i> FREE ONLINE TOOL</span>
+
         <h1>Sign PDF Online</h1>
+
         <p>Sign documents with verified digital stamps, cursive signatures, and timestamp seals.</p>
+
         <div class="tool-format-pill">
+
           <span>Digital Seal & Verified Stamp</span>
+
         </div>
+
       </div>
+
+
 
       <!-- 3-Step Guided Workflow Bar -->
+
       <div class="sign-workflow-stepper" id="signWorkflowStepper" data-aos="fade-up">
+
         <div class="sign-step-indicator is-active" id="stepIndicator1">
+
           <span class="step-num"><i class="bi bi-file-earmark-pdf"></i></span>
+
           <div class="step-info">
+
             <strong>1. PDF & Signature</strong>
+
             <small>Upload & create</small>
+
           </div>
+
         </div>
+
         <div class="sign-step-arrow"><i class="bi bi-chevron-right"></i></div>
+
         <div class="sign-step-indicator" id="stepIndicator2">
+
           <span class="step-num"><i class="bi bi-arrows-move"></i></span>
+
           <div class="step-info">
+
             <strong>2. Place on PDF</strong>
+
             <small>Position & resize</small>
+
           </div>
+
         </div>
+
         <div class="sign-step-arrow"><i class="bi bi-chevron-right"></i></div>
+
         <div class="sign-step-indicator" id="stepIndicator3">
+
           <span class="step-num"><i class="bi bi-check-circle"></i></span>
+
           <div class="step-info">
+
             <strong>3. Download</strong>
+
             <small>Signed document</small>
+
           </div>
+
         </div>
+
       </div>
+
+
 
       <!-- 2-Column Workspace Layout -->
+
       <div class="tool-workspace-grid" data-aos="fade-up">
+
         <!-- Left: Upload & Processing Panel -->
+
         <div class="workspace-panel card-folded">
+
           <!-- Dropzone -->
+
           <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Upload files">
+
             <div class="drop-icon-box">
+
               <i class="bi bi-cloud-arrow-up"></i>
+
             </div>
+
             <h2>Drop your PDF here to sign</h2>
+
             <p class="dropzone-hint">Upload your PDF document to create and place your verified digital signature.</p>
+
             <input id="fileInput" type="file" multiple class="d-none" aria-label="Select files" style="display:none;">
+
             <button id="browseBtn" class="btn btn-primary" type="button">
+
               <i class="bi bi-folder2-open"></i>
+
               <span>Choose PDF to sign</span>
+
             </button>
+
             <div class="dropzone-specs">
+
               <span>Accepted: <strong>PDF (+ optional PNG signature)</strong></span>
-              <span>•</span>
+
+              <span>â€¢</span>
+
               <span>Max 50 MB per file</span>
+
             </div>
+
           </div>
+
+
 
           <!-- File List -->
+
           <div id="fileList" class="file-list" aria-live="polite" style="display:none;"></div>
 
+
+
           <!-- Tool Options -->
+
           <div id="toolOptions"></div>
 
+
+
           <!-- Process Action Button -->
+
           <button id="processBtn" class="btn btn-primary btn-lg btn-block" type="button" disabled>
+
             <span>Select file to continue</span>
+
           </button>
 
+
+
           <!-- Status & Result Container -->
+
           <div id="statusContainer" aria-live="polite"></div>
+
         </div>
+
+
 
         <!-- Right: Live Interactive Preview Panel -->
+
         <aside class="preview-panel-card card-folded" id="previewPanel">
+
           <div class="preview-header">
+
             <h3><i class="bi bi-eye"></i> <span>Live Preview</span></h3>
+
             <span class="preview-status-badge" id="previewStatus">
+
               <span class="preview-status-dot"></span> Waiting for file
+
             </span>
+
           </div>
+
           <div class="preview-viewport" id="previewViewport">
+
             <!-- Dynamic Preview Content -->
+
           </div>
+
         </aside>
+
       </div>
+
+
 
       <!-- SEO Content, AEO Box & Guide -->
+
       <div class="content-info-grid" data-aos="fade-up">
+
         <article class="content-article card-folded" data-aos="fade-up">
+
           <span class="eyebrow">ABOUT THIS TOOL</span>
+
           <h2>Why Sign Documents with SmartAssPDF?</h2>
+
           <p>Easily execute employment agreements, NDA forms, vendor invoices, and real estate contracts with legal visual verification seals.</p>
 
+
+
           <!-- AEO Direct Answer Box -->
+
           <div class="aeo-box">
+
             <div class="aeo-header">
+
               <div class="aeo-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+
               <div class="aeo-title">Quick Definition & Overview</div>
+
             </div>
+
             <div class="aeo-definition">PDF Signing stamps a cryptographic verification block with the signer's name, UTC timestamp, and optional signature graphic onto the document.</div>
+
             <ul class="aeo-highlights">
+
               <li><i class="bi bi-check-circle-fill"></i> <span>Choice of handwritten cursive text or uploaded signature graphic</span></li>
+
               <li><i class="bi bi-check-circle-fill"></i> <span>Embeds UTC timestamp and audit verification badge</span></li>
+
               <li><i class="bi bi-check-circle-fill"></i> <span>Customizable placement (bottom-right, bottom-left, center)</span></li>
+
             </ul>
+
           </div>
+
+
 
           <div class="tool-specs-summary-grid">
+
             <div class="tool-specs-summary-item">
+
               <small>Input</small>
+
               <strong>PDF / PNG</strong>
+
             </div>
+
             <div class="tool-specs-summary-item">
+
               <small>Output</small>
+
               <strong>Signed PDF</strong>
+
             </div>
+
             <div class="tool-specs-summary-item">
+
               <small>Privacy</small>
+
               <strong>Auto-Cleaned</strong>
+
             </div>
+
             <div class="tool-specs-summary-item">
+
               <small>Cost</small>
+
               <strong>100% Free</strong>
+
             </div>
+
           </div>
+
+
 
           <h3>How to Sign a PDF</h3>
+
           <ol class="content-steps-list">
+
             <li><div class="step-content"><strong>Upload Document</strong><span>Select the PDF requiring your signature.</span></div></li>
+
             <li><div class="step-content"><strong>Configure Signer Info</strong><span>Enter your name and pick your preferred position.</span></div></li>
+
             <li><div class="step-content"><strong>Apply Signature</strong><span>Click 'Process Sign PDF' to stamp the verified seal.</span></div></li>
+
             <li><div class="step-content"><strong>Download Signed PDF</strong><span>Save your legally signed and stamped document.</span></div></li>
+
           </ol>
+
           <h3>Frequently Asked Questions</h3>
+
           <div class="faq-accordion" data-aos="fade-up">
+
             <details class="faq-item">
+
               <summary>
+
                 <span>What signature methods are supported?</span>
+
                 <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
+
               </summary>
+
               <div class="faq-answer">
+
                 <p>SmartAssPDF supports type-based digital seals with timestamp certification, uploaded image signatures (PNG/JPG with transparency), and cryptographic certificate sealing.</p>
+
               </div>
+
             </details>
+
             <details class="faq-item">
+
               <summary>
+
                 <span>Where can I position the signature on my PDF?</span>
+
                 <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
+
               </summary>
+
               <div class="faq-answer">
+
                 <p>You can position your signature in the Bottom Right, Bottom Left, Top Right, Top Left, or Center of the document pages.</p>
+
               </div>
+
             </details>
+
           </div>
+
+
 
           <!-- Cross-Linking -->
+
           <div class="cross-links-section" data-aos="fade-up">
+
             <h3 class="cross-links-title"><i class="bi bi-tools text-primary"></i> Related PDF Tools</h3>
+
             <div class="related-tools-grid">
+
               <a href="protect-pdf.html" class="related-tool-item"><i class="bi bi-shield-lock"></i> Protect PDF</a>
+
               <a href="sanitize-pdf.html" class="related-tool-item"><i class="bi bi-shield-check"></i> Sanitize PDF</a>
+
               <a href="add-watermark.html" class="related-tool-item"><i class="bi bi-shield-shaded"></i> Add Watermark</a>
+
               <a href="merge-pdf.html" class="related-tool-item"><i class="bi bi-plus-square"></i> Merge PDF</a>
+
             </div>
+
           </div>
+
         </article>
 
+
+
         <!-- Quick Facts Sidebar -->
+
         <aside class="facts-sidebar card-folded" data-aos="fade-left" data-aos-delay="100">
+
           <span class="eyebrow">SPECIFICATIONS</span>
+
           <h3>Before You Start</h3>
+
           <ul class="facts-list">
+
             <li><i class="bi bi-check-circle-fill"></i> <span>Maximum file size: 50 MB per document.</span></li>
+
             <li><i class="bi bi-check-circle-fill"></i> <span>Vector and image-based digital stamping.</span></li>
+
             <li><i class="bi bi-check-circle-fill"></i> <span>No registration or account required.</span></li>
+
             <li><i class="bi bi-check-circle-fill"></i> <span>Automatic server cleanup after 30 minutes.</span></li>
+
           </ul>
+
         </aside>
+
       </div>
+
     </div>
+
   </main>
 
+
+
   <!-- Global Footer -->
+
   <footer class="site-footer">
+
     <div class="container">
+
       <div class="footer-grid">
+
         <div class="footer-brand">
+
           <a class="brand" href="../index.html">
+
             <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="24" height="24" alt=""></span>
+
             <span class="brand-name">SmartAss<em>PDF</em></span>
+
           </a>
+
           <p>Free, fast, and practical document workflows built around open-source technology.</p>
+
           <div class="footer-social-links">
+
             <a href="https://www.facebook.com/profile.php?id=61580387357259" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+
             <a href="https://x.com/smartasspdf_com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Twitter X"><i class="bi bi-twitter-x"></i></a>
+
             <a href="https://www.linkedin.com/company/108761055/admin/dashboard/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+
             <a href="https://www.instagram.com/smartasspdf_official/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+
           </div>
+
         </div>
 
+
+
         <div class="footer-col">
+
           <h4>Convert</h4>
+
           <ul class="footer-col-nav">
+
             <li><a href="ocr-pdf.html">OCR PDF</a></li>
+
             <li><a href="pdf-to-word.html">PDF to Word</a></li>
+
             <li><a href="pdf-to-excel.html">PDF to Excel</a></li>
+
             <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
+
             <li><a href="word-to-pdf.html">Word to PDF</a></li>
+
             <li><a href="image-to-webp.html">Image to WebP</a></li>
+
           </ul>
+
         </div>
 
+
+
         <div class="footer-col">
+
           <h4>Organize & Protect</h4>
+
           <ul class="footer-col-nav">
+
             <li><a href="repair-pdf.html">Repair PDF</a></li>
+
             <li><a href="compare-pdf.html">Compare PDFs</a></li>
+
             <li><a href="sanitize-pdf.html">Sanitize PDF</a></li>
+
             <li><a href="sign-pdf.html">Sign PDF</a></li>
+
             <li><a href="merge-pdf.html">Merge PDF</a></li>
+
             <li><a href="split-pdf.html">Split PDF</a></li>
+
             <li><a href="compress-pdf.html">Compress PDF</a></li>
+
             <li><a href="protect-pdf.html">Protect PDF</a></li>
+
           </ul>
+
         </div>
 
+
+
         <div class="footer-col">
+
           <h4>Company & Legal</h4>
+
           <ul class="footer-col-nav">
+
             <li><a href="../blog/index.html">Blog & Guides</a></li>
+
             <li><a href="../about.html">About</a></li>
+
             <li><a href="../faq.html">FAQ</a></li>
+
             <li><a href="../contact.html">Contact</a></li>
+
             <li><a href="../privacy.html">Privacy Policy</a></li>
+
             <li><a href="../cookie-policy.html">Cookie Policy</a></li>
+
             <li><a href="../terms.html">Terms of Service</a></li>
+
           </ul>
+
         </div>
+
       </div>
+
+
 
       <div class="footer-bottom">
-        <small>© 2026 SmartAssPDF. Open-source powered document utilities.</small>
-        <span>Free Tools • No Account Required • Temporary Storage</span>
+
+        <small>Â© 2026 SmartAssPDF. Open-source powered document utilities.</small>
+
+        <span>Free Tools â€¢ No Account Required â€¢ Temporary Storage</span>
+
       </div>
+
     </div>
+
   </footer>
 
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
   <script src="../assets/js/tools-config.js?v=25"></script>
+
   <script src="../assets/js/tool.js?v=25"></script>
+
   <script src="../assets/js/app.js?v=25"></script>
+
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
   <script>
+
     if (typeof AOS !== 'undefined') {
+
       AOS.init({ duration: 600, once: true, offset: 50 });
+
     }
+
   </script>
+
 </body>
+
 </html>
+

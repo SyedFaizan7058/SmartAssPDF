@@ -5,36 +5,35 @@
 ## Primary Capabilities (24 Live Tools)
 
 ### Convert from PDF
-- **OCR PDF**: `/tools/ocr-pdf.html` — Performs Optical Character Recognition using Tesseract OCR to convert scanned documents and flat image PDFs into searchable, selectable text with multi-language support (English, Spanish, French, German).
-- **PDF to Word (DOCX)**: `/tools/pdf-to-word.html` — Converts PDF pages into editable Microsoft Word (.docx) documents with 1:1 layout preservation, tables, vector rules, and embedded graphics.
-- **PDF to Excel (XLSX)**: `/tools/pdf-to-excel.html` — Extracts structured tabular data and matrices into auto-formatted Excel spreadsheets (.xlsx) with numeric cell typing.
-- **PDF to JPG**: `/tools/pdf-to-jpg.html` — Renders PDF pages into high-resolution JPG images (100 to 300 DPI) packaged as a ZIP archive for multi-page documents.
-- **PDF to PowerPoint (PPTX)**: `/tools/pdf-to-ppt.html` — Exports PDF pages into high-fidelity PowerPoint slide decks (.pptx).
+- **OCR PDF**: `/tools/ocr-pdf.html` â€” Performs Optical Character Recognition using Tesseract OCR to convert scanned documents and flat image PDFs into searchable, selectable text with multi-language support (English, Spanish, French, German).
+- **PDF to Word (DOCX)**: `/tools/pdf-to-word.html` â€” Converts PDF pages into editable Microsoft Word (.docx) documents with 1:1 layout preservation, tables, vector rules, and embedded graphics.
+- **PDF to Excel (XLSX)**: `/tools/pdf-to-excel.html` â€” Extracts structured tabular data and matrices into auto-formatted Excel spreadsheets (.xlsx) with numeric cell typing.
+- **PDF to JPG**: `/tools/pdf-to-jpg.html` â€” Renders PDF pages into high-resolution JPG images (100 to 300 DPI) packaged as a ZIP archive for multi-page documents.
+- **PDF to PowerPoint (PPTX)**: `/tools/pdf-to-ppt.html` â€” Exports PDF pages into high-fidelity PowerPoint slide decks (.pptx).
 
 ### Convert to PDF
-- **Word to PDF**: `/tools/word-to-pdf.html` — Converts DOCX files into universal, printer-ready PDF files with full typography and margin preservation.
-- **Excel to PDF**: `/tools/excel-to-pdf.html` — Renders spreadsheet worksheets and tables into paginated, grid-lined PDF documents.
-- **Image to PDF**: `/tools/image-to-pdf.html` — Converts JPG, PNG, and JPEG images into a unified, clean PDF document.
-- **HTML to PDF**: `/tools/html-to-pdf.html` — Renders HTML markup, CSS layouts, web typography, and tables into paginated PDF pages.
+- **Word to PDF**: `/tools/word-to-pdf.html` â€” Converts DOCX files into universal, printer-ready PDF files with full typography and margin preservation.
+- **Excel to PDF**: `/tools/excel-to-pdf.html` â€” Renders spreadsheet worksheets and tables into paginated, grid-lined PDF documents.
+- **Image to PDF**: `/tools/image-to-pdf.html` â€” Converts JPG, PNG, and JPEG images into a unified, clean PDF document.
+- **HTML to PDF**: `/tools/html-to-pdf.html` â€” Renders HTML markup, CSS layouts, web typography, and tables into paginated PDF pages.
 
 ### Optimize, Security & Document Integrity
-- **Repair PDF**: `/tools/repair-pdf.html` — Diagnoses and recovers damaged, unreadable, or corrupted PDF files by parsing broken cross-reference (XREF) tables and restoring orphaned content streams using QPDF and PDFBox.
-- **Compare PDFs**: `/tools/compare-pdf.html` — Performs visual and textual diff analysis between two PDF versions, rendering side-by-side pages with highlighted additions, deletions, and structural alterations.
-- **Sanitize PDF**: `/tools/sanitize-pdf.html` — Strips hidden metadata packets (XMP, EXIF), author names, GPS tags, document revision histories, embedded thumbnails, and tracking IDs for complete privacy before publishing.
-- **Sign PDF**: `/tools/sign-pdf.html` — Applies cryptographic digital certificate signatures (.p12 / PFX) and stamped signature seals onto documents.
-- **Image to WebP**: `/tools/image-to-webp.html` — Converts PNG, JPG, and JPEG images into modern, ultra-compressed WebP format with alpha transparency preservation.
-- **Compress PDF**: `/tools/compress-pdf.html` — Reduces PDF file size by 60–80% using multi-stage image downsampling and object stream optimization.
-- **Protect PDF**: `/tools/protect-pdf.html` — Enforces 256-bit AES password encryption and permission restrictions on PDF files.
-- **Unlock PDF**: `/tools/unlock-pdf.html` — Removes password protection from authorized PDFs when the decryption key is supplied.
-- **Add Watermark**: `/tools/add-watermark.html` — Stamps custom text or graphic watermarks with customizable opacity, rotation, and positioning.
+- **Repair PDF**: `/tools/repair-pdf.html` â€” Diagnoses and recovers damaged, unreadable, or corrupted PDF files by parsing broken cross-reference (XREF) tables and restoring orphaned content streams using QPDF and PDFBox.
+- **Compare PDFs**: `/tools/compare-pdf.html` â€” Performs visual and textual diff analysis between two PDF versions, rendering side-by-side pages with highlighted additions, deletions, and structural alterations.
+- **Sanitize PDF**: `/tools/sanitize-pdf.html` â€” Strips hidden metadata packets (XMP, EXIF), author names, GPS tags, document revision histories, embedded thumbnails, and tracking IDs for complete privacy before publishing.
+- **Sign PDF**: `/tools/sign-pdf.html` â€” Applies cryptographic digital certificate signatures (.p12 / PFX) and stamped signature seals onto documents.
+- **Image to WebP**: `/tools/image-to-webp.html` â€” Converts PNG, JPG, and JPEG images into modern, ultra-compressed WebP format with alpha transparency preservation.
+- **Compress PDF**: `/tools/compress-pdf.html` â€” Reduces PDF file size by 60â€“80% using multi-stage image downsampling and object stream optimization.
+- **Protect PDF**: `/tools/protect-pdf.html` â€” Enforces 256-bit AES password encryption and permission restrictions on PDF files.
+- **Unlock PDF**: `/tools/unlock-pdf.html` â€” Removes password protection from authorized PDFs when the decryption key is supplied.
+- **Add Watermark**: `/tools/add-watermark.html` â€” Stamps custom text or graphic watermarks with customizable opacity, rotation, and positioning.
 
 ### Organize PDF
-- **Merge PDF**: `/tools/merge-pdf.html` — Combines multiple PDF files into one ordered document.
-- **Split PDF**: `/tools/split-pdf.html` — Extracts individual pages or custom ranges (e.g. `1-3, 5, 8-10`) with ZIP bundling.
-- **Extract Pages**: `/tools/extract-pages.html` — Pulls specific page intervals into standalone PDF documents.
-- **Remove Pages**: `/tools/remove-pages.html` — Deletes unwanted pages from any PDF document.
-- **Rotate PDF**: `/tools/rotate-pdf.html` — Rotates PDF pages clockwise by 90, 180, or 270 degrees.
-- **Add Page Numbers**: `/tools/add-page-numbers.html` — Inserts formatted page numbers (e.g. "Page X of Y") into headers or footers.
+- **Merge PDF**: `/tools/merge-pdf.html` â€” Combines multiple PDF files into one ordered document.
+- **Split PDF**: `/tools/split-pdf.html` â€” Extracts individual pages or custom ranges (e.g. `1-3, 5, 8-10`) with ZIP bundling.
+- **Remove Pages**: `/tools/remove-pages.html` â€” Deletes unwanted pages from any PDF document.
+- **Rotate PDF**: `/tools/rotate-pdf.html` â€” Rotates PDF pages clockwise by 90, 180, or 270 degrees.
+- **Add Page Numbers**: `/tools/add-page-numbers.html` â€” Inserts formatted page numbers (e.g. "Page X of Y") into headers or footers.
 
 ## Technology Stack & Architecture
 

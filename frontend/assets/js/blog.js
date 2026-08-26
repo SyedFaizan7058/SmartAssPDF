@@ -1,5 +1,5 @@
 /**
- * SmartAssPDF — Blog System & Article Engine
+ * SmartAssPDF â€” Blog System & Article Engine
  * Provides category filtering, live search on the Blog Hub, and dynamic Table of Contents on Article pages.
  */
 

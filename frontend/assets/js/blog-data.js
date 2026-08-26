@@ -1,5 +1,5 @@
 /**
- * SmartAssPDF — Blog Registry & Knowledge Base Data
+ * SmartAssPDF â€” Blog Registry & Knowledge Base Data
  * Static article metadata, categorization, reading times, and cross-linking associations.
  */
 
