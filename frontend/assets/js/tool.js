@@ -1646,6 +1646,7 @@
     }
 
     renderLivePreview(fullUrl, filename);
+    injectNextToolSuggestion();
     statusContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
@@ -1665,6 +1666,170 @@
   /* ==========================================================================
      6. Direct Download Stream Handler
      ========================================================================== */
+  // Next-tool suggestion map (2-3 related tools per workflow)
+  const NEXT_TOOL_MAP = {
+    'scan-to-pdf': [
+      { name: 'OCR PDF', desc: 'Make scanned PDF searchable', icon: 'bi-search', path: 'ocr-pdf.html' },
+      { name: 'Compress PDF', desc: 'Reduce file size for sharing', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Sign PDF', desc: 'Add visual or digital signature', icon: 'bi-pen', path: 'sign-pdf.html' }
+    ],
+    'pdf-to-word': [
+      { name: 'Protect PDF', desc: 'Password-encrypt document', icon: 'bi-shield-lock', path: 'protect-pdf.html' },
+      { name: 'PDF to Excel', desc: 'Extract tables into XLSX', icon: 'bi-file-earmark-spreadsheet', path: 'pdf-to-excel.html' },
+      { name: 'Compress PDF', desc: 'Reduce file size for email', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' }
+    ],
+    'compress-pdf': [
+      { name: 'Sign PDF', desc: 'Add signature to PDF', icon: 'bi-pen', path: 'sign-pdf.html' },
+      { name: 'Protect PDF', desc: 'Password-protect document', icon: 'bi-shield-lock', path: 'protect-pdf.html' },
+      { name: 'Sanitize PDF', desc: 'Strip hidden metadata', icon: 'bi-shield-check', path: 'sanitize-pdf.html' }
+    ],
+    'ocr-pdf': [
+      { name: 'PDF to Word', desc: 'Export text to editable DOCX', icon: 'bi-file-earmark-word', path: 'pdf-to-word.html' },
+      { name: 'Compress PDF', desc: 'Reduce searchable PDF size', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Sanitize PDF', desc: 'Strip hidden metadata', icon: 'bi-shield-check', path: 'sanitize-pdf.html' }
+    ],
+    'merge-pdf': [
+      { name: 'Compress PDF', desc: 'Reduce merged file size', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Add Page Numbers', desc: 'Insert formatted page numbers', icon: 'bi-123', path: 'add-page-numbers.html' },
+      { name: 'Protect PDF', desc: 'Password-encrypt merged file', icon: 'bi-shield-lock', path: 'protect-pdf.html' }
+    ],
+    'protect-pdf': [
+      { name: 'Sign PDF', desc: 'Sign document before sharing', icon: 'bi-pen', path: 'sign-pdf.html' },
+      { name: 'Unlock PDF', desc: 'Verify decryption & remove locks', icon: 'bi-unlock', path: 'unlock-pdf.html' },
+      { name: 'Sanitize PDF', desc: 'Strip metadata before publishing', icon: 'bi-shield-check', path: 'sanitize-pdf.html' }
+    ],
+    'sign-pdf': [
+      { name: 'Protect PDF', desc: 'Encrypt your signed document', icon: 'bi-shield-lock', path: 'protect-pdf.html' },
+      { name: 'Sanitize PDF', desc: 'Wipe author and revision tags', icon: 'bi-shield-check', path: 'sanitize-pdf.html' },
+      { name: 'Compress PDF', desc: 'Reduce file size for email', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' }
+    ],
+    'split-pdf': [
+      { name: 'Compress PDF', desc: 'Reduce size of split pages', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Merge PDF', desc: 'Recombine select pages', icon: 'bi-files', path: 'merge-pdf.html' },
+      { name: 'Protect PDF', desc: 'Password-encrypt split files', icon: 'bi-shield-lock', path: 'protect-pdf.html' }
+    ],
+    'pdf-to-jpg': [
+      { name: 'Image to WebP', desc: 'Convert JPG to smaller WebP', icon: 'bi-file-earmark-image', path: 'image-to-webp.html' },
+      { name: 'Image to PDF', desc: 'Bundle images into a new PDF', icon: 'bi-images', path: 'image-to-pdf.html' },
+      { name: 'Compress PDF', desc: 'Compress original PDF', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' }
+    ],
+    'word-to-pdf': [
+      { name: 'Protect PDF', desc: 'Add password encryption', icon: 'bi-shield-lock', path: 'protect-pdf.html' },
+      { name: 'Sign PDF', desc: 'Sign your new PDF document', icon: 'bi-pen', path: 'sign-pdf.html' },
+      { name: 'Compress PDF', desc: 'Optimize PDF file size', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' }
+    ],
+    'excel-to-pdf': [
+      { name: 'Protect PDF', desc: 'Password-protect spreadsheet PDF', icon: 'bi-shield-lock', path: 'protect-pdf.html' },
+      { name: 'Merge PDF', desc: 'Combine with other reports', icon: 'bi-files', path: 'merge-pdf.html' },
+      { name: 'Compress PDF', desc: 'Reduce file size for email', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' }
+    ],
+    'image-to-pdf': [
+      { name: 'OCR PDF', desc: 'Make image PDF searchable', icon: 'bi-search', path: 'ocr-pdf.html' },
+      { name: 'Compress PDF', desc: 'Reduce compiled PDF size', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Protect PDF', desc: 'Password-encrypt document', icon: 'bi-shield-lock', path: 'protect-pdf.html' }
+    ],
+    'image-to-webp': [
+      { name: 'Image to PDF', desc: 'Bundle WebP images into a PDF', icon: 'bi-images', path: 'image-to-pdf.html' },
+      { name: 'PDF to JPG', desc: 'Render PDF pages to images', icon: 'bi-file-earmark-image', path: 'pdf-to-jpg.html' },
+      { name: 'Compress PDF', desc: 'Reduce document size', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' }
+    ],
+    'html-to-pdf': [
+      { name: 'Compress PDF', desc: 'Optimize HTML-rendered PDF', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Protect PDF', desc: 'Password-encrypt document', icon: 'bi-shield-lock', path: 'protect-pdf.html' },
+      { name: 'Add Page Numbers', desc: 'Insert formatted page numbers', icon: 'bi-123', path: 'add-page-numbers.html' }
+    ],
+    'rotate-pdf': [
+      { name: 'Compress PDF', desc: 'Reduce size after rotating', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Merge PDF', desc: 'Combine with other documents', icon: 'bi-files', path: 'merge-pdf.html' },
+      { name: 'Protect PDF', desc: 'Password-protect rotated PDF', icon: 'bi-shield-lock', path: 'protect-pdf.html' }
+    ],
+    'add-page-numbers': [
+      { name: 'Protect PDF', desc: 'Password-protect numbered PDF', icon: 'bi-shield-lock', path: 'protect-pdf.html' },
+      { name: 'Compress PDF', desc: 'Reduce file size for sharing', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Sign PDF', desc: 'Sign your numbered document', icon: 'bi-pen', path: 'sign-pdf.html' }
+    ],
+    'remove-pages': [
+      { name: 'Compress PDF', desc: 'Compress clean document', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Merge PDF', desc: 'Combine with other files', icon: 'bi-files', path: 'merge-pdf.html' },
+      { name: 'Add Page Numbers', desc: 'Renumber remaining pages', icon: 'bi-123', path: 'add-page-numbers.html' }
+    ],
+    'unlock-pdf': [
+      { name: 'Compress PDF', desc: 'Optimize unlocked PDF size', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'PDF to Word', desc: 'Convert to editable Word', icon: 'bi-file-earmark-word', path: 'pdf-to-word.html' },
+      { name: 'Sanitize PDF', desc: 'Strip metadata before sharing', icon: 'bi-shield-check', path: 'sanitize-pdf.html' }
+    ],
+    'add-watermark': [
+      { name: 'Protect PDF', desc: 'Encrypt watermarked PDF', icon: 'bi-shield-lock', path: 'protect-pdf.html' },
+      { name: 'Compress PDF', desc: 'Optimize document size', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Sign PDF', desc: 'Sign watermarked document', icon: 'bi-pen', path: 'sign-pdf.html' }
+    ],
+    'compare-pdf': [
+      { name: 'Merge PDF', desc: 'Combine compared versions', icon: 'bi-files', path: 'merge-pdf.html' },
+      { name: 'OCR PDF', desc: 'Run OCR on diff report', icon: 'bi-search', path: 'ocr-pdf.html' },
+      { name: 'Sanitize PDF', desc: 'Strip metadata before sharing', icon: 'bi-shield-check', path: 'sanitize-pdf.html' }
+    ],
+    'repair-pdf': [
+      { name: 'Compress PDF', desc: 'Optimize repaired document', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Sanitize PDF', desc: 'Clean corrupted metadata', icon: 'bi-shield-check', path: 'sanitize-pdf.html' },
+      { name: 'Protect PDF', desc: 'Password-encrypt repaired PDF', icon: 'bi-shield-lock', path: 'protect-pdf.html' }
+    ],
+    'sanitize-pdf': [
+      { name: 'Protect PDF', desc: 'Encrypt sanitized document', icon: 'bi-shield-lock', path: 'protect-pdf.html' },
+      { name: 'Sign PDF', desc: 'Sign document before sharing', icon: 'bi-pen', path: 'sign-pdf.html' },
+      { name: 'Compress PDF', desc: 'Reduce file size for email', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' }
+    ],
+    'pdf-to-excel': [
+      { name: 'PDF to Word', desc: 'Also extract text to Word', icon: 'bi-file-earmark-word', path: 'pdf-to-word.html' },
+      { name: 'Excel to PDF', desc: 'Convert modified sheets to PDF', icon: 'bi-file-earmark-pdf', path: 'excel-to-pdf.html' },
+      { name: 'Compress PDF', desc: 'Compress original PDF', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' }
+    ],
+    'pdf-to-ppt': [
+      { name: 'Compress PDF', desc: 'Compress original PDF', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'PDF to Word', desc: 'Extract text to Word DOCX', icon: 'bi-file-earmark-word', path: 'pdf-to-word.html' },
+      { name: 'Merge PDF', desc: 'Combine multiple decks', icon: 'bi-files', path: 'merge-pdf.html' }
+    ]
+  };
+
+  function injectNextToolSuggestion() {
+    if (!statusContainer) return;
+    if (statusContainer.querySelector('.next-tool-suggestion')) return; // inject only once
+    const tools = NEXT_TOOL_MAP[toolId] || [
+      { name: 'Compress PDF', desc: 'Reduce file size for sharing', icon: 'bi-file-earmark-zip', path: 'compress-pdf.html' },
+      { name: 'Protect PDF', desc: 'Password-encrypt document', icon: 'bi-shield-lock', path: 'protect-pdf.html' }
+    ];
+    if (!tools || !tools.length) return;
+
+    const el = document.createElement('div');
+    el.className = 'next-tool-suggestion';
+    el.setAttribute('aria-label', 'Next suggested tools');
+
+    let listHtml = '';
+    tools.slice(0, 3).forEach(t => {
+      listHtml +=
+        '<a href="' + escapeHtml(t.path) + '" class="next-tool-item">' +
+          '<div class="next-tool-item-icon"><i class="bi ' + escapeHtml(t.icon) + '" aria-hidden="true"></i></div>' +
+          '<div class="next-tool-item-text">' +
+            '<strong>' + escapeHtml(t.name) + '</strong>' +
+            '<span>' + escapeHtml(t.desc) + '</span>' +
+          '</div>' +
+          '<i class="bi bi-chevron-right next-tool-item-arrow" aria-hidden="true"></i>' +
+        '</a>';
+    });
+
+    el.innerHTML =
+      '<div class="next-tool-header"><i class="bi bi-stars"></i> Next Suggested Tools</div>' +
+      '<div class="next-tools-list">' +
+        listHtml +
+      '</div>';
+
+    const card = statusContainer.querySelector('.success-card');
+    if (card) {
+      card.appendChild(el);
+    } else {
+      statusContainer.appendChild(el);
+    }
+  }
+
   async function downloadResult(url, filename, button) {
     button.disabled = true;
     const originalText = button.innerHTML;
@@ -1683,6 +1848,9 @@
 
         button.innerHTML = `<i class="bi bi-check2-circle"></i> Downloaded!`;
         if (window.SmartAssToast) window.SmartAssToast.show("Download started successfully!", "success");
+
+        // Inject next-tool suggestion after successful download
+        injectNextToolSuggestion();
 
         setTimeout(() => {
           button.disabled = false;
@@ -1706,6 +1874,9 @@
 
       button.innerHTML = `<i class="bi bi-check2-circle"></i> Downloaded!`;
       if (window.SmartAssToast) window.SmartAssToast.show("Download started successfully!", "success");
+
+      // Inject next-tool suggestion after successful download
+      injectNextToolSuggestion();
 
       setTimeout(() => {
         button.disabled = false;

@@ -1,6 +1,6 @@
-# SmartAssPDF â€” Complete Technical, Architecture & Tool Knowledge Base
+# SmartAssPDF — Complete Technical, Architecture & Tool Knowledge Base
 
-> SmartAssPDF (https://smartasspdf.com) is a private, open-source-oriented document utility platform providing 24 live conversion, optical character recognition (OCR), repair, diffing, sanitization, signing, merging, splitting, compression, and security tools.
+> SmartAssPDF (https://smartasspdf.com) is a private, open-source-oriented document utility platform providing 25 live conversion, optical character recognition (OCR), scanning, repair, diffing, sanitization, signing, merging, splitting, compression, and security tools.
 
 ---
 
@@ -10,8 +10,9 @@ SmartAssPDF operates under a **Zero-Permanent-Storage Architecture**:
 1. **Stateless Processing**: There is no user database, no account login requirement, and no credit card paywall.
 2. **Isolated Job Directories**: Each upload is assigned a unique UUID temporary directory on the host server (e.g. `/tmp/smartasspdf/{uuid}/`).
 3. **Scheduled Cleanup**: All input files and converted outputs are scheduled for automatic hard deletion by a background cleanup daemon after 30 minutes.
-4. **Dynamic Output Filenames**: Results retain the original uploaded filename base (e.g. `Contract_2026.pdf` â†’ `Contract_2026_searchable.pdf`, `Contract_2026.docx`, or `Contract_2026_signed.pdf`).
+4. **Dynamic Output Filenames**: Results retain the original uploaded filename base (e.g. `Contract_2026.pdf` -> `Contract_2026_searchable.pdf`, `Contract_2026.docx`, or `Contract_2026_signed.pdf`).
 5. **No AI Training on User Data**: Uploaded document streams are never logged, indexed, or used to fine-tune AI/ML models.
+6. **Scan to PDF is 100% Client-Side**: The Scan to PDF tool processes all images and compiles PDFs inside the browser using PDF-Lib. No image or PDF data is sent to any server.
 
 ---
 
@@ -27,127 +28,132 @@ SmartAssPDF operates under a **Zero-Permanent-Storage Architecture**:
   - **Apache POI 5.x**: Microsoft Office OpenXML document handler for Word (.docx), Excel (.xlsx), and PowerPoint (.pptx).
   - **LibreOffice Headless**: Native document compilation engine for high-fidelity DOCX, XLSX, and HTML rendering.
   - **Pillow (PIL)**: High-performance image processing and WebP encoder preserving alpha transparency channels.
+  - **PDF-Lib**: Client-side JavaScript PDF library used exclusively by the Scan to PDF tool for browser-based PDF compilation.
 
 ---
 
-## 3. Tool Specifications & Technical Capabilities (24 Live Tools)
+## 3. Tool Specifications & Technical Capabilities (25 Live Tools)
+
+### Scan to PDF (`/tools/scan-to-pdf.html`)
+- **Input**: Camera capture (via WebRTC MediaDevices API) or uploaded image files (.jpg, .jpeg, .png, .webp, .heic) up to 30 pages per session.
+- **Output**: Multi-page PDF document (.pdf) compiled entirely client-side.
+- **Processing**: Fully browser-based using PDF-Lib. Captures frames via rear camera or front webcam, applies interactive 4-corner perspective warp (homography transform) to correct skewed document photos, applies document enhancement filters (Original, Magic Color, Document B&W, Grayscale, Auto Enhance), sequences multiple pages, and compiles into a standard A4/Letter/Legal PDF.
+- **Privacy**: Zero server involvement. All processing occurs in browser memory. No data is transmitted.
+- **Special Features**: Hardware flashlight/torch support on mobile, page reorder/rotate/re-crop controls, PDF page size selection (A4, US Letter, Legal).
 
 ### OCR PDF (`/tools/ocr-pdf.html`)
-- **Input**: Single scanned or image-based PDF (`.pdf`) up to 50 MB.
-- **Output**: Searchable and selectable PDF document (`.pdf`).
+- **Input**: Single scanned or image-based PDF (.pdf) up to 50 MB.
+- **Output**: Searchable and selectable PDF document (.pdf).
 - **Processing**: Extracts rasterized page images, executes multi-language Tesseract OCR character segmentation, and overlays an invisible, selectable text font layer aligned with underlying bitmap characters.
 - **Supported Languages**: English (`eng`), Spanish (`spa`), French (`fra`), German (`deu`).
 
 ### Repair PDF (`/tools/repair-pdf.html`)
-- **Input**: Corrupted, damaged, or unreadable PDF (`.pdf`).
-- **Output**: Clean, standardized PDF document (`.pdf`).
+- **Input**: Corrupted, damaged, or unreadable PDF (.pdf).
+- **Output**: Clean, standardized PDF document (.pdf).
 - **Processing**: Executes QPDF deep stream reconstruction to rebuild damaged cross-reference (XREF) tables, recovers orphaned object streams, and re-encapsulates valid page trees.
 
 ### Compare PDFs (`/tools/compare-pdf.html`)
-- **Input**: Two PDF documents (`.pdf`) representing original and modified versions.
-- **Output**: Visual & textual comparison diff report (`.pdf`).
+- **Input**: Two PDF documents (.pdf) representing original and modified versions.
+- **Output**: Visual & textual comparison diff report (.pdf).
 - **Processing**: Rasterizes matching page pairs at high resolution, computes pixel-level delta masks to highlight visual layout changes (red for deletions, green for additions), and extracts text blocks to identify textual modifications.
 
 ### Sanitize PDF (`/tools/sanitize-pdf.html`)
-- **Input**: Single PDF document (`.pdf`).
-- **Output**: Sanitized, privacy-cleared PDF (`.pdf`).
+- **Input**: Single PDF document (.pdf).
+- **Output**: Sanitized, privacy-cleared PDF (.pdf).
 - **Processing**: Strips Extensible Metadata Platform (XMP) packets, Document Information Dictionary entries (Author, Creator, Producer, Title, Keywords), creation/modification timestamps, revision histories, embedded thumbnail streams, and unique document tracking UUIDs.
 
 ### Sign PDF (`/tools/sign-pdf.html`)
-- **Input**: Single PDF (`.pdf`), optional signature image (`.png`, `.jpg`), signer name, and optional cryptographic certificate (`.p12` / `.pfx`).
-- **Output**: Digitally stamped and/or cryptographically signed PDF (`.pdf`).
+- **Input**: Single PDF (.pdf), optional signature image (.png, .jpg), signer name, and optional cryptographic certificate (.p12 / .pfx).
+- **Output**: Digitally stamped and/or cryptographically signed PDF (.pdf).
 - **Processing**: Renders clean vector signature badge containing signer identity and UTC timestamp at designated page positions (Bottom-Right, Bottom-Left, Top-Right, Top-Left, or Center).
 
 ### PDF to Word (`/tools/pdf-to-word.html`)
-- **Input**: Single PDF (`.pdf`) up to 50 MB.
-- **Output**: Native Microsoft Word document (`.docx`).
+- **Input**: Single PDF (.pdf) up to 50 MB.
+- **Output**: Native Microsoft Word document (.docx).
 - **Processing**: High-fidelity page-canvas extraction preserving fonts, vector divider lines, table structures, margins, and embedded graphics.
 
 ### PDF to Excel (`/tools/pdf-to-excel.html`)
-- **Input**: Single PDF (`.pdf`).
-- **Output**: Microsoft Excel workbook (`.xlsx`).
+- **Input**: Single PDF (.pdf).
+- **Output**: Microsoft Excel workbook (.xlsx).
 - **Processing**: PyMuPDF table lattice detection and coordinate parsing with auto-fitted columns, numeric cell typing, and header styling.
 
 ### PDF to JPG (`/tools/pdf-to-jpg.html`)
-- **Input**: Single PDF (`.pdf`).
-- **Output**: Single JPG for 1-page documents, or a `.zip` archive containing numbered JPG images (`page-001.jpg`, etc.) for multi-page PDFs.
+- **Input**: Single PDF (.pdf).
+- **Output**: Single JPG for 1-page documents, or a .zip archive containing numbered JPG images (`page-001.jpg`, etc.) for multi-page PDFs.
 - **Options**: Selectable DPI rendering (100 DPI web, 150 DPI balanced, 200 DPI high-res, 300 DPI print).
 
 ### PDF to PowerPoint (`/tools/pdf-to-ppt.html`)
-- **Input**: Single PDF (`.pdf`).
-- **Output**: Microsoft PowerPoint presentation (`.pptx`).
+- **Input**: Single PDF (.pdf).
+- **Output**: Microsoft PowerPoint presentation (.pptx).
 - **Processing**: Page-canvas slide generation maintaining aspect ratios and slide boundaries.
 
 ### Word to PDF (`/tools/word-to-pdf.html`)
-- **Input**: Microsoft Word document (`.docx`).
-- **Output**: Standard PDF (`.pdf`).
+- **Input**: Microsoft Word document (.docx).
+- **Output**: Standard PDF (.pdf).
 - **Processing**: Headless document compiler preserving 100% of formatting, margins, tables, and typography.
 
 ### Excel to PDF (`/tools/excel-to-pdf.html`)
-- **Input**: Microsoft Excel spreadsheet (`.xlsx`, `.xls`).
-- **Output**: Paginated PDF document (`.pdf`).
+- **Input**: Microsoft Excel spreadsheet (.xlsx, .xls).
+- **Output**: Paginated PDF document (.pdf).
 - **Processing**: Renders genuine spreadsheet gridlines with cell borders and formulas.
 
 ### Image to WebP (`/tools/image-to-webp.html`)
-- **Input**: Single or multiple image files (`.png`, `.jpg`, `.jpeg`) up to 20 files.
-- **Output**: `.webp` image or `.zip` archive containing compressed WebP images.
+- **Input**: Single or multiple image files (.png, .jpg, .jpeg) up to 20 files.
+- **Output**: .webp image or .zip archive containing compressed WebP images.
 - **Processing**: High-efficiency WebP compression preserving alpha transparency with configurable quality levels.
 
 ### Image to PDF (`/tools/image-to-pdf.html`)
-- **Input**: Single or multiple image files (`.jpg`, `.jpeg`, `.png`) up to 20 files.
-- **Output**: Single consolidated PDF (`.pdf`).
+- **Input**: Single or multiple image files (.jpg, .jpeg, .png) up to 20 files.
+- **Output**: Single consolidated PDF (.pdf).
 - **Processing**: Scales and centers each image onto standard A4 pages preserving original aspect ratios.
 
 ### HTML to PDF (`/tools/html-to-pdf.html`)
-- **Input**: Local HTML file (`.html`, `.htm`).
-- **Output**: Visual rendered PDF document (`.pdf`).
+- **Input**: Local HTML file (.html, .htm).
+- **Output**: Visual rendered PDF document (.pdf).
 - **Processing**: Renders full CSS styles, layouts, typography, and tables into PDF.
 
 ### Merge PDF (`/tools/merge-pdf.html`)
-- **Input**: Two or more PDF files (`.pdf`) up to 20 files.
-- **Output**: Single combined PDF (`.pdf`).
+- **Input**: Two or more PDF files (.pdf) up to 20 files.
+- **Output**: Single combined PDF (.pdf).
 - **Processing**: Uses PDFMergerUtility to concatenate page trees and metadata in designated upload order.
 
 ### Split PDF (`/tools/split-pdf.html`)
-- **Input**: Single PDF (`.pdf`).
-- **Output**: Single PDF (for single range) or `.zip` archive (for multiple ranges).
+- **Input**: Single PDF (.pdf).
+- **Output**: Single PDF (for single range) or .zip archive (for multiple ranges).
 - **Options**: Page range expressions (e.g. `1-3`, `5`, `8-12`).
 
-- **Input**: Single PDF (`.pdf`).
-- **Output**: Standalone PDF containing specified pages.
-
 ### Remove Pages (`/tools/remove-pages.html`)
-- **Input**: Single PDF (`.pdf`).
+- **Input**: Single PDF (.pdf).
 - **Output**: Clean PDF with specified pages excised.
 
 ### Compress PDF (`/tools/compress-pdf.html`)
-- **Input**: Single PDF (`.pdf`).
-- **Output**: Optimized PDF (`.pdf`).
-- **Processing**: Multi-stage image downsampling and object stream optimization yielding 60â€“80% file size reduction.
+- **Input**: Single PDF (.pdf).
+- **Output**: Optimized PDF (.pdf).
+- **Processing**: Multi-stage image downsampling and object stream optimization yielding 60-80% file size reduction.
 
 ### Rotate PDF (`/tools/rotate-pdf.html`)
-- **Input**: Single PDF (`.pdf`).
-- **Output**: Rotated PDF (`.pdf`).
-- **Options**: Clockwise rotation by 90Â°, 180Â°, or 270Â°.
+- **Input**: Single PDF (.pdf).
+- **Output**: Rotated PDF (.pdf).
+- **Options**: Clockwise rotation by 90°, 180°, or 270°.
 
 ### Add Page Numbers (`/tools/add-page-numbers.html`)
-- **Input**: Single PDF (`.pdf`).
-- **Output**: Numbered PDF (`.pdf`).
+- **Input**: Single PDF (.pdf).
+- **Output**: Numbered PDF (.pdf).
 - **Options**: Header or Footer positioning, custom numbering formats.
 
 ### Add Watermark (`/tools/add-watermark.html`)
-- **Input**: Single PDF (`.pdf`).
-- **Output**: Watermarked PDF (`.pdf`).
+- **Input**: Single PDF (.pdf).
+- **Output**: Watermarked PDF (.pdf).
 - **Options**: Custom text or image overlay with angle, opacity, and scaling controls.
 
 ### Protect PDF (`/tools/protect-pdf.html`)
-- **Input**: Single PDF (`.pdf`) + User Password.
-- **Output**: Encrypted PDF (`.pdf`).
+- **Input**: Single PDF (.pdf) + User Password.
+- **Output**: Encrypted PDF (.pdf).
 - **Security**: 256-bit AES encryption standard with permission flags.
 
 ### Unlock PDF (`/tools/unlock-pdf.html`)
-- **Input**: Password-protected PDF (`.pdf`) + valid password.
-- **Output**: Unrestricted, decrypted PDF (`.pdf`).
+- **Input**: Password-protected PDF (.pdf) + valid password.
+- **Output**: Unrestricted, decrypted PDF (.pdf).
 
 ---
 

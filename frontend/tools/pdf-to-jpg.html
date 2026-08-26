@@ -1,490 +1,1026 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PDF to JPG Converter Online Free | SmartAssPDF</title>
-  <meta name="description" content="Render PDF document pages into high-resolution JPG images. Free online tool with client-side verification and temporary processing.">
-  <link rel="canonical" href="https://smartasspdf.com/tools/pdf-to-jpg.html">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="PDF to JPG Converter Online Free | SmartAssPDF">
-  <meta property="og:description" content="Render PDF document pages into high-resolution JPG images.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://smartasspdf.com/tools/pdf-to-jpg.html">
-  <meta property="og:image" content="https://smartasspdf.com/assets/images/og-banner.png">
-  <meta property="og:site_name" content="SmartAssPDF">
-
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PDF to JPG Converter Online Free | SmartAssPDF">
-  <meta name="twitter:description" content="Render PDF document pages into high-resolution JPG images.">
-  <meta name="twitter:image" content="https://smartasspdf.com/assets/images/og-banner.png">
-
-  <link rel="icon" href="../assets/images/favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
-  <link rel="manifest" href="../site.webmanifest">
-
-  <!-- Immediate Theme Initializer to Prevent FOUC -->
-  <script>
-    (function () {
-      const savedTheme = localStorage.getItem('smartasspdf_theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.setAttribute('data-theme', savedTheme || (prefersDark ? 'dark' : 'light'));
-    })();
-  </script>
-
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <link href="../assets/css/app.css?v=25" rel="stylesheet">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebApplication",
-        "name": "PDF to JPG — SmartAssPDF",
-        "url": "https://smartasspdf.com/tools/pdf-to-jpg.html",
-        "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "Web",
-        "description": "Render PDF document pages into high-resolution JPG images.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://smartasspdf.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://smartasspdf.com/#tools" },
-          { "@type": "ListItem", "position": 3, "name": "PDF to JPG", "item": "https://smartasspdf.com/tools/pdf-to-jpg.html" }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [{"@type": "Question", "name": "How are multi-page PDFs exported?", "acceptedAnswer": {"@type": "Answer", "text": "Single-page documents download as a direct .jpg file; documents with 2+ pages download as an organized .zip containing numbered images (e.g. page_001.jpg)."}}]
-      }
-    ]
-  }
-  </script>
-</head>
-
-<body data-tool="pdf-to-jpg">
-  <!-- Global Header — Identical Dropdown Navbar across all pages -->
-  <header class="site-header" id="siteHeader">
-    <div class="container header-inner">
-      <a class="brand" href="../index.html" aria-label="SmartAssPDF home">
-        <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="26" height="26" alt="SmartAssPDF Logo"></span>
-        <span class="brand-name">SmartAss<em>PDF</em></span>
-      </a>
-
-      <!-- Desktop Navigation with Dropdowns -->
-      <nav aria-label="Main navigation">
-        <ul class="nav-desktop">
-          <li class="nav-item">
-            <button type="button" class="nav-link is-active" aria-expanded="false" aria-haspopup="true">
-              <span>Convert</span>
-              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
-            </button>
-            <div class="nav-dropdown">
-              <a class="nav-dropdown-item" href="pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> <span>PDF to Word</span></a>
-              <a class="nav-dropdown-item" href="pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> <span>PDF to Excel</span></a>
-              <a class="nav-dropdown-item" href="pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> <span>PDF to JPG</span></a>
-              <a class="nav-dropdown-item" href="pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> <span>PDF to PowerPoint</span></a>
-              <a class="nav-dropdown-item" href="word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> <span>Word to PDF</span></a>
-              <a class="nav-dropdown-item" href="excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> <span>Excel to PDF</span></a>
-              <a class="nav-dropdown-item" href="image-to-webp.html"><i class="bi bi-file-earmark-image"></i> <span>Image to WebP</span></a>
-              <a class="nav-dropdown-item" href="image-to-pdf.html"><i class="bi bi-images"></i> <span>Image to PDF</span></a>
-              <a class="nav-dropdown-item" href="html-to-pdf.html"><i class="bi bi-filetype-html"></i> <span>HTML to PDF</span></a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
-              <span>Organize</span>
-              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
-            </button>
-            <div class="nav-dropdown">
-              <a class="nav-dropdown-item" href="merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
-              <a class="nav-dropdown-item" href="split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
-              <a class="nav-dropdown-item" href="rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
-              <a class="nav-dropdown-item" href="add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
-              <span>Optimize & Security</span>
-              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
-            </button>
-            <div class="nav-dropdown">
-              <a class="nav-dropdown-item" href="compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
-              <a class="nav-dropdown-item" href="protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
-              <a class="nav-dropdown-item" href="unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
-            </div>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
-          <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
-        </ul>
-      </nav>
-
-      <!-- Header Actions -->
-      <div class="header-actions">
-        <button type="button" class="search-trigger-btn" id="searchTriggerBtn" aria-label="Search tools">
-          <i class="bi bi-search" aria-hidden="true"></i>
-          <span>Search tools</span>
-          <kbd class="search-kbd">?K</kbd>
-        </button>
-        <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle dark/light theme">
-          <i class="bi bi-sun-fill" aria-hidden="true"></i>
-        </button>
-        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open navigation menu"
-          aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Drawer Backdrop & Drawer -->
-  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop" aria-hidden="true"></div>
-  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
-    <div class="mobile-drawer-header">
-      <a class="brand" href="../index.html">
-        <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="24" height="24" alt=""></span>
-        <span class="brand-name">SmartAss<em>PDF</em></span>
-      </a>
-      <button type="button" class="file-action-btn" id="drawerCloseBtn" aria-label="Close menu">
-        <i class="bi bi-x-lg"></i>
-      </button>
-    </div>
-
-    <div class="mobile-drawer-nav">
-      <div>
-        <div class="mobile-nav-section-title">Convert Tools</div>
-        <ul class="mobile-nav-list">
-          <li><a href="pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> PDF to Word</a></li>
-          <li><a href="pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> PDF to Excel</a></li>
-          <li><a href="pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> PDF to JPG</a></li>
-          <li><a href="pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> PDF to PowerPoint</a></li>
-          <li><a href="word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> Word to PDF</a></li>
-          <li><a href="excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> Excel to PDF</a></li>
-          <li><a href="image-to-webp.html"><i class="bi bi-file-earmark-image"></i> Image to WebP</a></li>
-          <li><a href="image-to-pdf.html"><i class="bi bi-images"></i> Image to PDF</a></li>
-          <li><a href="html-to-pdf.html"><i class="bi bi-filetype-html"></i> HTML to PDF</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="mobile-nav-section-title">Organize & Optimize</div>
-        <ul class="mobile-nav-list">
-          <li><a href="merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
-          <li><a href="split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
-          <li><a href="compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a></li>
-          <li><a href="rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a></li>
-          <li><a href="add-page-numbers.html"><i class="bi bi-123"></i> Add Page Numbers</a></li>
-          <li><a href="protect-pdf.html"><i class="bi bi-shield-lock"></i> Protect PDF</a></li>
-          <li><a href="unlock-pdf.html"><i class="bi bi-unlock"></i> Unlock PDF</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="mobile-nav-section-title">Resources</div>
-        <ul class="mobile-nav-list">
-          <li><a href="../faq.html"><i class="bi bi-question-circle"></i> FAQ</a></li>
-          <li><a href="../about.html"><i class="bi bi-info-circle"></i> About</a></li>
-          <li><a href="../privacy.html"><i class="bi bi-shield-check"></i> Privacy Policy</a></li>
-          <li><a href="../terms.html"><i class="bi bi-file-text"></i> Terms of Service</a></li>
-        </ul>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Quick Search Modal (Cmd+K) -->
-  <div class="search-modal-backdrop" id="searchModalBackdrop" role="dialog" aria-modal="true" aria-label="Search tools">
-    <div class="search-modal">
-      <div class="search-input-wrap">
-        <i class="bi bi-search" aria-hidden="true"></i>
-        <input type="search" class="search-input" id="searchModalInput" placeholder="Search by tool name or format (e.g. Word, Split, JPG)..." autocomplete="off" spellcheck="false">
-        <button type="button" class="file-action-btn" id="searchModalClose" aria-label="Close search">
-          <i class="bi bi-x-lg"></i>
-        </button>
-      </div>
-      <div class="search-results" id="searchResults"></div>
-      <div class="search-modal-footer">
-        <span><kbd class="search-kbd">?</kbd> <kbd class="search-kbd">?</kbd> to navigate</span>
-        <span><kbd class="search-kbd">?</kbd> to select</span>
-        <span><kbd class="search-kbd">ESC</kbd> to close</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Tool Page Content -->
-  <main class="tool-page">
-    <div class="container container-tool">
-      <!-- Breadcrumbs -->
-      <div class="tool-breadcrumbs" data-aos="fade-down">
-        <a href="../index.html">Home</a>
-        <i class="bi bi-chevron-right"></i>
-        <a href="../index.html#tools">Tools</a>
-        <i class="bi bi-chevron-right"></i>
-        <span>PDF to JPG</span>
-      </div>
-
-      <!-- Tool Header -->
-      <div class="tool-header-hero" data-aos="fade-down">
-        <span class="eyebrow"><i class="bi bi-lightning-charge-fill"></i> FREE ONLINE TOOL</span>
-        <h1>PDF to JPG Converter</h1>
-        <p>Render PDF document pages into high-resolution JPG images.</p>
-        <div class="tool-format-pill">
-          <span>PDF ? JPG</span>
-        </div>
-      </div>
-
-      <!-- 2-Column Workspace Layout -->
-      <div class="tool-workspace-grid" data-aos="fade-up">
-        <!-- Left: Upload & Processing Panel -->
-        <div class="workspace-panel card-folded">
-          <!-- Dropzone -->
-          <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Upload files">
-            <div class="drop-icon-box">
-              <i class="bi bi-cloud-arrow-up"></i>
-            </div>
-            <h2>Drop your PDF file here</h2>
-            <p class="dropzone-hint">or choose a file from your device. SmartAssPDF checks format compatibility instantly.</p>
-            <input id="fileInput" type="file" class="d-none" aria-label="Select files" style="display:none;">
-            <button id="browseBtn" class="btn btn-primary" type="button">
-              <i class="bi bi-folder2-open"></i>
-              <span>Choose PDF file</span>
-            </button>
-            <div class="dropzone-specs">
-              <span>Accepted: <strong>PDF</strong></span>
-              <span>•</span>
-              <span>Max 50 MB per file</span>
-            </div>
-          </div>
-
-          <!-- File List -->
-          <div id="fileList" class="file-list" aria-live="polite" style="display:none;"></div>
-
-          <!-- Tool Options -->
-          <div id="toolOptions"></div>
-
-          <!-- Process Action Button -->
-          <button id="processBtn" class="btn btn-primary btn-lg btn-block" type="button" disabled>
-            <span>Process PDF to JPG</span>
-            <i class="bi bi-arrow-right"></i>
-          </button>
-
-          <!-- Status & Result Container -->
-          <div id="statusContainer" aria-live="polite"></div>
-        </div>
-
-        <!-- Right: Live Interactive Preview Panel -->
-        <aside class="preview-panel-card card-folded" id="previewPanel">
-          <div class="preview-header">
-            <h3><i class="bi bi-eye"></i> <span>Live Preview</span></h3>
-            <span class="preview-status-badge" id="previewStatus">
-              <span class="preview-status-dot"></span> Waiting for file
-            </span>
-          </div>
-          <div class="preview-viewport" id="previewViewport">
-            <!-- Dynamic Preview Content -->
-          </div>
-        </aside>
-      </div>
-
-      <!-- AdSense Slot (Above How-To / Content) -->
-      <div class="ad-slot-container" style="margin-top: 48px;">
-        <div class="ad-slot ad-slot-leaderboard">
-          <span class="ad-badge">ADVERTISEMENT</span>
-          <span class="ad-slot-placeholder-text">Responsive Ad Placement</span>
-        </div>
-      </div>
-
-      <!-- SEO Content, AEO Box & Guide -->
-      <div class="content-info-grid" data-aos="fade-up">
-        <article class="content-article card-folded" data-aos="fade-up">
-          <span class="eyebrow">ABOUT THIS TOOL</span>
-          <h2>Why use SmartAssPDF for PDF to JPG?</h2>
-          <p>Extract and render each PDF page into high-quality JPEG images with selectable DPI resolution.</p>
-
-          <!-- AEO Direct Answer Box -->
-          <div class="aeo-box">
-            <div class="aeo-header">
-              <div class="aeo-icon"><i class="bi bi-lightning-charge-fill"></i></div>
-              <div class="aeo-title">Quick Definition & Overview</div>
-            </div>
-            <div class="aeo-definition">PDF to JPG conversion rasterizes vector PDF pages into standalone JPEG image files at designated resolutions (72 to 300 DPI), creating direct image downloads or multi-page ZIP archives.</div>
-            <ul class="aeo-highlights">
-              <li><i class="bi bi-check-circle-fill"></i> <span>Outputs individual JPG or multi-page ZIP archive</span></li><li><i class="bi bi-check-circle-fill"></i> <span>Selectable DPI rendering (72 DPI, 150 DPI, 300 DPI)</span></li><li><i class="bi bi-check-circle-fill"></i> <span>Preserves colors, diagrams, and typography</span></li>
-            </ul>
-          </div>
-
-          <div class="tool-specs-summary-grid">
-            <div class="tool-specs-summary-item">
-              <small>Input</small>
-              <strong>PDF</strong>
-            </div>
-            <div class="tool-specs-summary-item">
-              <small>Output</small>
-              <strong>JPG / ZIP</strong>
-            </div>
-            <div class="tool-specs-summary-item">
-              <small>Security</small>
-              <strong>Auto-Deleted</strong>
-            </div>
-            <div class="tool-specs-summary-item">
-              <small>Cost</small>
-              <strong>100% Free</strong>
-            </div>
-          </div>
-
-          <h3>How to use PDF to JPG</h3>
-          <ol class="content-steps-list">
-            <li><div class="step-content"><strong>Upload PDF</strong><span>Drop your PDF file into the workspace.</span></div></li>
-<li><div class="step-content"><strong>Select DPI Quality</strong><span>Choose between 72 DPI (web), 150 DPI (standard), or 300 DPI (print).</span></div></li>
-<li><div class="step-content"><strong>Render Images</strong><span>Click 'Process PDF to JPG' to render pages into JPEG images.</span></div></li>
-<li><div class="step-content"><strong>Download Output</strong><span>Save your image file or extract the multi-page ZIP archive.</span></div></li>
-          </ol>
-
-          <!-- In-Content AdSlot (Above FAQ) -->
-          <div class="ad-slot-container" style="margin: 28px 0;">
-            <div class="ad-slot ad-slot-inline">
-              <span class="ad-badge">ADVERTISEMENT</span>
-              <span class="ad-slot-placeholder-text">Responsive Ad Placement</span>
-            </div>
-          </div>
-
-          <h3>Frequently Asked Questions</h3>
-          <div class="faq-accordion" data-aos="fade-up">
-            <details class="faq-item">
-            <summary>
-              <span>How are multi-page PDFs exported?</span>
-              <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
-            </summary>
-            <div class="faq-answer">
-              Single-page documents download as a direct .jpg file; documents with 2+ pages download as an organized .zip containing numbered images (e.g. page_001.jpg).
-            </div>
-          </details>
-          </div>
-
-          <!-- Cross-Linking: Related Tools -->
-          <div class="cross-links-section" data-aos="fade-up">
-            <h3 class="cross-links-title"><i class="bi bi-tools text-primary"></i> Related PDF Tools</h3>
-            <div class="related-tools-grid">
-              <a href="jpg-to-pdf.html" class="related-tool-item"><i class="bi bi-image"></i> JPG to PDF</a><a href="image-to-pdf.html" class="related-tool-item"><i class="bi bi-images"></i> Image to PDF</a><a href="compress-pdf.html" class="related-tool-item"><i class="bi bi-arrows-collapse"></i> Compress PDF</a><a href="rotate-pdf.html" class="related-tool-item"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a>
-            </div>
-          </div>
-
-          <!-- Cross-Linking: Related Guides -->
-          <div class="cross-links-section" data-aos="fade-up">
-            <h3 class="cross-links-title"><i class="bi bi-journal-richtext text-primary"></i> Related Guides & Tutorials</h3>
-            <div class="related-articles-grid">
-              <a href="../blog/how-to-convert-jpg-to-pdf.html" class="related-article-card">
-          <h4>How to Convert JPG and PNG Images to PDF Online</h4>
-          <p>Converting photos and scans to PDF.</p>
-          <span class="read-link">View Details <i class="bi bi-arrow-right"></i></span>
-        </a><a href="../blog/how-to-compress-pdf-without-losing-quality.html" class="related-article-card">
-          <h4>How to Compress a PDF Without Losing Quality</h4>
-          <p>Balancing image DPI and document size.</p>
-          <span class="read-link">View Details <i class="bi bi-arrow-right"></i></span>
-        </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Quick Facts Sidebar -->
-        <aside class="facts-sidebar card-folded" data-aos="fade-left" data-aos-delay="100">
-          <span class="eyebrow">SPECIFICATIONS</span>
-          <h3>Before You Start</h3>
-          <ul class="facts-list">
-            <li><i class="bi bi-check-circle-fill"></i> <span>Maximum file size: 50 MB per document.</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>No registration or account required.</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>Powered by open-source Spring Boot & PDFBox.</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>Instant client-side validation.</span></li>
-            <li><i class="bi bi-check-circle-fill"></i> <span>Automatic server cleanup after 30 minutes.</span></li>
-          </ul>
-
-          <div style="margin-top:28px; padding-top:20px; border-top:1px solid var(--border-subtle);">
-            <div class="ad-slot ad-slot-rectangle" style="min-height:200px; padding:12px;">
-              <span class="ad-badge">ADVERTISEMENT</span>
-              <span class="ad-slot-placeholder-text">Sidebar Placement</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </main>
-
-  <!-- Global Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="brand" href="../index.html">
-            <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="24" height="24" alt=""></span>
-            <span class="brand-name">SmartAss<em>PDF</em></span>
-          </a>
-          <p>Free, fast, and practical document workflows built around open-source technology.</p>
-          <div class="footer-social-links">
-            <a href="https://www.facebook.com/profile.php?id=61580387357259" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://x.com/smartasspdf_com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Twitter X"><i class="bi bi-twitter-x"></i></a>
-            <a href="https://www.linkedin.com/company/108761055/admin/dashboard/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-            <a href="https://www.instagram.com/smartasspdf_official/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Convert</h4>
-          <ul class="footer-col-nav">
-            <li><a href="pdf-to-word.html">PDF to Word</a></li>
-            <li><a href="pdf-to-excel.html">PDF to Excel</a></li>
-            <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
-            <li><a href="word-to-pdf.html">Word to PDF</a></li>
-            <li><a href="image-to-webp.html">Image to WebP</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Organize & Protect</h4>
-          <ul class="footer-col-nav">
-            <li><a href="merge-pdf.html">Merge PDF</a></li>
-            <li><a href="split-pdf.html">Split PDF</a></li>
-            <li><a href="compress-pdf.html">Compress PDF</a></li>
-            <li><a href="rotate-pdf.html">Rotate PDF</a></li>
-            <li><a href="protect-pdf.html">Protect PDF</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Company & Legal</h4>
-          <ul class="footer-col-nav">
-            <li><a href="../blog/index.html">Blog & Guides</a></li>
-            <li><a href="../about.html">About</a></li>
-            <li><a href="../faq.html">FAQ</a></li>
-            <li><a href="../contact.html">Contact</a></li>
-            <li><a href="../privacy.html">Privacy Policy</a></li>
-            <li><a href="../cookie-policy.html">Cookie Policy</a></li>
-            <li><a href="../terms.html">Terms of Service</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <small>© 2026 SmartAssPDF. Open-source powered document utilities.</small>
-        <span>Free Tools &bull; No Account Required &bull; Temporary Storage</span>
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script src="../assets/js/tools-config.js?v=25"></script>
-  <script src="../assets/js/app.js?v=25"></script>
-  <script src="../assets/js/tool.js?v=25"></script>
-</body>
-
-</html>
+<!doctype html>
+
+<html lang="en" data-theme="dark">
+
+
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PDF to JPG Converter Online Free | SmartAssPDF</title>
+
+  <meta name="description" content="Render PDF document pages into high-resolution JPG images. Free online tool with client-side verification and temporary processing.">
+
+  <link rel="canonical" href="https://smartasspdf.com/tools/pdf-to-jpg.html">
+
+
+
+  <!-- Open Graph / Facebook -->
+
+  <meta property="og:title" content="PDF to JPG Converter Online Free | SmartAssPDF">
+
+  <meta property="og:description" content="Render PDF document pages into high-resolution JPG images.">
+
+  <meta property="og:type" content="website">
+
+  <meta property="og:url" content="https://smartasspdf.com/tools/pdf-to-jpg.html">
+
+  <meta property="og:image" content="https://smartasspdf.com/assets/images/og-banner.png">
+
+  <meta property="og:site_name" content="SmartAssPDF">
+  <meta property="og:locale" content="en_US">
+
+
+
+  <!-- Twitter / X -->
+
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="twitter:title" content="PDF to JPG Converter Online Free | SmartAssPDF">
+
+  <meta name="twitter:description" content="Render PDF document pages into high-resolution JPG images.">
+
+  <meta name="twitter:image" content="https://smartasspdf.com/assets/images/og-banner.png">
+  <meta name="twitter:site" content="@smartasspdf_com">
+
+
+
+  <link rel="icon" href="../assets/images/favicon.ico" sizes="any">
+
+  <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+
+  <link rel="manifest" href="../site.webmanifest">
+  <!-- Resource Hints for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://unpkg.com">
+
+
+
+  <!-- Immediate Theme Initializer to Prevent FOUC -->
+
+  <script>
+
+    (function () {
+
+      const savedTheme = localStorage.getItem('smartasspdf_theme');
+
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      document.documentElement.setAttribute('data-theme', savedTheme || (prefersDark ? 'dark' : 'light'));
+
+    })();
+
+  </script>
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <link href="../assets/css/app.css?v=25" rel="stylesheet">
+
+
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "PDF to JPG \u2014 SmartAssPDF",
+      "url": "https://smartasspdf.com/tools/pdf-to-jpg.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "description": "Render PDF document pages into high-resolution JPG images.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://smartasspdf.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://smartasspdf.com/#tools"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "PDF to JPG",
+          "item": "https://smartasspdf.com/tools/pdf-to-jpg.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How are multi-page PDFs exported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Single-page documents download as a direct .jpg file; documents with 2+ pages download as an organized .zip containing numbered images (e.g. page_001.jpg)."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Convert PDF to JPG Images Online",
+      "description": "Render each page of a PDF as a high-resolution JPG image.",
+      "totalTime": "PT2M",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Upload the PDF",
+          "text": "Drop your PDF into the upload area."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Select DPI",
+          "text": "Choose 100 DPI for web, 150 for balanced, 200 for high-resolution, or 300 DPI for print-quality."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Convert and download",
+          "text": "Click 'Process PDF to JPG'. Single-page PDFs download as one JPG; multi-page PDFs download as a ZIP."
+        }
+      ]
+    }
+  ]
+}
+  </script>
+
+</head>
+
+
+
+<body data-tool="pdf-to-jpg">
+
+  <!-- Global Header — Identical Dropdown Navbar across all pages -->
+
+  <header class="site-header" id="siteHeader">
+
+    <div class="container header-inner">
+
+      <a class="brand" href="../index.html" aria-label="SmartAssPDF home">
+
+        <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="26" height="26" alt="SmartAssPDF Logo"></span>
+
+        <span class="brand-name">SmartAss<em>PDF</em></span>
+
+      </a>
+
+
+
+      <!-- Desktop Navigation with Dropdowns -->
+
+      <nav aria-label="Main navigation">
+
+        <ul class="nav-desktop">
+
+          <li class="nav-item">
+
+            <button type="button" class="nav-link is-active" aria-expanded="false" aria-haspopup="true">
+
+              <span>Convert</span>
+
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+
+            </button>
+
+            <div class="nav-dropdown">
+
+              <a class="nav-dropdown-item" href="pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> <span>PDF to Word</span></a>
+
+              <a class="nav-dropdown-item" href="pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> <span>PDF to Excel</span></a>
+
+              <a class="nav-dropdown-item" href="pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> <span>PDF to JPG</span></a>
+
+              <a class="nav-dropdown-item" href="pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> <span>PDF to PowerPoint</span></a>
+
+              <a class="nav-dropdown-item" href="word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> <span>Word to PDF</span></a>
+
+              <a class="nav-dropdown-item" href="excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> <span>Excel to PDF</span></a>
+
+              <a class="nav-dropdown-item" href="image-to-webp.html"><i class="bi bi-file-earmark-image"></i> <span>Image to WebP</span></a>
+
+              <a class="nav-dropdown-item" href="image-to-pdf.html"><i class="bi bi-images"></i> <span>Image to PDF</span></a>
+
+              <a class="nav-dropdown-item" href="html-to-pdf.html"><i class="bi bi-filetype-html"></i> <span>HTML to PDF</span></a>
+
+            </div>
+
+          </li>
+
+          <li class="nav-item">
+
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+
+              <span>Organize</span>
+
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+
+            </button>
+
+            <div class="nav-dropdown">
+
+              <a class="nav-dropdown-item" href="merge-pdf.html"><i class="bi bi-plus-square"></i> <span>Merge PDF</span></a>
+
+              <a class="nav-dropdown-item" href="split-pdf.html"><i class="bi bi-layout-split"></i> <span>Split PDF</span></a>
+
+              <a class="nav-dropdown-item" href="rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> <span>Rotate PDF</span></a>
+
+              <a class="nav-dropdown-item" href="add-page-numbers.html"><i class="bi bi-123"></i> <span>Add Page Numbers</span></a>
+
+            </div>
+
+          </li>
+
+          <li class="nav-item">
+
+            <button type="button" class="nav-link" aria-expanded="false" aria-haspopup="true">
+
+              <span>Optimize & Security</span>
+
+              <i class="bi bi-chevron-down nav-chevron" aria-hidden="true"></i>
+
+            </button>
+
+            <div class="nav-dropdown">
+
+              <a class="nav-dropdown-item" href="compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> <span>Compress PDF</span></a>
+
+              <a class="nav-dropdown-item" href="protect-pdf.html"><i class="bi bi-shield-lock"></i> <span>Protect PDF</span></a>
+
+              <a class="nav-dropdown-item" href="unlock-pdf.html"><i class="bi bi-unlock"></i> <span>Unlock PDF</span></a>
+
+            </div>
+
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+
+          <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+
+        </ul>
+
+      </nav>
+
+
+
+      <!-- Header Actions -->
+
+      <div class="header-actions">
+
+        <button type="button" class="search-trigger-btn" id="searchTriggerBtn" aria-label="Search tools">
+
+          <i class="bi bi-search" aria-hidden="true"></i>
+
+          <span>Search tools</span>
+
+          <kbd class="search-kbd">?K</kbd>
+
+        </button>
+
+        <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle dark/light theme">
+
+          <i class="bi bi-sun-fill" aria-hidden="true"></i>
+
+        </button>
+
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open navigation menu"
+
+          aria-expanded="false">
+
+          <span></span>
+
+          <span></span>
+
+          <span></span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- Mobile Drawer Backdrop & Drawer -->
+
+  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop" aria-hidden="true"></div>
+
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+
+    <div class="mobile-drawer-header">
+
+      <a class="brand" href="../index.html">
+
+        <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="24" height="24" alt=""></span>
+
+        <span class="brand-name">SmartAss<em>PDF</em></span>
+
+      </a>
+
+      <button type="button" class="file-action-btn" id="drawerCloseBtn" aria-label="Close menu">
+
+        <i class="bi bi-x-lg"></i>
+
+      </button>
+
+    </div>
+
+
+
+    <div class="mobile-drawer-nav">
+
+      <div>
+
+        <div class="mobile-nav-section-title">Convert Tools</div>
+
+        <ul class="mobile-nav-list">
+
+          <li><a href="pdf-to-word.html"><i class="bi bi-file-earmark-word"></i> PDF to Word</a></li>
+
+          <li><a href="pdf-to-excel.html"><i class="bi bi-file-earmark-excel"></i> PDF to Excel</a></li>
+
+          <li><a href="pdf-to-jpg.html"><i class="bi bi-file-earmark-image"></i> PDF to JPG</a></li>
+
+          <li><a href="pdf-to-ppt.html"><i class="bi bi-file-earmark-ppt"></i> PDF to PowerPoint</a></li>
+
+          <li><a href="word-to-pdf.html"><i class="bi bi-file-earmark-text"></i> Word to PDF</a></li>
+
+          <li><a href="excel-to-pdf.html"><i class="bi bi-file-earmark-spreadsheet"></i> Excel to PDF</a></li>
+
+          <li><a href="image-to-webp.html"><i class="bi bi-file-earmark-image"></i> Image to WebP</a></li>
+
+          <li><a href="image-to-pdf.html"><i class="bi bi-images"></i> Image to PDF</a></li>
+
+          <li><a href="html-to-pdf.html"><i class="bi bi-filetype-html"></i> HTML to PDF</a></li>
+
+        </ul>
+
+      </div>
+
+
+
+      <div>
+
+        <div class="mobile-nav-section-title">Organize & Optimize</div>
+
+        <ul class="mobile-nav-list">
+
+          <li><a href="merge-pdf.html"><i class="bi bi-plus-square"></i> Merge PDF</a></li>
+
+          <li><a href="split-pdf.html"><i class="bi bi-layout-split"></i> Split PDF</a></li>
+
+          <li><a href="compress-pdf.html"><i class="bi bi-file-earmark-zip"></i> Compress PDF</a></li>
+
+          <li><a href="rotate-pdf.html"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a></li>
+
+          <li><a href="add-page-numbers.html"><i class="bi bi-123"></i> Add Page Numbers</a></li>
+
+          <li><a href="protect-pdf.html"><i class="bi bi-shield-lock"></i> Protect PDF</a></li>
+
+          <li><a href="unlock-pdf.html"><i class="bi bi-unlock"></i> Unlock PDF</a></li>
+
+        </ul>
+
+      </div>
+
+
+
+      <div>
+
+        <div class="mobile-nav-section-title">Resources</div>
+
+        <ul class="mobile-nav-list">
+
+          <li><a href="../faq.html"><i class="bi bi-question-circle"></i> FAQ</a></li>
+
+          <li><a href="../about.html"><i class="bi bi-info-circle"></i> About</a></li>
+
+          <li><a href="../privacy.html"><i class="bi bi-shield-check"></i> Privacy Policy</a></li>
+
+          <li><a href="../terms.html"><i class="bi bi-file-text"></i> Terms of Service</a></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+
+
+  <!-- Quick Search Modal (Cmd+K) -->
+
+  <div class="search-modal-backdrop" id="searchModalBackdrop" role="dialog" aria-modal="true" aria-label="Search tools">
+
+    <div class="search-modal">
+
+      <div class="search-input-wrap">
+
+        <i class="bi bi-search" aria-hidden="true"></i>
+
+        <input type="search" class="search-input" id="searchModalInput" placeholder="Search by tool name or format (e.g. Word, Split, JPG)..." autocomplete="off" spellcheck="false">
+
+        <button type="button" class="file-action-btn" id="searchModalClose" aria-label="Close search">
+
+          <i class="bi bi-x-lg"></i>
+
+        </button>
+
+      </div>
+
+      <div class="search-results" id="searchResults"></div>
+
+      <div class="search-modal-footer">
+
+        <span><kbd class="search-kbd">?</kbd> <kbd class="search-kbd">?</kbd> to navigate</span>
+
+        <span><kbd class="search-kbd">?</kbd> to select</span>
+
+        <span><kbd class="search-kbd">ESC</kbd> to close</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Main Tool Page Content -->
+
+  <main class="tool-page">
+
+    <div class="container container-tool">
+
+      <!-- Breadcrumbs -->
+
+      <div class="tool-breadcrumbs" data-aos="fade-down">
+
+        <a href="../index.html">Home</a>
+
+        <i class="bi bi-chevron-right"></i>
+
+        <a href="../index.html#tools">Tools</a>
+
+        <i class="bi bi-chevron-right"></i>
+
+        <span>PDF to JPG</span>
+
+      </div>
+
+
+
+      <!-- Tool Header -->
+
+      <div class="tool-header-hero" data-aos="fade-down">
+
+        <span class="eyebrow"><i class="bi bi-lightning-charge-fill"></i> FREE ONLINE TOOL</span>
+
+        <h1>PDF to JPG Converter</h1>
+
+        <p>Render PDF document pages into high-resolution JPG images.</p>
+
+        <div class="tool-format-pill">
+
+          <span>PDF ? JPG</span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- 2-Column Workspace Layout -->
+
+      <div class="tool-workspace-grid" data-aos="fade-up">
+
+        <!-- Left: Upload & Processing Panel -->
+
+        <div class="workspace-panel card-folded">
+
+          <!-- Dropzone -->
+
+          <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Upload files">
+
+            <div class="drop-icon-box">
+
+              <i class="bi bi-cloud-arrow-up"></i>
+
+            </div>
+
+            <h2>Drop your PDF file here</h2>
+
+            <p class="dropzone-hint">or choose a file from your device. SmartAssPDF checks format compatibility instantly.</p>
+
+            <input id="fileInput" type="file" class="d-none" aria-label="Select files" style="display:none;">
+
+            <button id="browseBtn" class="btn btn-primary" type="button">
+
+              <i class="bi bi-folder2-open"></i>
+
+              <span>Choose PDF file</span>
+
+            </button>
+
+            <div class="dropzone-specs">
+
+              <span>Accepted: <strong>PDF</strong></span>
+
+              <span>•</span>
+
+              <span>Max 50 MB per file</span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- File List -->
+
+          <div id="fileList" class="file-list" aria-live="polite" style="display:none;"></div>
+
+
+
+          <!-- Tool Options -->
+
+          <div id="toolOptions"></div>
+
+
+
+          <!-- Process Action Button -->
+
+          <button id="processBtn" class="btn btn-primary btn-lg btn-block" type="button" disabled>
+
+            <span>Process PDF to JPG</span>
+
+            <i class="bi bi-arrow-right"></i>
+
+          </button>
+
+
+
+          <!-- Status & Result Container -->
+
+          <div id="statusContainer" aria-live="polite"></div>
+
+        </div>
+
+
+
+        <!-- Right: Live Interactive Preview Panel -->
+
+        <aside class="preview-panel-card card-folded" id="previewPanel">
+
+          <div class="preview-header">
+
+            <h3><i class="bi bi-eye"></i> <span>Live Preview</span></h3>
+
+            <span class="preview-status-badge" id="previewStatus">
+
+              <span class="preview-status-dot"></span> Waiting for file
+
+            </span>
+
+          </div>
+
+          <div class="preview-viewport" id="previewViewport">
+
+            <!-- Dynamic Preview Content -->
+
+          </div>
+
+        </aside>
+
+      </div>
+
+
+
+      <!-- AdSense Slot (Above How-To / Content) -->
+
+      <div class="ad-slot-container" style="margin-top: 48px;">
+
+        <div class="ad-slot ad-slot-leaderboard">
+
+          <span class="ad-badge">ADVERTISEMENT</span>
+
+          <span class="ad-slot-placeholder-text">Responsive Ad Placement</span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- SEO Content, AEO Box & Guide -->
+
+      <div class="content-info-grid" data-aos="fade-up">
+
+        <article class="content-article card-folded" data-aos="fade-up">
+
+          <span class="eyebrow">ABOUT THIS TOOL</span>
+
+          <h2>Convert PDF Pages to High-Resolution JPG Images</h2>
+
+          <p>Extract and render each PDF page into high-quality JPEG images with selectable DPI resolution.</p>
+
+
+
+          <!-- AEO Direct Answer Box -->
+
+          <div class="aeo-box">
+
+            <div class="aeo-header">
+
+              <div class="aeo-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+
+              <div class="aeo-title">Quick Definition & Overview</div>
+
+            </div>
+
+            <div class="aeo-definition">PDF to JPG conversion rasterizes vector PDF pages into standalone JPEG image files at designated resolutions (72 to 300 DPI), creating direct image downloads or multi-page ZIP archives.</div>
+
+            <ul class="aeo-highlights">
+
+              <li><i class="bi bi-check-circle-fill"></i> <span>Outputs individual JPG or multi-page ZIP archive</span></li><li><i class="bi bi-check-circle-fill"></i> <span>Selectable DPI rendering (72 DPI, 150 DPI, 300 DPI)</span></li><li><i class="bi bi-check-circle-fill"></i> <span>Preserves colors, diagrams, and typography</span></li>
+
+            </ul>
+
+          </div>
+
+
+
+          <div class="tool-specs-summary-grid">
+
+            <div class="tool-specs-summary-item">
+
+              <small>Input</small>
+
+              <strong>PDF</strong>
+
+            </div>
+
+            <div class="tool-specs-summary-item">
+
+              <small>Output</small>
+
+              <strong>JPG / ZIP</strong>
+
+            </div>
+
+            <div class="tool-specs-summary-item">
+
+              <small>Security</small>
+
+              <strong>Auto-Deleted</strong>
+
+            </div>
+
+            <div class="tool-specs-summary-item">
+
+              <small>Cost</small>
+
+              <strong>100% Free</strong>
+
+            </div>
+
+          </div>
+
+
+
+          <h3>How to use PDF to JPG</h3>
+
+          <ol class="content-steps-list">
+
+            <li><div class="step-content"><strong>Upload PDF</strong><span>Drop your PDF file into the workspace.</span></div></li>
+
+<li><div class="step-content"><strong>Select DPI Quality</strong><span>Choose between 72 DPI (web), 150 DPI (standard), or 300 DPI (print).</span></div></li>
+
+<li><div class="step-content"><strong>Render Images</strong><span>Click 'Process PDF to JPG' to render pages into JPEG images.</span></div></li>
+
+<li><div class="step-content"><strong>Download Output</strong><span>Save your image file or extract the multi-page ZIP archive.</span></div></li>
+
+          </ol>
+
+
+
+          <!-- In-Content AdSlot (Above FAQ) -->
+
+          <div class="ad-slot-container" style="margin: 28px 0;">
+
+            <div class="ad-slot ad-slot-inline">
+
+              <span class="ad-badge">ADVERTISEMENT</span>
+
+              <span class="ad-slot-placeholder-text">Responsive Ad Placement</span>
+
+            </div>
+
+          </div>
+
+
+
+          <h3>Frequently Asked Questions</h3>
+
+          <div class="faq-accordion" data-aos="fade-up">
+
+            <details class="faq-item">
+
+            <summary>
+
+              <span>How are multi-page PDFs exported?</span>
+
+              <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
+
+            </summary>
+
+            <div class="faq-answer">
+
+              Single-page documents download as a direct .jpg file; documents with 2+ pages download as an organized .zip containing numbered images (e.g. page_001.jpg).
+
+            </div>
+
+          </details>
+
+          
+            <details class="faq-item">
+              <summary>
+                <span>What DPI should I choose for my use case?</span>
+                <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
+              </summary>
+              <div class="faq-answer">
+                100 DPI: fast web thumbnails and previews. 150 DPI: general sharing and presentations. 200 DPI: clear images for reading and display. 300 DPI: print-ready images for professional use.
+              </div>
+            </details>
+          
+            <details class="faq-item">
+              <summary>
+                <span>How are multi-page PDFs delivered?</span>
+                <i class="bi bi-chevron-down faq-icon" aria-hidden="true"></i>
+              </summary>
+              <div class="faq-answer">
+                Single-page PDFs download as one JPG file. Multi-page PDFs are packaged into a ZIP archive containing numbered images (page-001.jpg, page-002.jpg, etc.).
+              </div>
+            </details>
+          </div>
+
+
+
+          <!-- Cross-Linking: Related Tools -->
+
+          <div class="cross-links-section" data-aos="fade-up">
+
+            <h3 class="cross-links-title"><i class="bi bi-tools text-primary"></i> Related PDF Tools</h3>
+
+            <div class="related-tools-grid">
+
+              <a href="jpg-to-pdf.html" class="related-tool-item"><i class="bi bi-image"></i> JPG to PDF</a><a href="image-to-pdf.html" class="related-tool-item"><i class="bi bi-images"></i> Image to PDF</a><a href="compress-pdf.html" class="related-tool-item"><i class="bi bi-arrows-collapse"></i> Compress PDF</a><a href="rotate-pdf.html" class="related-tool-item"><i class="bi bi-arrow-clockwise"></i> Rotate PDF</a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Cross-Linking: Related Guides -->
+
+          <div class="cross-links-section" data-aos="fade-up">
+
+            <h3 class="cross-links-title"><i class="bi bi-journal-richtext text-primary"></i> Related Guides & Tutorials</h3>
+
+            <div class="related-articles-grid">
+
+              <a href="../blog/how-to-convert-jpg-to-pdf.html" class="related-article-card">
+
+          <h4>How to Convert JPG and PNG Images to PDF Online</h4>
+
+          <p>Converting photos and scans to PDF.</p>
+
+          <span class="read-link">View Details <i class="bi bi-arrow-right"></i></span>
+
+        </a><a href="../blog/how-to-compress-pdf-without-losing-quality.html" class="related-article-card">
+
+          <h4>How to Compress a PDF Without Losing Quality</h4>
+
+          <p>Balancing image DPI and document size.</p>
+
+          <span class="read-link">View Details <i class="bi bi-arrow-right"></i></span>
+
+        </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- Quick Facts Sidebar -->
+
+        <aside class="facts-sidebar card-folded" data-aos="fade-left" data-aos-delay="100">
+
+          <span class="eyebrow">SPECIFICATIONS</span>
+
+          <h3>Before You Start</h3>
+
+          <ul class="facts-list">
+
+            <li><i class="bi bi-check-circle-fill"></i> <span>Maximum file size: 50 MB per document.</span></li>
+
+            <li><i class="bi bi-check-circle-fill"></i> <span>No registration or account required.</span></li>
+
+            <li><i class="bi bi-check-circle-fill"></i> <span>Powered by open-source Spring Boot & PDFBox.</span></li>
+
+            <li><i class="bi bi-check-circle-fill"></i> <span>Instant client-side validation.</span></li>
+
+            <li><i class="bi bi-check-circle-fill"></i> <span>Automatic server cleanup after 30 minutes.</span></li>
+
+          </ul>
+
+
+
+          <div style="margin-top:28px; padding-top:20px; border-top:1px solid var(--border-subtle);">
+
+            <div class="ad-slot ad-slot-rectangle" style="min-height:200px; padding:12px;">
+
+              <span class="ad-badge">ADVERTISEMENT</span>
+
+              <span class="ad-slot-placeholder-text">Sidebar Placement</span>
+
+            </div>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- Global Footer -->
+
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+
+          <a class="brand" href="../index.html">
+
+            <span class="brand-mark"><img src="../assets/images/logo-mark.png" width="24" height="24" alt=""></span>
+
+            <span class="brand-name">SmartAss<em>PDF</em></span>
+
+          </a>
+
+          <p>Free, fast, and practical document workflows built around open-source technology.</p>
+
+          <div class="footer-social-links">
+
+            <a href="https://www.facebook.com/profile.php?id=61580387357259" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+
+            <a href="https://x.com/smartasspdf_com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Twitter X"><i class="bi bi-twitter-x"></i></a>
+
+            <a href="https://www.linkedin.com/company/108761055/admin/dashboard/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+
+            <a href="https://www.instagram.com/smartasspdf_official/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="footer-col">
+
+          <h4>Convert</h4>
+
+          <ul class="footer-col-nav">
+
+            <li><a href="pdf-to-word.html">PDF to Word</a></li>
+
+            <li><a href="pdf-to-excel.html">PDF to Excel</a></li>
+
+            <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
+
+            <li><a href="word-to-pdf.html">Word to PDF</a></li>
+
+            <li><a href="image-to-webp.html">Image to WebP</a></li>
+
+          </ul>
+
+        </div>
+
+
+
+        <div class="footer-col">
+
+          <h4>Organize & Protect</h4>
+
+          <ul class="footer-col-nav">
+
+            <li><a href="merge-pdf.html">Merge PDF</a></li>
+
+            <li><a href="split-pdf.html">Split PDF</a></li>
+
+            <li><a href="compress-pdf.html">Compress PDF</a></li>
+
+            <li><a href="rotate-pdf.html">Rotate PDF</a></li>
+
+            <li><a href="protect-pdf.html">Protect PDF</a></li>
+
+          </ul>
+
+        </div>
+
+
+
+        <div class="footer-col">
+
+          <h4>Company & Legal</h4>
+
+          <ul class="footer-col-nav">
+
+            <li><a href="../blog/index.html">Blog & Guides</a></li>
+
+            <li><a href="../about.html">About</a></li>
+
+            <li><a href="../faq.html">FAQ</a></li>
+
+            <li><a href="../contact.html">Contact</a></li>
+
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+
+            <li><a href="../cookie-policy.html">Cookie Policy</a></li>
+
+            <li><a href="../terms.html">Terms of Service</a></li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="footer-bottom">
+
+        <small>© 2026 SmartAssPDF. Open-source powered document utilities.</small>
+
+        <span>Free Tools &bull; No Account Required &bull; Temporary Storage</span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+  <script src="../assets/js/tools-config.js?v=25"></script>
+
+  <script src="../assets/js/app.js?v=25"></script>
+
+  <script src="../assets/js/tool.js?v=25"></script>
+
+</body>
+
+
+
+</html>
+

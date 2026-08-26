@@ -1853,6 +1853,43 @@
     }
     const filenameDisplay = document.getElementById('resultFilenameDisplay');
     if (filenameDisplay) filenameDisplay.textContent = defaultName;
+
+    // Inject Next Suggested Tools (3 compact tools) cleanly after process completion
+    const stageResult = document.getElementById('stageResult');
+    if (stageResult && !stageResult.querySelector('.next-tool-suggestion')) {
+      const suggestion = document.createElement('div');
+      suggestion.className = 'next-tool-suggestion';
+      suggestion.setAttribute('aria-label', 'Next suggested tools');
+      suggestion.innerHTML =
+        '<div class="next-tool-header"><i class="bi bi-stars"></i> Next Suggested Tools</div>' +
+        '<div class="next-tools-list">' +
+          '<a href="ocr-pdf.html" class="next-tool-item">' +
+            '<div class="next-tool-item-icon"><i class="bi bi-search" aria-hidden="true"></i></div>' +
+            '<div class="next-tool-item-text">' +
+              '<strong>OCR PDF</strong>' +
+              '<span>Make scanned PDF searchable & copyable</span>' +
+            '</div>' +
+            '<i class="bi bi-chevron-right next-tool-item-arrow" aria-hidden="true"></i>' +
+          '</a>' +
+          '<a href="compress-pdf.html" class="next-tool-item">' +
+            '<div class="next-tool-item-icon"><i class="bi bi-file-earmark-zip" aria-hidden="true"></i></div>' +
+            '<div class="next-tool-item-text">' +
+              '<strong>Compress PDF</strong>' +
+              '<span>Reduce file size for email sharing</span>' +
+            '</div>' +
+            '<i class="bi bi-chevron-right next-tool-item-arrow" aria-hidden="true"></i>' +
+          '</a>' +
+          '<a href="sign-pdf.html" class="next-tool-item">' +
+            '<div class="next-tool-item-icon"><i class="bi bi-pen" aria-hidden="true"></i></div>' +
+            '<div class="next-tool-item-text">' +
+              '<strong>Sign PDF</strong>' +
+              '<span>Add your signature or stamp to the PDF</span>' +
+            '</div>' +
+            '<i class="bi bi-chevron-right next-tool-item-arrow" aria-hidden="true"></i>' +
+          '</a>' +
+        '</div>';
+      stageResult.appendChild(suggestion);
+    }
   }
 
   function downloadGeneratedPdf() {

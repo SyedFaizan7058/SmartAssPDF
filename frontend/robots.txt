@@ -1,15 +1,19 @@
 User-agent: *
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /api/v1/jobs/
 Disallow: /tools/tool.html
 
-# Allow AI Answer and Search Crawlers
+# Google
 User-agent: Googlebot
 Allow: /
 
+# Bing
 User-agent: Bingbot
 Allow: /
 
+# AI Answer & Generative Search Crawlers
 User-agent: PerplexityBot
 Allow: /
 
@@ -17,6 +21,15 @@ User-agent: GPTBot
 Allow: /
 
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Applebot
 Allow: /
 
 Sitemap: https://smartasspdf.com/sitemap.xml
