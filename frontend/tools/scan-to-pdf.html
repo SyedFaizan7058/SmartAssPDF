@@ -434,13 +434,22 @@
                 </div>
               </div>
 
-              <!-- Bottom Camera Controls -->
+              <!-- Bottom Camera Controls (OKEN Scanner Style) -->
               <div class="camera-bottom-controls">
-                <div style="width: 44px;"></div>
+                <button type="button" class="cam-circle-btn" id="btnCameraBack" title="Back" aria-label="Back">
+                  <i class="bi bi-arrow-left"></i>
+                </button>
                 <button type="button" class="scanner-shutter-btn" id="btnShutter" aria-label="Take photo / scan document">
                   <div class="scanner-shutter-inner"></div>
                 </button>
-                <div style="width: 44px;"></div>
+                <button type="button" class="cam-thumb-stack-btn" id="btnCameraFinish" style="display:none;" title="Finish Scanning & Review Pages" aria-label="Review scanned pages">
+                  <div class="cam-thumb-preview-box">
+                    <img id="camLastThumbImg" src="" alt="Latest Scan">
+                    <span class="cam-thumb-count-badge" id="camThumbCountBadge">0</span>
+                  </div>
+                  <i class="bi bi-chevron-right cam-thumb-next-icon"></i>
+                </button>
+                <div id="camBottomSpacer" style="width: 44px;"></div>
               </div>
             </div>
           </div>

@@ -171,6 +171,22 @@
       });
     }
 
+    const btnCameraBack = document.getElementById('btnCameraBack');
+    if (btnCameraBack) {
+      btnCameraBack.addEventListener('click', () => {
+        stopCamera();
+        switchStage(state.pages.length > 0 ? 'manager' : 'launcher');
+      });
+    }
+
+    const btnCameraFinish = document.getElementById('btnCameraFinish');
+    if (btnCameraFinish) {
+      btnCameraFinish.addEventListener('click', () => {
+        stopCamera();
+        switchStage('manager');
+      });
+    }
+
     // 3. Crop & Perspective Stage Actions
     const btnCropRetake = document.getElementById('btnCropRetake');
     if (btnCropRetake) {
@@ -413,9 +429,10 @@
   async function startCamera() {
     stopCamera();
     switchStage('camera');
+    updateCameraThumbnailStack();
 
     if (guidancePill) {
-      guidancePill.innerHTML = `<span class="guidance-dot"></span> Looking for document...`;
+      guidancePill.innerHTML = `<span class="guidance-dot"></span> Searching doc...`;
     }
 
     const constraints = {
@@ -489,6 +506,26 @@
     }
   }
 
+  function updateCameraThumbnailStack() {
+    const btnFinish = document.getElementById('btnCameraFinish');
+    const thumbImg = document.getElementById('camLastThumbImg');
+    const badge = document.getElementById('camThumbCountBadge');
+    const spacer = document.getElementById('camBottomSpacer');
+
+    if (!btnFinish) return;
+
+    if (state.pages.length > 0) {
+      const lastPage = state.pages[state.pages.length - 1];
+      if (thumbImg && lastPage.finalDataUrl) thumbImg.src = lastPage.finalDataUrl;
+      if (badge) badge.textContent = state.pages.length;
+      btnFinish.style.display = 'flex';
+      if (spacer) spacer.style.display = 'none';
+    } else {
+      btnFinish.style.display = 'none';
+      if (spacer) spacer.style.display = 'block';
+    }
+  }
+
   function startLiveDetection() {
     stopLiveDetection();
     state.smoothedCorners = null;
@@ -544,25 +581,24 @@
                 const steadyDuration = timestamp - state.steadyStartTime;
 
                 if (state.autoCaptureEnabled) {
-                  const remaining = Math.max(0, (1100 - steadyDuration) / 1000).toFixed(1);
                   if (guidancePill) {
-                    guidancePill.innerHTML = `<span class="guidance-dot" style="background:#10b981; box-shadow:0 0 12px #10b981;"></span> Capturing in ${remaining}s â€” Hold steady`;
+                    guidancePill.innerHTML = `<span class="guidance-dot" style="background:#10b981; box-shadow:0 0 10px #10b981;"></span> Please don't move`;
                   }
 
-                  if (steadyDuration >= 1100 && !state.isCapturing) {
+                  if (steadyDuration >= 900 && !state.isCapturing) {
                     state.isCapturing = true;
                     captureCameraFrame();
                     return;
                   }
                 } else {
                   if (guidancePill) {
-                    guidancePill.innerHTML = `<span class="guidance-dot" style="background:#10b981; box-shadow:0 0 8px #10b981;"></span> Document detected â€” Tap shutter`;
+                    guidancePill.innerHTML = `<span class="guidance-dot" style="background:#10b981; box-shadow:0 0 8px #10b981;"></span> Please don't move â€” Tap shutter`;
                   }
                 }
               } else {
                 state.steadyStartTime = null;
                 if (guidancePill) {
-                  guidancePill.innerHTML = `<span class="guidance-dot" style="background:#38bdf8; box-shadow:0 0 8px #38bdf8;"></span> Document detected â€” Hold steady`;
+                  guidancePill.innerHTML = `<span class="guidance-dot"></span> Searching doc...`;
                 }
               }
             }
@@ -572,7 +608,7 @@
             state.steadyStartTime = null;
             state.lastDetectedCenter = null;
             if (guidancePill && timestamp > 2500) {
-              guidancePill.innerHTML = `<span class="guidance-dot" style="background:#f59e0b; box-shadow:0 0 8px #f59e0b;"></span> Looking for document...`;
+              guidancePill.innerHTML = `<span class="guidance-dot"></span> Searching doc...`;
             }
           }
         }
@@ -637,9 +673,9 @@
     const br = mapPt(corners.br);
     const bl = mapPt(corners.bl);
 
-    // 1. Translucent Document Highlight
+    // 1. Translucent Document Highlight (OKEN Scanner Emerald Green)
     ctx.save();
-    ctx.fillStyle = 'rgba(99, 102, 241, 0.22)';
+    ctx.fillStyle = 'rgba(16, 185, 129, 0.16)';
     ctx.beginPath();
     ctx.moveTo(tl.x, tl.y);
     ctx.lineTo(tr.x, tr.y);
@@ -649,36 +685,36 @@
     ctx.fill();
 
     // 2. Glowing Boundary Lines
-    ctx.strokeStyle = '#38bdf8';
-    ctx.lineWidth = 2.5;
+    ctx.strokeStyle = '#10b981';
+    ctx.lineWidth = 3;
     ctx.lineJoin = 'round';
-    ctx.shadowColor = '#38bdf8';
-    ctx.shadowBlur = 8;
+    ctx.shadowColor = '#10b981';
+    ctx.shadowBlur = 10;
     ctx.stroke();
     ctx.restore();
 
-    // 3. 4 Corner Target Handles (Adobe Scan Style)
+    // 3. 4 Corner Target Handles
     const now = performance.now() / 1000;
-    const pulseRadius = 14 + Math.sin(now * 5) * 2.5;
+    const pulseRadius = 13 + Math.sin(now * 5) * 2;
 
     [tl, tr, br, bl].forEach(pt => {
       // Outer translucent pulse ring
-      ctx.fillStyle = 'rgba(56, 189, 248, 0.35)';
+      ctx.fillStyle = 'rgba(16, 185, 129, 0.35)';
       ctx.beginPath();
       ctx.arc(pt.x, pt.y, pulseRadius, 0, Math.PI * 2);
       ctx.fill();
 
       // Middle ring
-      ctx.strokeStyle = '#38bdf8';
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 2.5;
       ctx.beginPath();
-      ctx.arc(pt.x, pt.y, 8, 0, Math.PI * 2);
+      ctx.arc(pt.x, pt.y, 7.5, 0, Math.PI * 2);
       ctx.stroke();
 
       // White inner center
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
-      ctx.arc(pt.x, pt.y, 4.5, 0, Math.PI * 2);
+      ctx.arc(pt.x, pt.y, 4, 0, Math.PI * 2);
       ctx.fill();
     });
   }
@@ -701,10 +737,39 @@
     const ctx = rawCanvas.getContext('2d');
     ctx.drawImage(videoFeed, 0, 0, vw, vh);
 
-    const preDetectedCorners = state.latestDetectedCorners ? JSON.parse(JSON.stringify(state.latestDetectedCorners)) : null;
+    const detected = state.latestDetectedCorners || detectDocumentCorners(rawCanvas) || getDefaultCorners(vw, vh);
+    const corners = JSON.parse(JSON.stringify(detected));
+    const finalDataUrl = renderProcessedImage(rawCanvas, corners, state.activeFilter || 'original', 0);
 
-    stopCamera();
-    openCropEditor(rawCanvas, -1, preDetectedCorners);
+    state.pages.push({
+      id: 'page_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+      rawCanvas: rawCanvas,
+      corners: corners,
+      rotation: 0,
+      filter: state.activeFilter || 'original',
+      finalDataUrl: finalDataUrl
+    });
+
+    state.selectedPreviewIndex = state.pages.length - 1;
+    updateCameraThumbnailStack();
+
+    if (guidancePill) {
+      guidancePill.innerHTML = `<span class="guidance-dot" style="background:#10b981; box-shadow:0 0 10px #10b981;"></span> Page ${state.pages.length} Captured`;
+    }
+
+    if (window.SmartAssToast) {
+      window.SmartAssToast.show(`Page ${state.pages.length} scanned!`, "success", 1200);
+    }
+
+    // Reset detection state & continue live scanning for subsequent pages without stopping camera!
+    setTimeout(() => {
+      state.steadyStartTime = null;
+      state.lastDetectedCenter = null;
+      state.isCapturing = false;
+      if (guidancePill && state.currentStage === 'camera') {
+        guidancePill.innerHTML = `<span class="guidance-dot"></span> Searching doc...`;
+      }
+    }, 600);
   }  /* ==========================================================================
      Computer Vision: Complete Document Detection Hierarchy Pipeline
      ========================================================================== */
@@ -1263,8 +1328,8 @@
     cropCtx.closePath();
     cropCtx.fill('evenodd');
 
-    cropCtx.strokeStyle = '#6366f1';
-    cropCtx.lineWidth = 2.5;
+    cropCtx.strokeStyle = '#10b981';
+    cropCtx.lineWidth = 3;
     cropCtx.beginPath();
     cropCtx.moveTo(tl.x, tl.y);
     cropCtx.lineTo(tr.x, tr.y);
@@ -1281,19 +1346,69 @@
     ];
 
     handles.forEach(h => {
-      cropCtx.fillStyle = 'rgba(99, 102, 241, 0.35)';
+      cropCtx.fillStyle = 'rgba(16, 185, 129, 0.35)';
       cropCtx.beginPath();
-      cropCtx.arc(h.p.x, h.p.y, 16, 0, Math.PI * 2);
+      cropCtx.arc(h.p.x, h.p.y, 18, 0, Math.PI * 2);
       cropCtx.fill();
 
       cropCtx.fillStyle = '#ffffff';
-      cropCtx.strokeStyle = '#6366f1';
-      cropCtx.lineWidth = 3;
+      cropCtx.strokeStyle = '#10b981';
+      cropCtx.lineWidth = 3.5;
       cropCtx.beginPath();
-      cropCtx.arc(h.p.x, h.p.y, 8, 0, Math.PI * 2);
+      cropCtx.arc(h.p.x, h.p.y, 8.5, 0, Math.PI * 2);
       cropCtx.fill();
       cropCtx.stroke();
     });
+
+    // Magnifier Loupe (Active when dragging corner on mobile / desktop)
+    if (state.draggedCorner && state.activeCorners && state.activeCorners[state.draggedCorner] && state.activeRawCanvas) {
+      const cornerPt = state.activeCorners[state.draggedCorner];
+      const cx = cornerPt.x * scale;
+      const cy = cornerPt.y * scale;
+
+      let loupeX = cx;
+      let loupeY = cy - 75;
+      if (loupeY < 60) loupeY = cy + 75;
+      if (loupeX < 60) loupeX = 60;
+      if (loupeX > w - 60) loupeX = w - 60;
+
+      const loupeRadius = 46;
+      const zoom = 2.4;
+
+      cropCtx.save();
+      cropCtx.beginPath();
+      cropCtx.arc(loupeX, loupeY, loupeRadius, 0, Math.PI * 2);
+      cropCtx.shadowColor = 'rgba(0, 0, 0, 0.65)';
+      cropCtx.shadowBlur = 18;
+      cropCtx.strokeStyle = '#ffffff';
+      cropCtx.lineWidth = 3.5;
+      cropCtx.stroke();
+
+      cropCtx.clip();
+
+      const srcW = (loupeRadius * 2) / zoom;
+      const srcH = (loupeRadius * 2) / zoom;
+      const srcX = cornerPt.x - srcW / 2;
+      const srcY = cornerPt.y - srcH / 2;
+
+      cropCtx.drawImage(
+        state.activeRawCanvas,
+        srcX, srcY, srcW, srcH,
+        loupeX - loupeRadius, loupeY - loupeRadius, loupeRadius * 2, loupeRadius * 2
+      );
+
+      // Center crosshair
+      cropCtx.strokeStyle = '#10b981';
+      cropCtx.lineWidth = 2;
+      cropCtx.beginPath();
+      cropCtx.moveTo(loupeX - 12, loupeY);
+      cropCtx.lineTo(loupeX + 12, loupeY);
+      cropCtx.moveTo(loupeX, loupeY - 12);
+      cropCtx.lineTo(loupeX, loupeY + 12);
+      cropCtx.stroke();
+
+      cropCtx.restore();
+    }
   }
 
   function getCanvasCoords(evt, canvas) {
@@ -1307,7 +1422,7 @@
   }
 
   function getNearestCorner(pos, scale) {
-    const threshold = 36;
+    const threshold = 44; // Thumb-friendly touch radius
     const c = state.activeCorners;
     const corners = [
       { id: 'tl', x: c.tl.x * scale, y: c.tl.y * scale },

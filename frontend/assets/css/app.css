@@ -4519,42 +4519,44 @@ div:has(> iframe[src*="netlify"]) {
   z-index: 10;
 }
 
-/* Real-Time Guidance Pill */
+/* Real-Time Guidance Pill (OKEN Scanner Style) */
 .camera-guidance-pill {
   position: absolute;
   top: 60px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(19, 27, 46, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   color: #ffffff;
-  padding: 6px 16px;
+  padding: 7px 18px;
   border-radius: var(--radius-pill);
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   gap: 8px;
   z-index: 15;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
   pointer-events: none;
-  animation: pulseGuidance 2s infinite ease-in-out;
   white-space: nowrap;
-}
-
-@keyframes pulseGuidance {
-  0%, 100% { opacity: 0.92; transform: translateX(-50%) scale(1); }
-  50% { opacity: 1; transform: translateX(-50%) scale(1.03); }
+  letter-spacing: 0.02em;
 }
 
 .guidance-dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 8px #10b981;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+  display: inline-block;
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.75; }
 }
 
 /* Camera Frame Guidelines */
@@ -4562,7 +4564,7 @@ div:has(> iframe[src*="netlify"]) {
   position: absolute;
   inset: 20px;
   pointer-events: none;
-  border: 2px dashed rgba(255, 255, 255, 0.35);
+  border: 2px dashed rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-md);
 }
 
@@ -4570,7 +4572,7 @@ div:has(> iframe[src*="netlify"]) {
   position: absolute;
   width: 24px;
   height: 24px;
-  border-color: var(--primary);
+  border-color: #10b981;
   border-style: solid;
 }
 
@@ -4598,8 +4600,8 @@ div:has(> iframe[src*="netlify"]) {
   right: 0;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding: 0 24px;
+  justify-content: space-between;
+  padding: 0 28px;
   z-index: 20;
 }
 
@@ -4610,7 +4612,7 @@ div:has(> iframe[src*="netlify"]) {
   background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -4621,7 +4623,7 @@ div:has(> iframe[src*="netlify"]) {
 }
 
 .cam-circle-btn:hover {
-  background: rgba(99, 102, 241, 0.8);
+  background: rgba(16, 185, 129, 0.8);
   transform: scale(1.08);
 }
 
@@ -4636,8 +4638,8 @@ div:has(> iframe[src*="netlify"]) {
   width: 76px;
   height: 76px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  border: 3px solid #ffffff;
+  background: rgba(255, 255, 255, 0.25);
+  border: 3.5px solid #ffffff;
   padding: 5px;
   cursor: pointer;
   outline: none;
@@ -4646,6 +4648,7 @@ div:has(> iframe[src*="netlify"]) {
   align-items: center;
   justify-content: center;
   touch-action: manipulation;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.5);
 }
 
 .scanner-shutter-btn:hover {
@@ -4681,7 +4684,76 @@ div:has(> iframe[src*="netlify"]) {
 }
 
 .camera-shutter-flash.do-flash {
-  opacity: 0.9;
+  opacity: 0.92;
+}
+
+/* OKEN Scanner Style Bottom-Right Thumbnail Stack */
+.cam-thumb-stack-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: transform var(--transition-fast);
+}
+
+.cam-thumb-stack-btn:hover {
+  transform: scale(1.08);
+}
+
+.cam-thumb-preview-box {
+  position: relative;
+  width: 44px;
+  height: 56px;
+  border-radius: 6px;
+  border: 2px solid #ffffff;
+  background: #1e293b;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cam-thumb-preview-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cam-thumb-count-badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #10b981;
+  border: 1.5px solid #ffffff;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  animation: popBadge 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popBadge {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+.cam-thumb-next-icon {
+  color: #ffffff;
+  font-size: 1.3rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
 }
 
 /* 3. 4-Corner Crop & Perspective Warper Stage */
